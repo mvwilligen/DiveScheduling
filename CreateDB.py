@@ -2,7 +2,7 @@
 from homepage import app, db
 with app.app_context():
     db.create_all()
-
+ 
 from homepage import db
 from homepage import app
 from homepage import products
@@ -48,9 +48,6 @@ with app.app_context():
         Product.Abbr
         Product.Parts
         Product.Price
-
-result = 
-
 #--------------------------------------------------------------------------
 from homepage import products
 with app.app_context():
