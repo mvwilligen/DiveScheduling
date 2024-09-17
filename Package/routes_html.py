@@ -532,7 +532,7 @@ def htmlexport():
     cHtmlCalendar = cHtmlCal
 
     cHeader =           "<!--BeginCut --><table style='border-style: hidden;'><tr><td style='border:none;'>" + cCRLF
-    cHeader = cHeader + "<a href='http://127.0.0.1:5000/'><img src='logo.png' alt='ds'></a></td><td style='border:none;'>" + cCRLF
+    cHeader = cHeader + "<a href='/'><img src='logo.png' alt='ds'></a></td><td style='border:none;'>" + cCRLF
     cHeader = cHeader + "<a href='index.html'><img src='calendar.png' alt='calendar' width='60' height='60'></a></td>" + cCRLF
     cHeader = cHeader + "<td style='border:none;'>" + cCRLF
     cHeader = cHeader + cInstructorsMenu + cCRLF
