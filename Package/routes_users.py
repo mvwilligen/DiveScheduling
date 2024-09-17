@@ -1,6 +1,3 @@
-
-
-
 from Package import db
 from Package import app
 from Package.models import Appointments, Users, Instructors, Products, Notes
@@ -24,6 +21,10 @@ from dotenv import dotenv_values
 import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+
+import os
+import os.path
+
 
 
 from flask_bcrypt import Bcrypt
@@ -727,8 +728,12 @@ def usersmail(id):
         cEmailaddress      = user.Emailaddress
         cFullname2         = cFullname.replace(' ', '_')
 
-        sender_email       = secrets['SMTP_USER']
-        password           = secrets['SMTP_PASSWORD']
+        # sender_email      = secrets['SMTP_USER']
+        # password          = secrets['SMTP_PASSWORD']
+
+        sender_email       = os.environ.get('_SMTP_USER_').replace(chr(34), '')
+        password           = os.environ.get('_SMTP_PASSWORD_').replace(chr(34), '')
+        print('E-Mail: ', sender_email, password)
         cc_email           = "mvwilligen@gmail.com"
         bcc_email          = "mvwilligen@hotmail.com"
         receiver_email     = cEmailaddress
@@ -743,40 +748,52 @@ def usersmail(id):
 
         cMessageText = ""
 
-        import os.path
-
         cMessageHtml = ''
 
         print('')
         print('cFullname2: ', cFullname2)
 
+        cMailbody = ""
+
         cFilename = "./Exports/Internal/calendar_st_" + cFullname2 + ".html"
         if os.path.isfile(cFilename):
-            cMailFilename = cFilename
+            f = open(cFilename, "r")
+            cMessageHtml = f.read()
+            f.close()
+            cMailbody = "Student<br><br>" + cMessageHtml
 
         cFilename = "./Exports/Internal/calendar_in_" + cFullname2 + ".html"
         if os.path.isfile(cFilename):
-            cMailFilename = cFilename
+            f = open(cFilename, "r")
+            cMessageHtml = f.read()
+            f.close()
+            cMailbody = cMailbody + "<br>--------------------------------<br>" + chr(13) + chr(10) + "staff<br><br>" + cMessageHtml
 
-        print('cMailFilename: ', cMailFilename)
+        # print('cMailFilename: ', cMailFilename)
 
-        f = open(cMailFilename, "r")
-        cMessageHtml = f.read()
-        f.close()
+        # f = open(cMailFilename, "r")
+        # cMessageHtml = f.read()
+        # f.close()
 
         print('')
-        print('before: ', len(cMessageHtml))
+        print('before: ', len(cMailbody))
         # remove all from '<style>' until '</style>'
-        cFirstPart   = cMessageHtml[0:cMessageHtml.find('<style>')]
-        cLastPart    = cMessageHtml[cMessageHtml.find('</style>')+8:]
-        cMessageHtml = cFirstPart + cLastPart
-        print('after removing style part: ', len(cMessageHtml))
+        cFirstPart   = cMailbody[0:cMailbody.find('<style>')]
+        cLastPart    = cMailbody[cMailbody.find('</style>')+8:]
+        cMailbody = cFirstPart + cLastPart
+        cFirstPart   = cMailbody[0:cMailbody.find('<style>')]
+        cLastPart    = cMailbody[cMailbody.find('</style>')+8:]
+        cMailbody = cFirstPart + cLastPart
+        print('after removing style part: ', len(cMailbody))
         # remove all from '<!--BeginCut -->' until '<!--EndCut -->'
-        cFirstPart = cMessageHtml[0:cMessageHtml.find('<!--BeginCut -->')]
-        cLastPart  = cMessageHtml[cMessageHtml.find('<!--EndCut -->')+14:]
-        cMessageHtml  = cFirstPart + cLastPart
-        print('after removing studentsmenu and instructorsmenu: ', len(cMessageHtml))
-        cMessageText = cMessageHtml.replace('</td><td>','; ')
+        cFirstPart = cMailbody[0:cMailbody.find('<!--BeginCut -->')]
+        cLastPart  = cMailbody[cMailbody.find('<!--EndCut -->')+14:]
+        cMailbody  = cFirstPart + cLastPart
+        cFirstPart = cMailbody[0:cMailbody.find('<!--BeginCut -->')]
+        cLastPart  = cMailbody[cMailbody.find('<!--EndCut -->')+14:]
+        cMailbody  = cFirstPart + cLastPart
+        print('after removing studentsmenu and instructorsmenu: ', len(cMailbody))
+        cMessageText = cMailbody.replace('</td><td>','; ')
         cMessageText = strip_tags(cMessageText)
         print('after strip_tags: ', len(cMessageText))
         print(cMessageText)
@@ -786,7 +803,7 @@ def usersmail(id):
             print('start sending mail')
             # Turn these into plain/html MIMEText objects
             part1 = MIMEText(cMessageText, "plain")
-            part2 = MIMEText(cMessageHtml, "html")
+            part2 = MIMEText(cMailbody, "html")
 
             # Add HTML/plain-text parts to MIMEMultipart message
             # The email client will try to render the last part first

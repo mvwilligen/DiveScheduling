@@ -46,7 +46,7 @@ users
                                 <a class="btn btn-outline btn-info" href="{{ url_for('usersinfo', id = user.Id ) }} ">info</a> 
                                 {% if user.Emailaddress|length > 0 %}
                                     {% if ('student' in user.Status) or ('instructor' in user.Status) %}
-                                        {% if ('admin' in user.Status) %}
+                                        {% if ('admin' in lRBAC[1]) %}
                                             <a class="btn btn-outline btn-info" href="{{ url_for('usersmail', id = user.Id ) }} ">mail</a> 
                                             <a class="btn btn-outline btn-info" href="{{ url_for('usersnotes', id = user.Id ) }} ">notes</a> 
                                         {% endif %}

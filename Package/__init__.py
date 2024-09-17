@@ -33,12 +33,15 @@ from sqlalchemy.orm   import relationship
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///divescheduling.db'
 
 import socket
-if socket.gethostname() == "MWI20":
-    app.config['SECRET_KEY'] = secrets["SECRETKEY"]
+if socket.gethostname() == "_MWI20_":
+    pass
+    # app.config['SECRET_KEY'] = secrets["SECRETKEY"]
 else:
     import os
     SECRET_KEY = os.urandom(32)
     app.config['SECRET_KEY'] = SECRET_KEY
+
+
 
 # app.config["SQLALCHEMY_ECHO"] = True
 app.config["SQLALCHEMY_ECHO"] = False

@@ -657,9 +657,15 @@ def ftp():
 
         secrets = dotenv_values(".env")
 
-        ftp     = FTP('ftp.maidiving.nl')
-        ftpuser = secrets['FTP_USER']
-        ftppw   = secrets['FTP_PASSWORD']
+        database_url = os.environ.get('DATABASE_URL')
+
+        # ftpuser = secrets['FTP_USER']
+        # ftppw   = secrets['FTP_PASSWORD']
+
+        ftp       = FTP('ftp.maidiving.nl')
+        ftpuser   = os.environ.get('_FTP_USER_').replace(chr(34), '')
+        ftppw     = os.environ.get('_FTP_PASSWORD_').replace(chr(34), '')
+        print('ftp: ', ftpuser, ftppw)
         ftp.login(user = ftpuser, passwd = ftppw)
 
         listfiles = glob.glob(cFolderNameOSInternal+ "*.*")
