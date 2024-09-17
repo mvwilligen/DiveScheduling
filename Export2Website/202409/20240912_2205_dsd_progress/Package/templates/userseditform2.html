@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+registerform2
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <form method="POST" class = "registerform2" style = "color:white">
+            {{ form.csrf_token }}
+
+            <h2 class="h3 mb-3 font-weight-normal">
+            username {{ user.Username }}
+            </h2>
+            <br>
+
+            {{ form.firstname.label() }}
+            {{ form.firstname(class = "form-control",    placeholder = "firstname",    value = user.Firstname ) }}
+
+            {{ form.lastname.label() }}
+            {{ form.lastname(class = "form-control",     placeholder = "lastname",     value = user.Lastname ) }}
+
+            {{ form.phone.label() }}
+            {{ form.phone(class = "form-control",        placeholder = "phone",        value = user.Phone ) }}
+
+            {{ form.emailaddress.label() }}
+            {{ form.emailaddress(class = "form-control", placeholder = "emailaddress", value = user.Emailaddress ) }}
+            
+            {% if ('admin' in lRBAC [1]) or ( user.Username == lRBAC [0] ) %}
+              {{ form.password.label() }}
+              {{ form.password(class = "form-control", placeholder = "new password", value = "" ) }}
+            {% endif%}
+            
+            <br>
+            {% if ('staff' in lRBAC [1]) %}
+              {% for l in listStatus %}
+              <input type="checkbox" name={{ l }} id={{ l }} value={{ l }}
+            
+              {% if l in user.Status %}
+                checked
+              {% endif %}
+
+              >&nbsp;{{ l }}<br>
+              {% endfor %}
+            {% endif %}
+
+            <br>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        </form>
+    </div>
+
+{% endblock %}
+

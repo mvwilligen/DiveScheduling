@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.p1 {   font-family: "Times New Roman", Times, serif;}
+.p2 {  font-family: Arial, Helvetica, sans-serif;}
+.p3 {  font-family: "Lucida Console", "Courier New", monospace;}
+table {  font-family: arial, sans-serif;   border-collapse: collapse;   width: 100%; }
+td, th {   border: 1px solid #dddddd;   text-align: left;   padding: 8px; }
+tr:nth-child(even) {   background-color: #dddddd; }
+</style>
+
+</head>
+<body style="font-family:verdana">
+<h1><p class="p2">Wishlist</p></h1>
+[ ] notes system<br>
+[ ] change status to/from instructor<br>
+[ ] form: student & full course<br>
+[ ] logging<br>
+[ ] minimum requirement password<br>
+[ ] last changed in records<br>
+[ ] <br>
+<font color='green'>[v] new product</font><br>
+<font color='green'>[v] change password</font><br>
+<font color='green'>[v] RBAC</font><br>
+<br>
+<h1><p class="p2">Bugs</p></h1>
+<font color='green'>[v] products \ Users</font><br>
+<font color='green'>[v] login: handle unknown username</font><br>
+<br>
+
+<h1><p class="p2">DiveScheduling</p></h1>
+<p class="p3">
+<font color='green'>[v] <b>login / logoff</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">[ ] rbac</font><br>
+<br>
+[ ] <b>users</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] rename forms<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] rename registerform2.html -> useredit.html<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] rename registerform.html  -> usernew.html<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] implement student records<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] staff in seperate table & join</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;[v] password in hash<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] list</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] edit</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] register</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] info</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] Error when changing data in form user (datetime)</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] status (checkboxes)</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] add appointments</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] delete</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] check for active links<br>
+<br>
+[ ] <b>products</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'><b>[v] New</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] list</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] edit</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] delete</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] check for active links<br>
+<br>
+[ ] <b>appointments</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] change values for selection<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] list</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] edit</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] delete</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] check for active links<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] monthly overview</font><br>
+<br>
+[ ] <b>misc</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] secrets<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] https://medium.com/@gitauharrison/build-a-tag-system-in-your-flask-blog-app-f7d9b915fc1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] scrolling with fixed header<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://wpdatatables.com/html-table-with-fixed-header-and-scrollable-body/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] logging<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] https<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] mail versturen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] test on mwisoftware.nl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] secrets<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] FLASK_DEBUG=True<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] FLASK_ENV=development<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] http://192.168.1.57:5000<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] dependencies Bootstrap<br>
+<font color='green'>&nbsp;&nbsp;&nbsp;&nbsp;[v] joins</font><br>
+<font color='green'>&nbsp;&nbsp;&nbsp;&nbsp;[v] select on date</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] database diagram</font><br>
+</p>
+</p>
+<br><br>
+<table>
+    <tr>
+	    <td>
+		    <p class="p2"><b><h2>what</h2></b></p>
+		</td>
+		<td>
+		    <p class="p2"><b><h2>how</h2></b></p>
+		</td>
+	</tr>
+
+    <tr>
+	    <td>
+		    start
+		</td>
+		<td>
+		    cd \data<br>
+			DiveScheduling.bat<br>
+			'python' of 'python run.py'<br>
+		</td>
+	</tr>
+
+    <tr>
+	    <td>
+		    <p class="p2">start server</p>
+		</td>
+		<td>
+		    <p class="p3">
+			python run.py<br>
+			http://127.0.0.1:5000<br>
+			</p>
+		</td>
+	</tr>
+
+    <tr>
+        <td>
+		    <p class="p2">new db</p>
+	    </td>
+	    <td>
+		    <p class="p3">
+			reinit_db.bat<br>
+			<br>
+	        <s>del instance\divescheduling.db</s><br>
+		    <s>python</s><br>
+            <s>exec(open('reinit_db.py').read())</s><br>
+			</p>
+        </td>
+	</tr>
+
+<!---
+    <tr>
+	    <td>
+		</td>
+		<td>
+		</td>
+	</tr>
+--->
+
+</table>
+<br>
+<br>
+<h2>My journey: Development of a web-application for scheduling instructors</h2>
+<br>
+<h4><b>Skills</b></h4>
+- Python 3.12.5<br>
+- Flask<br>
+- SQLAlchemy
+- SQLite<br>
+- Jinja2<br>
+- Html<br>
+- VS Code<br>
+<br>
+<br>
+<h4><b>Challenges</b></h4>
+- datetime<br>
+- joins\relationships<br>
+- variable in jinja2 loop<br>
+- data from sql query to form<br>
+- instructors<br>
+- imports/froms<br>
+- login<br>
+<br>
+<br>
+<h4>Database Diagram</h4>
+<img src="C:\Data\Python\DiveScheduling\instance\Screenshot 2024-08-31 213642.png">
+<br>
+Source: https://dbdiagram.io/d<br>
+<br>
+<br>
+<h4><b>Supporting batchfiles</b></h4>
+C:\Data\PythonZip_DiveScheduling.bat<br>
+C:\Data\Python\_Backups_\Unzip_From_Backup.bat<br>
+C:\Data\Python\DiveScheduling\Export2Website (under development)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- ftp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- .env<br>
+<br>
+<br>
+<h4><b>Additional information</b></h4>
+<a href="https://github.com/jimdevops19/codesnippets/tree/main/Flask%20Full%20Series">jimdevops19</a>
+<a href="https://github.com/jimdevops19/FlaskSeries">2</a>
+<br>
+<a href="http://127.0.0.1:5000/products">http://127.0.0.1:5000/products</a>
+<br>
+<a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">https://getbootstrap.com/docs/5.0/getting-started/introduction/</a>
+<br>
+<a href="<a href="https://documentation.bloomreach.com/engagement/docs/jinja">https://documentation.bloomreach.com/engagement/docs/jinja</a>
+<br>
+<a href="<a href="https://patorjk.com/software/taag/#p=display&f=Banner3&t=models.py%20">ascii art</a>
+<br>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+instructors
+{% endblock %}
+
+    {% block content %}
+    <h3><b>&nbsp;instructors</b></h3>
+
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <!-- Your Columns HERE -->
+                <th scope="col">id</th>
+                <th scope="col">user</th>
+                <th scope="col">name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Your rows inside the table HERE: -->
+
+                {% for i in instructors %}
+                {% if i.Id > 1 %}
+                    <tr>
+                        <td>{{ i.Id }}</td>
+                        <td>{{ i.User }}</td>
+                        <td>{{ i.Name }}</td>
+                        <td>{% if (i.Active) %}
+                                active
+                            {% else %}
+                                inactive
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if ('staff' in lRBAC [1]) and not (i.Id == 1) %}
+                                <a class="btn btn-outline btn-info" href="{{ url_for('usersedit2', id = i.User ) }} ">edit</a> 
+                                <a class="btn btn-outline btn-info" href="{{ url_for('instructorsinfo', id = i.User ) }} ">info</a> 
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}

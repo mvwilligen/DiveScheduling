@@ -1,0 +1,303 @@
+<!-- source: https://getbootstrap.com/docs/5.0/getting-started/introduction/ -->
+
+{% extends 'base.html' %}
+
+{% block title %}
+support
+{% endblock %}
+
+{% block content %}
+<h3>&nbsp;support</h3>
+<br>
+| current_user.Username: {{ current_user.Username }}
+| current_user.is_active:{% if current_user.is_active %}true{% else %}false{% endif %}
+| current_user.is_authenticated:{% if current_user.is_authenticated %}true{% else %}false{% endif %}
+| current_user.is_anonymous:{% if current_user.is_anonymous %}true{% else %}false{% endif %}
+| current_user.get_id:{% if current_user.get_id %}true{% else %}false{% endif %}|
+<br>
+<br>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+</style>
+
+</head>
+<body style="font-family:verdana">
+<h3><p class="p2"><b>Wishlist<b></p></h3>
+[ ] button for DSD<br>
+[ ] productform<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[v] mutate instructor in user\product-form<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] use in other lists<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[v] home: on date<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] appointments: on date<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] products\users<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] instructors\info<br>
+[ ] impersonate other instructor<br>
+[ ] implement assistent instructor (join 2 new table?)<br>
+[ ] notes system<br>
+[ ] logging<br>
+[ ] minimum requirement password<br>
+[ ] last changed in records<br>
+[ ] 'less visible' links (CSS?)<br>
+[ ] function string2safe<br>
+[ ] text fields<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] user<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] appointment<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] instructor<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] products<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] notes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] studentrecords<br>
+[ ] eenmalige studenten...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] aparte records?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] registreren als groep?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] status: group?<br>
+[ ] index<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] https : // python.plainenglish.io / indexing-in-sqlalchemy-enhancing-database-performance-0a11e0432a97<br>
+[ ] pagination<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] appointments<br>
+<font color='green'>[v] block routes (RBAC)</font><br>
+<font color='green'>[v] change status to/from instructor</font><br>
+<font color='green'>[v] new product</font><br>
+<font color='green'>[v] change password</font><br>
+<font color='green'>[v] RBAC</font><br>
+<font color='green'>[v] form: student & full course</font><br>
+<font color='green'>[v] return to previous form after submit or action</font><br>
+<font color="green">[v] exportable agenda.html etc</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">[v] months</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">[v] per day</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">[v] instructors</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">[v] students</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">[v] ftp</font><br>
+<br>
+<h1><p class="p2">Bugs</p></h1>
+no showstopping bugs at the moment :-D</font><br>
+[ ] <br>
+[ ] <br>
+<br>
+
+<h1><p class="p2">DiveScheduling</p></h1>
+<p class="p3">
+<font color='green'>[v] <b>login / logoff</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">[v] rbac</font><br>
+<br>
+[ ] <b>users</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">[v] rename forms</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">[v] rename registerform2.html -> useredit.html</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">[v] rename registerform.html  -> usernew.html</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] implement student records<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] staff in seperate table & join</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] password in hash</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] list</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] edit</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] register</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] info</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] Error when changing data in form user (datetime)</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] status (checkboxes)</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] add appointments</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] delete</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] check for active links<br>
+<br>
+[ ] <b>products</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'><b>[v] New</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] list</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] edit</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] delete</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] check for active links<br>
+<br>
+[ ] <b>appointments</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] change values for selection<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] list</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] edit</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] delete</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] check for active links<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] monthly overview</font><br>
+<br>
+[ ] <b>misc</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] secrets<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] https://medium.com/@gitauharrison/build-a-tag-system-in-your-flask-blog-app-f7d9b915fc1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] scrolling with fixed header<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://wpdatatables.com/html-table-with-fixed-header-and-scrollable-body/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] https<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] mail versturen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] test on raspberry pi</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] test on external host<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] secrets<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] FLASK_DEBUG=True<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] FLASK_ENV=development<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] http://192.168.1.57:5000</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] dependencies Bootstrap<br>
+<font color='green'>&nbsp;&nbsp;&nbsp;&nbsp;[v] joins</font><br>
+<font color='green'>&nbsp;&nbsp;&nbsp;&nbsp;[v] select on date</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] database diagram</font><br>
+</p>
+</p>
+<br><br>
+<table>
+    <tr>
+	    <td valign="top">
+		    <p class="p2"><b><h2>what&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></b></p>
+		</td>
+	    <td valign="top">
+		    <p class="p2"><b><h2>how&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></b></p>
+		</td>
+	</tr>
+
+    <tr>
+	    <td valign="top">
+		    <b>start</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+	    <td valign="top">
+		    cd \data<br>
+			DiveScheduling.bat<br>
+			<s>'python' of 'python run.py'</s><br>
+			run.bat<br>
+			<br>
+		</td>
+	</tr>
+
+    <tr>
+	    <td valign="top">
+		    <p class="p2"><b>start server</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		</td>
+	    <td valign="top">
+		    <p class="p3">flask --app Package run --debug --host=0.0.0.0<br>
+			<br>
+			<s>python run.py</s><br>
+		    <s>http://127.0.0.1:5000</s><br><br>
+			</p>
+		</td>
+	</tr>
+
+    <tr>
+	    <td valign="top">
+		    <p class="p2"><b>refresh db</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+	    </td>
+	    <td valign="top">
+		    <p class="p3">
+			reinit_db.bat<br>
+			<br>
+	        <s>del instance\divescheduling.db</s><br>
+		    <s>python</s><br>
+            <s>exec(open('reinit_db.py').read())</s><br><br>
+			</p>
+        </td>
+	</tr>
+
+<!---
+    <tr>
+	    <td>
+		</td>
+		<td>
+		</td>
+	</tr>
+--->
+
+</table>
+<br>
+<br>
+<h2>My journey: Development of a web-application for scheduling instructors</h2>
+<br>
+<h4><b>Skills</b></h4>
+- Python 3.12.5<br>
+- Flask<br>
+- SQLAlchemy
+- SQLite<br>
+- Jinja2<br>
+- Html<br>
+- VS Code<br>
+<br>
+<br>
+<h4><b>Challenges</b></h4>
+- datetime<br>
+- joins\relationships<br>
+- variable in jinja2 loop<br>
+- data from sql query to form<br>
+- instructors<br>
+- imports/froms<br>
+- login<br>
+<br>
+<br>
+DB Browser for SQLite, https: // sqlitebrowser.org/<br>
+<br>
+<h4><b>Database Diagram</b></h4>
+<img src="{{ url_for('static', filename='images/a.png') }}"><br>
+Source: https://dbdiagram.io/d<br>
+<br>
+<br>
+<h4><b>Supporting batchfiles</b></h4>
+C:\Data\PythonZip_DiveScheduling.bat<br>
+C:\Data\Python\_Backups_\Unzip_From_Backup.bat<br>
+C:\Data\Python\DiveScheduling\Export2Website (under development)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- ftp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- .env<br>
+<br>
+<br>
+<h4><b>Additional information</b></h4>
+https : //github.com/jimdevops19/codesnippets/tree/main/Flask%20Full%20Series" jimdevops19<br>
+https : //github.com/jimdevops19/FlaskSeries"<br>
+<br>
+http : //127.0.0.1:5000/products"<br>
+<br>
+https : //getbootstrap.com/docs/5.0/getting-started/introduction/<br>
+<br>
+https : //documentation.bloomreach.com/engagement/docs/jinja<br>
+<br>
+https : //patorjk.com/software/taag/#p=display&f=Banner3&t=models.py%20" ascii art<br>
+<br>
+https : //www.youtube.com/watch?v=Qr4QMBUPxWo&t=9424s<br>
+<br>
+https : //github.com/jimdevops19/codesnippets/tree/main/Flask%20Full%20Series<br>
+<br>
+https : //sqlitebrowser.org/<br>
+<br>
+<br>
+<br>
+<h4><b>GITHUB</b></h4>
+<br>
+[Terminal]<br>
+<br>
+git add .<br>
+git commit .<br>
+git push DiveScheduling main<br>
+<br>
+<br>
+<br>
+<br>
+------------------------------------------------------------<br>
+<b>Updates</b><br>
+$ sudo apt update<br>
+$ sudo apt full-upgrade<br>
+<br>
+------------------------------------------------------------<br>
+<b>Remote Control</b><br>
+> ssh 192.168.1.109 -l piuser<br>
+<br>
+pip install virtualenv<br>
+python -m venv env<br>
+source env/bin/activate<br>
+pip install flask<br>
+pip install flask-sqlalchemy<br>
+pip install flask-wtf<br>
+pip install email_validator<br>
+pip install flask-login<br>
+pip install python-dotenv<br>
+pip install Flask-Mailman<br>
+pip install flask_bcrypt<br>
+<br>
+flask --app Package run --host=0.0.0.0 --debug<br>
+<br>
+sudo shutdown -t 1 now<br>
+------------------------------------------------------------<br>
+<br>
+<br>
+<br>
+<b>samba</b><br>
+https : //www.jeffgeerling.com/blog/2021/htgwa-create-samba-smb-share-on-raspberry-pi<br>
+<br>
+net use p: \\192.168.1.109\piuser /user:piuser passw0rd<br>
+</body>
+</html>
+{% endblock %}

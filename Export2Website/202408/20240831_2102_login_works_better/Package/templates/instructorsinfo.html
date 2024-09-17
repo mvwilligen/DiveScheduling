@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+instructorinfo
+{% endblock %}
+
+{%block content %}
+<h3>&nbsp;instructor</h3>
+<br>
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">date</th>
+            <th scope="col">student</th>
+            <th scope="col">course</th>
+            <th scope="col">part</th>
+            <th scope="col">instructor</th>
+            <th scope="col">notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Your rows inside the table HERE: -->
+
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment [6] }}</td>
+                <td>{{ appointment [2] + ' ' + appointment [3] }} [{{ appointment [1] }}]</td>
+                <td>{{ appointment [4] }}</td>
+                <td>{{ appointment [5] }}</td>
+                <td>{{ appointment [8] }} [{{ appointment [7] }}]</td>
+                <td> 
+                    <!-- <a class="btn btn-outline btn-info" href="{ { url_for('appointmentsedit',   id = appointment.Id ) } } ">edit</a> -->
+                    <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsedit',   id = appointment.Id ) }} ">edit</a> 
+                    <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsdelete', id = appointment.Id ) }} ">del</a> 
+                    <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsassign', id = appointment.Id ) }} ">mine</a>
+                </td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+

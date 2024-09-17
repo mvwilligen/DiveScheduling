@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+appointmentsedit
+{% endblock title %}
+
+{% block content %}
+
+<h3>edit appointment</h3>
+<br>
+  <form method="post">
+    {{ form.hidden_tag() }}
+<table>
+<tr><td>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>     <td>{{ appointment [2] }} {{ appointment [3] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>product&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>{{ appointment [4] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>part&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>   <td>{{ appointment [5] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+<br>
+<div class="form-group">
+    <label for="staff">instructor </label>
+    
+    <select name="instructor" id="instructor">
+        {% for i in instructors %}
+        <option value="{{ i.Name }}"
+        
+        {% if i.Name == appointment[8] %}
+            selected
+        {% endif %}
+        
+        >{{ i.Name }}</option>
+        {% endfor %}
+    </select>
+    
+    <label for="assistants">assistant </label>
+    
+    <select name="assistants1" id="assistants1">
+        {% for a in assistants  %}
+        <option value="{{ a.Firstname + ' ' + a.Lastname}}"
+            {% if (appointment[10]|length == 0) and (a.Name == '[none]') %}
+                selected
+            {% endif %}
+
+            {% if (a.Firstname + ' ' + a.Lastname) in appointment [10] %}
+                selected
+            {% endif %}
+        
+        >{{ a.Firstname + ' ' + a.Lastname }}</option>
+        {% endfor %}
+    </select>
+    
+    <class="form-control">
+    </div>
+
+    <!-- https://strftime.org/ -->
+    <div class="form-group">
+        <label for="date">date</label>
+        <input type="date" name="date" id="date" value="{{ appointment [6].strftime('%Y-%m-%d') }}" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="time">time</label>
+        <input type="time" name="time" id="time" value="{{ appointment [6].strftime('%H:%M') }}" class="form-control">
+    </div>
+    
+    {{ form.note.label() }}<br>
+    {{ form.note(placeholder="note", cols="148", rows="8" ) }}
+    <br><br>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="submit-btn">
+    </div>
+</form>
+{% endblock content %}

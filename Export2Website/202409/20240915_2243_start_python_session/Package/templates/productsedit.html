@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+productsedit
+{% endblock title %}
+
+{% block content %}
+<br>
+<h3>product {{ product.Productname }}</h3>
+<br>
+<br>
+  <form method="post">
+    {{ form.hidden_tag() }}
+
+    <!--
+    <div class="form-group">
+        <label for="productname">productname</label>
+        <input type="text" name="productname" id="productname" value="{{ product.Productname }}" class="form-control">
+    </div>
+    -->
+    <div class="form-group">
+        <label for="abbr">Abbreviation</label>
+        <input type="text" name="abbr" id="abbr" value="{{ product.Abbr }}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="parts">part(s)</label>
+        <input type="text" name="parts" id="parts" value="{{ product.Parts }}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="description">description</label>
+        <input type="text" name="description" id="description" value="{{ product.Description }}" class="form-control">
+    </div>
+
+    <br>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="submit-btn">
+    </div>
+</form>
+{% endblock content %}

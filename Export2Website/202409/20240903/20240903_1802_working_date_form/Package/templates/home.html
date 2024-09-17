@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+homepage
+{% endblock %}
+
+{% block content %}
+
+{% if not current_user.is_anonymous %}
+
+{% set cDate = namespace(value = '') %}
+{% set cWeekDays = namespace(value = 'sunmontuewedthufrisat') %}
+
+<table>
+    {% for events in appointments %}
+
+        {% if (events [1] == lRBAC [2]) or ('staff' in lRBAC [1]) %}
+
+        {% set cWeekDays = "sunday   monday   tuesday  wednesdaythursday friday   saturday" %}
+        {% set nWeekDay  = events[6].strftime("%w")|int * 9 %}
+        {% set nWeekDay2  = nWeekDay|int + 9|int %}
+
+        {% if (cDate.value|string() != events[6].strftime("%d-%m-%Y")|string() ) %}
+        {% set cDate.value = events[6].strftime("%d-%m-%Y") %}
+        <tr><td>&nbsp;</td></tr>
+            <tr><td><h5>{{ events[6].strftime("%d-%m-%Y") }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5></td><td><h5>{{ cWeekDays[nWeekDay:nWeekDay2] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5></td><td>                <a href="{{ url_for('appointmentsdate2', text = cDate.value|string() ) }}">form</a> 
+            </td></tr>
+        {% endif %}
+
+        <tr>
+            <td>{{ events[6].strftime("%H:%M:%S") }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>{{ events[2] + ' ' + events[3] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>{{ events[4] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>{{ events[5] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>{{ events[7] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>
+
+            {% if (('staff' in lRBAC [1]) and (events [6] >= lRBAC [4] )) or ('admin' in lRBAC [1]) %}
+                <a href="{{ url_for('appointmentsedit',     id = events [0] ) }}">edit</a>
+                <a href="{{ url_for('appointmentsdelete',   id = events [0] ) }}">delete</a> 
+                {# unassigned appointment 1 = [none] #}
+                {% if events [8] == 1 %} 
+                <a href="{{ url_for('appointmentsassign',   id = events [0] ) }}">mine</a>
+                {% endif %}
+            {% endif %}
+            </td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+
+{% else %}
+
+Welcome! Please login or register.
+
+{% endif %}
+
+{% endblock %}
+

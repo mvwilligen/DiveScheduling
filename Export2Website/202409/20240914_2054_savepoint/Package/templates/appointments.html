@@ -1,0 +1,69 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+appointments
+{% endblock %}
+
+{% block content %}
+<h3>&nbsp;appointments</h3>
+
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col" style='width:200px'>date</th>
+            <th scope="col" style='width:200px'>student</th>
+            <th scope="col" style='width:200px'>course</th>
+            <th scope="col" style='width:200px'>part</th>
+            <th scope="col" style='width:200px'>instructor</th>
+            <th scope="col" style='width:200px'>assistant</th>
+            <th scope="col" style='width:200px'>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Your rows inside the table HERE: -->
+
+            {% for appointment in appointments %}
+            {% if (appointment [1] == lRBAC [2]) or ('staff' in lRBAC [1]) %}
+            <tr>
+                <td>{{ appointment [6] }}</td>
+                <td>{{ appointment [2] + ' ' + appointment [3] }}</td>
+                <td>{{ appointment [4] }}</td>
+                <td>{{ appointment [5] }}</td>
+                <td>
+                {% if appointment [8] == '[none]' %}
+                    &nbsp;
+                {% else %}
+                    {{ appointment [8] }}
+                {% endif %}
+                </td>
+                <td>
+                {% if appointment [10] == 'no ne' %}
+                    &nbsp;
+                {% else %}
+                    {{ appointment [10] }}</td>
+                {% endif %}
+                </td>
+                <td> 
+                    {% if (('staff' in lRBAC [1]) and (appointment [6] >= lRBAC [4] )) or ('admin' in lRBAC [1]) %}
+                        <!-- <a class="btn btn-outline btn-info" href="{ { url_for('appointmentsedit',   id = appointment.Id ) } } ">edit</a> -->
+                        <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsedit',   id = appointment.Id, cFrom = 'appointments' ) }} ">edit</a> 
+                        {% if ('admin' in lRBAC [1]) %}
+                            <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsdelete', id = appointment.Id , cFrom = 'appointments' ) }} ">del</a> 
+                        {% endif %}
+                        {% if appointment [7] == 1 %}
+                            <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsassign', id = appointment.Id , cFrom = 'appointments' ) }} ">mine</a>
+                        {% endif %}
+                        {% if appointment [8] == lRBAC [3] %}
+                            <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsunassign', id = appointment.Id , cFrom = 'appointments') }} ">unmine</a>
+                        {% endif %}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+

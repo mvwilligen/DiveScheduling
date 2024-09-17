@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+product
+{% endblock title %}
+
+{% block content %}
+
+<br>
+<h1>appointment {{ appointment.Part }}</h1>
+<br>
+  <form method="post">
+    {{ form.hidden_tag() }}
+<table>
+<tr><td>Appointments.Id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>     <td>{{ appointment [0] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>Appointments.User&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>   <td>{{ appointment [1] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>Users.Firstname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>     <td>{{ appointment [2] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>Users.Lastname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>      <td>{{ appointment [3] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>Products.Productname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>{{ appointment [4] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>Appointments.Part&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>   <td>{{ appointment [5] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>Appointments.Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>   <td>{{ appointment [6] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>Appointments.Staff&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>  <td>{{ appointment [7] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>Instructors.Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>    <td>{{ appointment [8] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+<br>
+    <div class="form-group">
+        <label for="staff">instructor</label>
+        <input type="text" name="staff" id="staff" value="{{ appointment [8] }}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="time">date</label>
+        <input type="date" name="date" id="date" value="{{ appointment [6] }} value='{{ appointment [6] }}'" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="time">time</label>
+        <input type="time" name="time" id="time" value="{{ appointment.Time }}" class="form-control">
+    </div>
+
+    <br>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="submit-btn">
+    </div>
+</form>
+{% endblock content %}

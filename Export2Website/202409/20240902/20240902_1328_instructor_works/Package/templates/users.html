@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+users
+{% endblock %}
+
+    {% block content %}
+    <h3><b>&nbsp;users</b></h3>
+
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <!-- Your Columns HERE -->
+                <th scope="col">username</th>
+                <th scope="col">firstname</th>
+                <th scope="col">lastname</th>
+                <th scope="col">phone</th>
+                <th scope="col">emailaddress</th>
+                <th scope="col">status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Your rows inside the table HERE: -->
+
+                {% for user in users %}
+                {% if (user.Id == lRBAC [2]) or ('staff' in lRBAC [1])  %}
+                <tr>
+                    <td>{{ user.Username }} [{{ user.Id }}]</td>
+                    <td>{{ user.Firstname }}</td>
+                    <td>{{ user.Lastname }}</td>
+                    {% if 'staff' in lRBAC [1] %}
+                    <td>{{ user.Phone }}</td>
+                    <td>{{ user.Emailaddress }}</td>
+                    <td>{{ user.Status }}</td>
+                    {% endif %}
+                    <td>
+                        {% if (user.Id != 2) %}
+                            {% if (user.Id > 2) or ('admin' in lRBAC [1]) %}
+                                {% if ('staff' in lRBAC [1]) %}
+                                    <a class="btn btn-outline btn-info" href="{{ url_for('registerform2', id = user.Id ) }} ">edit</a> 
+                                    {% if ('admin' in lRBAC [1]) %}
+                                        <a class="btn btn-outline btn-info" href="{{ url_for('userdelete', id = user.Id ) }} ">delete</a>
+                                    {% endif %}
+                                {% endif %}
+                                <a class="btn btn-outline btn-info" href="{{ url_for('usersinfo', id = user.Id ) }} ">info</a> 
+                            {% endif %}
+                        {% else %}
+                            I am soooo special ;-)
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}

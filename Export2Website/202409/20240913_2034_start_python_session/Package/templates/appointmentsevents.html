@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}
+appointmentsevents
+{% endblock title %}
+
+{% block content %}
+
+{% set cDate = namespace(value = lRBAC[4].strftime('%Y-%m-%d')) %}
+{% set cTime = namespace(value = "20:00") %}
+
+<h3>appointment event</h3>
+<br>
+  <form method="post">
+    {{ form.hidden_tag() }}
+<table>
+    <tr><td  style='width:200px'><b>date</b></td><td  style='width:200px'><b>time</b></td><td style='width:200px'><b>student</b></td>
+                      <td  style='width:200px'><b>product</b></td><td  style='width:200px'><b>part</b></td><td  style='width:200px'><b>instructor</b></td><td  style='width:200px'><b>assistant</b></td></tr>
+
+    {% for a in appointments %}
+        <tr><td>{{ a[6].strftime("%d-%m-%Y") }}</td><td>{{ a[6].strftime("%H:%M") }}</td><td>{{ a[2] + ' ' + a[3] }}</td><td>{{ a[4] }}</td><td>{{ a[5] }}</td>
+
+            {% set cDate.value = a[6].strftime("%Y-%m-%d") %}
+            {% set cTime.value = a[6].strftime("%H:%M") %}
+
+            <td>
+                <select name="instructor{{ a[0] }}" id="instructor{{ a[0] }}" style="border-radius: 5px; padding: 7px;">
+                    {% for i in instructors %}
+                        <option value='{{ i.Name }}'
+                        {% if i.Name == a [8] %}
+                           selected
+                        {% endif %}
+                        >{{ i.Name }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+    
+            <td>
+                <select name="assistant{{ a[0] }}" id="assistant{{ a[0] }}" style="border-radius: 5px; padding: 7px;">
+                    {% for a in assistants %}
+                        <option value='{{ a.Firstname }} {{ a.Lastname}}'
+                        {% if a.Firstname == a [8] %}
+                           selected
+                        {% endif %}
+                        >{{ a.Firstname }} {{ a.Lastname}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+
+    </tr>
+    {% endfor %}
+  
+    <tr><td>
+        <input type="date" name="date00" id="date00" value="{{ cDate.value|string() }}" class="form-control">
+    </td><td>
+        <input type="time" name="time00" id="time00" value="{{ cTime.value|string() }}" class="form-control">
+    </td><td>
+        <input type="text" name="newstudent" id="newstudent" value="" class="form-control">
+    </td><td></td><td></td>
+    
+    <td>
+        <select name="instructor00" id="instructor00" style="border-radius: 5px; padding: 7px;">
+            {% for i in instructors %}
+                <option value='{{ i.Name }}'
+                >{{ i.Name }}</option>
+            {% endfor %}
+        </select>
+    </td>
+
+    <td>
+        <select name="assistant00" id="assistant00}}" style="border-radius: 5px; padding: 7px;">
+            {% for a in assistants %}
+                <option value='{{ a.Firstname }} {{ a.Lastname}}'
+                >{{ a.Firstname }} {{ a.Lastname}}</option>
+            {% endfor %}
+        </select>
+    </td>
+
+    <td></td></tr>
+
+</table>
+<br>
+<div class="form-group">
+    <div class="form-group">
+        <input type="submit" value="Save" class="submit-btn" style="border-radius: 5px; padding: 7px;>
+    </div>
+</form>
+
+{% endblock content %}

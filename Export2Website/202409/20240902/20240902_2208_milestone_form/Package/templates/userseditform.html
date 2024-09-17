@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+edit user
+{% endblock %}
+
+{% block content %}
+<br>
+user:{{ loggedonuser }}
+
+<div class="container">
+    <form method="POST" class="form-useredit" style="color:white">
+        {{ form.hidden_tag() }}
+        <h1 class="h3 mb-3 font-weight-normal">
+        </h1>
+        <br>
+
+        {{ user.Firstname }}
+
+        {{ form.firstname.label() }}
+        {{ form.firstname(class="form-control",    placeholder="firstname",    value=user.Firstname) }}
+
+        {{ form.lastname.label() }}
+        {{ form.lastname(class="form-control",     placeholder="lastname",     value=user.Lastname) }}
+
+        {{ form.phone.label() }}
+        {{ form.phone(class="form-control",        placeholder="phone",        value = user.Phone) }}
+
+        {{ form.emailaddress.label() }}
+        {{ form.emailaddress(class="form-control", placeholder="emailaddress", value = user.Emailaddress) }}
+
+        {{ form.password.label() }}
+        {{ form.emailaddress(class="form-control", placeholder="password") value="" }}
+
+        <br>
+        {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+    </form>
+</div>
+
+{% endblock %}
+
