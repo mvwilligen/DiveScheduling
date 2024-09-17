@@ -128,10 +128,10 @@ def htmlexport():
     nYearTo    = dDateTo.year
     nMonthTo   = dDateTo.month
 
-    print('nYearFrom:  ', nYearFrom)
-    print('nMonthFrom: ', nMonthFrom)
-    print('nYearTo:    ', nYearTo)
-    print('nMonthTo:   ', nMonthTo)
+    # print('nYearFrom:  ', nYearFrom)
+    # print('nMonthFrom: ', nMonthFrom)
+    # print('nYearTo:    ', nYearTo)
+    # print('nMonthTo:   ', nMonthTo)
     
     if nMonthTo < nMonthFrom:
         nMonthTo = nMonthTo + 12
@@ -143,7 +143,7 @@ def htmlexport():
     cFolderNameOS   = ''
     cFolderNameHtml = ''
 
-    print("--[exporthtml]--------------------------------------------------------------------")
+    # print("--[exporthtml]--------------------------------------------------------------------")
 
     lMonthNames = ['','January','February','March','April','May','June','July','August','September','October','November','December']
     lDayNames   = [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -185,7 +185,7 @@ def htmlexport():
 
     for nYears in range(nYearFrom, nYearTo + nAddYear):
 
-        print('processing year: ', nYear)
+        # print('processing year: ', nYear)
 
         for nMonths in range(nMonthFrom, nMonthTo):
 
@@ -196,7 +196,7 @@ def htmlexport():
                 nMonth = nMonths
 
             if True:
-                print('processing month: ', nMonth)
+                # print('processing month: ', nMonth)
 
                 cHtmlCal = cHtmlCal + "<table><tr><td colspan=8 style='text-align: center;'><h3 style='margin-bottom: 0;'>" + lMonthNames [nMonth] + " " + str(nYear) + "</h3></td></tr>" + cCRLF
                 cHtmlCal = cHtmlCal + '<tr><td><b>week' + cWhiteSpace + '</b></td>' + cCRLF
@@ -234,7 +234,7 @@ def htmlexport():
                     # correct 0-based range
                     nDay = nDays + 1
 
-                    #print('processing: ', nYear, nMonth, nDay)
+                    # print('processing: ', nYear, nMonth, nDay)
 
                     cProducts = ''
                     nDayOfWeek = (nDay + nFirstDay - 1) % 7
@@ -334,14 +334,14 @@ def htmlexport():
                         # process assistant info
 
                         if len(a[11]) > 0:
-                            print('-----------------------------------------------------')
-                            print('process assistant info for ' + a [2] + " " + a [3])
+                            # print('-----------------------------------------------------')
+                            # print('process assistant info for ' + a [2] + " " + a [3])
 
                             cText = a[11]
                             cFirstname = cText[0:cText.find(' ')]
-                            print('cFirstname: [' + cFirstname + ']')
+                            # print('cFirstname: [' + cFirstname + ']')
                             cLastname = cText[cText.find(' ')+1:]
-                            print('cLastname:  [' + cLastname + ']')
+                            # print('cLastname:  [' + cLastname + ']')
 
                             user = Users.query.filter(and_((Users.Firstname == cFirstname), (Users.Lastname == cLastname)))
 
@@ -349,74 +349,74 @@ def htmlexport():
 
                             for u in user:
                                 cUsername = u.Username
-                                print('Found: ', u.Firstname, u.Lastname)
+                                # print('Found: ', u.Firstname, u.Lastname)
                                 cStatus = u.Status
 
-                            print('cUsername: ' + cUsername + ' [' + cStatus + ']')
+                            # print('cUsername: ' + cUsername + ' [' + cStatus + ']')
 
                             if 'instructor' in cStatus:
-                                print (cText + ' is an instructor.')
+                                # print (cText + ' is an instructor.')
 
                                 instructor = Instructors.query.filter(Instructors.Name == cText)
                                 
                                 nId = 0
                                 for i in instructor:
                                     if i.Name == cText:
-                                        print('i.Name: ', i.Name)
+                                        # print('i.Name: ', i.Name)
                                         nId = i.Id
 
                                 if not cText in cInstructorsMenu:
-                                    print('not in cInstructorsMenu')
+                                    # print('not in cInstructorsMenu')
                                     nInstructor = nInstructor + 1
                                     aInstructor.append([nInstructor, nId, cText, cAddHtmlHeader + cAddHtmlIns])
 
                                     cInstructorsMenu = cInstructorsMenu + ";<a href=" + cFolderNameHtml + "calendar_in_" + cText.replace(' ', '_') + ".html>" + cText + "</a>"
 
-                                    for i in aInstructor:
-                                        print('    i: ', i[0], i[1], i[2])
+                                    # for i in aInstructor:
+                                        # print('    i: ', i[0], i[1], i[2])
 
                                 else:
 
                                     # search instructor in list
                                     nFound = 0
-                                    print('nId: ', nId)
+                                    # print('nId: ', nId)
                                     for i in aInstructor:
                                         nCounter = nCounter + 1
-                                        print('i: ', i[0], i[1], i[2])
+                                        # print('i: ', i[0], i[1], i[2])
                                         if i[1] == nId:
-                                            print('found: ', i[1], nId, nCounter)
+                                            # print('found: ', i[1], nId, nCounter)
                                             nFound = i[0]
 
                                     if nFound > 0:
-                                        print('nFound: ', nFound)
+                                        # print('nFound: ', nFound)
                                         aInstructor [nFound - 1][3] = aInstructor [nFound - 1][3] + cAddHtmlIns
-                                    else:
-                                        print('#### issue with finding assistant in list instructors')
+                                    # else:
+                                        # print('#### issue with finding assistant in list instructors')
                             else:
-                                print ('#### ' + cText + ' is NOT an instructor.')
+                                # print ('#### ' + cText + ' is NOT an instructor.')
 
                                 nFound = 0
-                                print('cText: ', cText)
+                                # print('cText: ', cText)
                                 nCounter = 0 
                                 for i in aInstructor:
                                     nCounter = nCounter + 1
-                                    print('i: ', i[0], i[1], i[2])
+                                    # print('i: ', i[0], i[1], i[2])
                                     if i[2] == cText:
-                                        print('found: ', i[2], cText, nCounter)
+                                        # print('found: ', i[2], cText, nCounter)
                                         nFound = i[0]
 
                                 if nFound > 0:
-                                    print('nFound: ', nFound)
+                                    # print('nFound: ', nFound)
                                     aInstructor [nFound - 1][3] = aInstructor [nFound - 1][3] + cAddHtmlIns
                                 else:
-                                    print(cText + ' is not found in list instructors')
+                                    # print(cText + ' is not found in list instructors')
                                     nCounter = nCounter + 1
                                     aInstructor.append([nCounter, -1, cText, cAddHtmlHeader + cAddHtmlIns])
 
                                     if not cText in cInstructorsMenu:
                                         cInstructorsMenu = cInstructorsMenu + ";<a href=" + cFolderNameHtml + "calendar_in_" + cText.replace(' ', '_') + ".html>" + cText + "</a>"
                             
-                            print('-----------------------------------------------------')
+                            # print('-----------------------------------------------------')
 
 
                         #---------------------------------------
@@ -480,7 +480,7 @@ def htmlexport():
     # sort list
     sortedList = sorted(newList)
 
-    print('')
+    # print('')
  
     cNewStudentMenu = ''
  
@@ -569,7 +569,7 @@ def htmlexport():
         # print('removing: ', f)
         os.remove(f)
 
-    print('---- start create html files')
+    # print('---- start create html files')
     # create html files
     for h in aHtmlFiles:
 
@@ -595,7 +595,7 @@ def htmlexport():
         f.write(cHtml)
         f.close()
 
-    print('---- end create html files')
+    # print('---- end create html files')
 
     # copy static image files
     import shutil
@@ -623,17 +623,17 @@ def htmlexport():
 
     nFinishTime = datetime.datetime.today()
 
-    print()
+    # print()
     print('export start: ', nStartTime, ' export finish: ', nFinishTime)
 
     cMessage = "html export is ready."
 
-    flash("html export is ready.", category="message")
-
     lRBAC = get_rbac(request.url_rule.endpoint)
 
-    return render_template('result.html', cMessage = cMessage, lRBAC = lRBAC)
+    # return url_for('html') 
+    # render_template('result.html', cMessage = cMessage, lRBAC = lRBAC)
 
+    return render_template('htmlexport.html', lRBAC = lRBAC, cMessage = cMessage)
 #------------------------------------------------------------------------------------------
 
 ######## ######## ########  
@@ -678,6 +678,15 @@ def ftp():
 
         lRBAC = get_rbac(request.url_rule.endpoint)
 
-    return render_template('result.html', cMessage = cMessage, lRBAC = lRBAC)
+    # return render_template('result.html', cMessage = cMessage, lRBAC = lRBAC)
+
+    cMessage = "html upload is ready. every 5 minutes it will be published."
+
+    lRBAC = get_rbac(request.url_rule.endpoint)
+
+    # return url_for('html') 
+    # render_template('result.html', cMessage = cMessage, lRBAC = lRBAC)
+
+    return render_template('htmlexport.html', lRBAC = lRBAC, cMessage = cMessage)
 
 #------------------------------------------------------------------------------------------

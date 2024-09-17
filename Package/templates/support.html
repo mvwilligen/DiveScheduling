@@ -14,6 +14,8 @@ support
 <h3>&nbsp;support</h3>
 {% if 'admin' in lRBAC[1] %}
 
+<a class="btn btn-outline btn-info" href="{{ url_for('test') }}" target='_blank'>test</a>
+
 <br>
 <table>
 <tr style='border-top: 1pt solid white; border-bottom: 1pt solid white;'><td><b>current_user</b></td><td>value</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -54,6 +56,7 @@ support
 </head>
 <body style="font-family:verdana">
 <h3><p class="p2"><b>TODO</b></p></h3>
+[ ] color rows on date<br>
 [ ] redirect after creating htmls to route_html<br>
 [ ] redirect from index.html to DS, check 'request.url'<br>
 [ ] sort 'products'<br>
@@ -61,6 +64,9 @@ support
 [ ] check new account via mail<br>
 [ ] deployment on render<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[ ] secrets?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ] source: https://docs.render.com/configure-environment-variables
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>import os<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>database_url = os.environ.get('DATABASE_URL')<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[ ] development<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[ ] debug off<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[ ] passwords<br>
@@ -122,7 +128,7 @@ support
 <font color='green'>[v] subsequent instructor and assistant from first entry</font><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] default values 'none'</font><br>
 <font color='green'>[v] optimized login procedure</font><br>
-<font color='green'>[v] deployment on render <a href="https://dashboard.render.com/web/srv-crklkhm8ii6s738254m0/settings" target="_blank">dashboard</a></font> <a href="https://divescheduling.onrender.com" target="_blank">website</a><br>
+<font color='green'>[v] deployment on render: <a href="https://dashboard.render.com/web/srv-crklkhm8ii6s738254m0/settings" target="_blank">dashboard</a></font> <a href="https://divescheduling.onrender.com" target="_blank">website</a><br>
 
 <br>
 <h1><p class="p2">Bugs</p></h1>
