@@ -35,7 +35,7 @@ def products():
     if current_user.is_anonymous:
         return (no_access_text())
 
-    products = Products.query.all()
+    products = Products.query.order_by(func.lower(Products.Productname)).all()
 
     lRBAC = get_rbac(request.url_rule.endpoint)
 

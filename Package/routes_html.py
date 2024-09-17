@@ -149,7 +149,7 @@ def htmlexport():
     lDayNames   = [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
     cStyle = '<style>' + cCRLF
-    cStyle = cStyle + 'td { text-align:left; vertical-align:top; padding-left:5px;padding-right:5px;padding-bottom:5px;padding-top:5px;' + cCRLF
+    cStyle = cStyle + 'td { text-align:left; vertical-align:top; padding-left:5px;padding-right:5px;padding-bottom:5px;padding-top:5px; font-size: 11pt;font-family: Arial;width:200px;' + cCRLF
     cStyle = cStyle + 'font-family:verdana; }' + cCRLF
     cStyle = cStyle + 'table { border-collapse: collapse; }' + cCRLF
     cStyle = cStyle + 'a, p, h3 {font-family:verdana;}' + cCRLF
@@ -203,7 +203,7 @@ def htmlexport():
 
                 # table header with daynames
                 for n in lDayNames:
-                    cHtmlCal = cHtmlCal + "<td style='width:200px'><b>" + n + cWhiteSpace + "</b></td>" + cCRLF
+                    cHtmlCal = cHtmlCal + "<td><b>" + n + cWhiteSpace + "</b></td>" + cCRLF
 
                 cHtmlCal = cHtmlCal + '</tr>' + cCRLF
 
@@ -267,7 +267,7 @@ def htmlexport():
 
                     cEmptyTR = ''
 
-                    cAddHtmlHeader = "<tr><td style='width:200px'><b>date</b></td><td style='width:200px'><b>product</b></td><td style='width:200px'><b>part</b></td><td style='width:200px'><b>student</b></td><td style='width:200px'><b>instructor</b></td><td style='width:200px'><b>assistant</b></td></tr>" + cCRLF
+                    cAddHtmlHeader = "<tr><td><b>date</b></td><td><b>product</b></td><td><b>part</b></td><td><b>student</b></td><td><b>instructor</b></td><td><b>assistant</b></td></tr>" + cCRLF
 
                     for a in appointments:
  
@@ -450,7 +450,7 @@ def htmlexport():
                         cWeekdayName = lDayNames[datetime.date(nYear, nMonth, nDay).weekday()]
 
                         cHtmlDat2 = cHtmlDat2 + "<tr><td colspan=6 style='text-align: center;'><h3 style='margin-bottom: 0;'>" + str(nDay) + " " + lMonthNames[nMonth] + " " + str(nYear) + " - " + cWeekdayName + "</h3></td></tr>" + cCRLF
-                        cHtmlDat2 = cHtmlDat2 + "<tr><td style='width:200px'><b>time</b></td><td style='width:200px'><b>product</b></td><td style='width:200px'><b>part</b></td><td style='width:200px'><b>student</b></td><td style='width:200px'><b>instructor</b></td><td style='width:200px'><b>assistant</b></td><tr>" + cCRLF
+                        cHtmlDat2 = cHtmlDat2 + "<tr><td><b>time</b></td><td><b>product</b></td><td><b>part</b></td><td><b>student</b></td><td><b>instructor</b></td><td><b>assistant</b></td><tr>" + cCRLF
                         cHtmlDat2 = cHtmlDat2 + cHtmlDat + cCRLF
                         cHtmlDat2 = cHtmlDat2 + '</table>' + cCRLF
 
@@ -531,10 +531,10 @@ def htmlexport():
 
     cHtmlCalendar = cHtmlCal
 
-    cHeader =           "<!--BeginCut --><table style='border-style: hidden;'><tr><td style='border:none;'>" + cCRLF
-    cHeader = cHeader + "<a href='/'><img src='logo.png' alt='ds'></a></td><td style='border:none;'>" + cCRLF
+    cHeader =           "<!--BeginCut --><table style='border-style: hidden;'><tr><td style='border:none; width:75px;'>" + cCRLF
+    cHeader = cHeader + "<a href='/'><img src='logo.png' alt='ds'></a></td><td style='border:none; width:75px;'>" + cCRLF
     cHeader = cHeader + "<a href='index.html'><img src='calendar.png' alt='calendar' width='60' height='60'></a></td>" + cCRLF
-    cHeader = cHeader + "<td style='border:none;'>" + cCRLF
+    cHeader = cHeader + "<td style='border:none; width:1000px'>" + cCRLF
     cHeader = cHeader + cInstructorsMenu + cCRLF
     cHeader = cHeader + '<br>' + cCRLF
     cHeader = cHeader + cStudentMenu + cCRLF

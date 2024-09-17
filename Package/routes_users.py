@@ -563,8 +563,8 @@ def usersinfo(id):
 
     form = UsersInfoForm(id)
 
-    #                                            0                1                  2                3               4                     5                  5                  7                   8  
-    appointments = db.session.execute( db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name). \
+    #                                            0                1                  2                3               4                     5                  5                  7                   8                 9
+    appointments = db.session.execute( db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name, Appointments.Assistants). \
                                 order_by(Appointments.Date). \
                                 where(Appointments.User == id). \
                                 select_from(Appointments). \
@@ -573,6 +573,7 @@ def usersinfo(id):
                                 join(Products, Appointments.Product == Products.Id) )
     user         = db.session.execute(db.select(Users).filter_by(Id=id)).scalar_one()
     products     = db.session.execute(db.select(Products)).scalars()
+    assistants   = Users.query.filter(Users.Status.contains('assistant'))
 
     if form.validate_on_submit():
 
@@ -644,7 +645,7 @@ def usersinfo(id):
 
     lRBAC = get_rbac(request.url_rule.endpoint) 
 
-    return render_template('usersinfo.html', form = form, user = user, appointments = appointments, products = products, cDateToday = cDateToday, lRBAC = lRBAC)
+    return render_template('usersinfo.html', form = form, user = user, appointments = appointments, products = products, cDateToday = cDateToday, lRBAC = lRBAC, assistants = assistants)
 
 #------------------------------------------------------------------------------------------
 

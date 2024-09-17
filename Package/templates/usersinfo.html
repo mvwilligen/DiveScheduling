@@ -28,10 +28,11 @@ UserInfo
             <tr>
                 <th scope="col">date</th>
                 <th scope="col">student</th>
-                <th scope="col">course</th>
+                <th scope="col">product</th>
                 <th scope="col">part</th>
-                <th scope="col">staff</th>
-                <th scope="col">notes</th>
+                <th scope="col">instructor</th>
+                <th scope="col">assistant</th>
+                <th scope="col">actions</th>
             </tr>
         </thead>
         <tbody>
@@ -44,6 +45,7 @@ UserInfo
                     <td>{{ appointment [4] }}</td>
                     <td>{{ appointment [5] }}</td>
                     <td>{{ appointment [8] }}</td>
+                    <td>{{ appointment [9] }}</td>
                     <td> 
                         <!-- RBAC filter -->
                         {% if (('staff' in lRBAC [1]) and (appointment [6] >= lRBAC [4] )) or ('admin' in lRBAC [1]) %}
