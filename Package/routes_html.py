@@ -665,7 +665,7 @@ def ftp():
         ftp       = FTP('ftp.maidiving.nl')
         ftpuser   = os.environ.get('_FTP_USER_').replace(chr(34), '')
         ftppw     = os.environ.get('_FTP_PASSWORD_').replace(chr(34), '')
-        print('ftp: ', ftpuser, ftppw)
+        # print('ftp: ', ftpuser, ftppw)
         ftp.login(user = ftpuser, passwd = ftppw)
 
         listfiles = glob.glob(cFolderNameOSInternal+ "*.*")

@@ -37,8 +37,9 @@ if socket.gethostname() == "_MWI20_":
     pass
     # app.config['SECRET_KEY'] = secrets["SECRETKEY"]
 else:
-    import os
-    SECRET_KEY = os.urandom(32)
+    # SECRET_KEY = os.urandom(32)
+
+    SECRET_KEY = os.environ.get('_SECRETKEY_').replace(chr(34), '')
     app.config['SECRET_KEY'] = SECRET_KEY
 
 

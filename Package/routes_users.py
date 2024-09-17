@@ -733,7 +733,7 @@ def usersmail(id):
 
         sender_email       = os.environ.get('_SMTP_USER_').replace(chr(34), '')
         password           = os.environ.get('_SMTP_PASSWORD_').replace(chr(34), '')
-        print('E-Mail: ', sender_email, password)
+        # print('E-Mail: ', sender_email, password)
         cc_email           = "mvwilligen@gmail.com"
         bcc_email          = "mvwilligen@hotmail.com"
         receiver_email     = cEmailaddress
@@ -750,8 +750,8 @@ def usersmail(id):
 
         cMessageHtml = ''
 
-        print('')
-        print('cFullname2: ', cFullname2)
+        # print('')
+        # print('cFullname2: ', cFullname2)
 
         cMailbody = ""
 

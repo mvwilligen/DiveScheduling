@@ -1,6 +1,6 @@
-Export2Website/
-Archive/
-Exports/
+Export2Website/*
+Archive/*
+Exports/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

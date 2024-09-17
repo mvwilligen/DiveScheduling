@@ -14,7 +14,7 @@ appointments
 <table class="table table-hover table-dark">
     <thead>
         <tr>
-            <th scope="col" style='width:200px'>date</th>
+            <th scope="col" style='width:100px'>date</th>
             <th scope="col" style='width:200px'>student</th>
             <th scope="col" style='width:200px'>course</th>
             <th scope="col" style='width:100px'>part</th>
@@ -32,7 +32,7 @@ appointments
     
             {% if (cDate.value|string() != appointment[6].strftime("%d-%m-%Y")|string() ) %}
                 {% set cDate.value = appointment[6].strftime("%d-%m-%Y") %}            
-                <tr><td>{{ cDate.value }} {{ cWeekDays[nWeekDay:nWeekDay2] }}</td></tr>
+                <tr style='background-color:#696969'><td colspan=7>{{ cDate.value }} {{ cWeekDays[nWeekDay:nWeekDay2] }}</td></tr>
             {% endif %}
 
             {% if (appointment [1] == lRBAC [2]) or ('staff' in lRBAC [1]) %}

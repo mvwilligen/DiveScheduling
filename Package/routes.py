@@ -170,7 +170,7 @@ def login():
 
         # user = Users.query.filter_by(Username = username).first()
         user = Users.query.filter(Users.Username.ilike(username)).first()
-        print('type(user): ', type(user))
+        #print('type(user): ', type(user))
 
         if user is not None:
 
