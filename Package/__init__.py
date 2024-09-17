@@ -31,7 +31,7 @@ from sqlalchemy.orm   import DeclarativeBase
 from sqlalchemy.orm   import relationship
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///divescheduling.db'
-app.config['SECRET_KEY'] = secrets["SECRETKEY"]
+#app.config['SECRET_KEY'] = secrets["SECRETKEY"]
 
 # app.config["SQLALCHEMY_ECHO"] = True
 app.config["SQLALCHEMY_ECHO"] = False
