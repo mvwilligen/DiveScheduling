@@ -1,1 +1,1 @@
-gunicorn -b 0.0.0.0:8080 wsgi
+gunicorn -b 0.0.0.0:8080 wsgi.py
