@@ -757,12 +757,7 @@ def usersmail(id):
         message["Subject"] = "Appointments for " + cFullname
 
         cMessageText = ""
-
         cMessageHtml = ''
-
-        # print('')
-        # print('cFullname2: ', cFullname2)
-
         cMailbody = ""
 
         cFilename = "./static/Internal/calendar_st_" + cFullname2 + ".html"
