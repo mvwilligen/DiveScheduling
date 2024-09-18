@@ -1,6 +1,8 @@
-Export2Website/*
-Archive/*
-Exports/*
+# explanation: https://www.w3schools.com/git/git_ignore.asp?remote=github
+# my folders to exclude
+Archive/
+Exports/
+Export2Website/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
