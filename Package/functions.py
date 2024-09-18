@@ -39,7 +39,7 @@ def get_rbac(cPath):
 def string2safe(text):
 
     cText = text
-    cReplace = '<>;[]{}|()*&^%$#=+~' # : (time) ! (text) , (text) @ (mail) . (text)
+    cReplace = '<>;[]{}|()*&^%$#=+~'+chr(34) # : (time) ! (text) , (text) @ (mail) . (text)
     for x in cReplace:
         cText = cText.replace(x, '_')
    
@@ -115,7 +115,7 @@ def SaveNote(id, type, text, action):
     # cNote          = request.form["note"]
     # SaveNote(user.Id, 'st', cNote, 'replace')
 
-    print('--- start savenote ------------------------------')
+    #print('--- start savenote ------------------------------')
 
     if len(text) > 0:
 
@@ -135,13 +135,13 @@ def SaveNote(id, type, text, action):
         #     Studentrecord   = db.Column(db.Integer(),                nullable=True, unique=False)
         #     Text            = db.Column(db.Text(),                   nullable=True, unique=False)
 
-        print('params: ', id, type, text[0:10], action)
+        #print('params: ', id, type, text[0:10], action)
         note = Notes.query.where(and_((Notes.User == id),(Notes.Type == type))).first()
 
         lRBAC = get_rbac('')
     
         if (not note) or (action == 'add'):
-            print('adding new note')
+            #print('adding new note')
             note_to_create = Notes(Author          = lRBAC[2],  
                                     Date            = datetime.datetime.now(),
                                     Description     = "notes: " + type,
@@ -153,16 +153,16 @@ def SaveNote(id, type, text, action):
             db.session.add(note_to_create)
             db.session.commit()      
         else:
-            print('updating note')
-            print('id:   ', id)
-            print('type: ', type)
-            print('text: ', text)
+            #print('updating note')
+            #print('id:   ', id)
+            #print('type: ', type)
+            #print('text: ', text)
 
             note = Notes.query.where(and_((Notes.User == id),(Notes.Type == type))).first()
             x = db.session.query(Notes).get(note.Id)
             x.Note = text
             db.session.commit()      
 
-    print('--- finish savenote ------------------------------')
+    #print('--- finish savenote ------------------------------')
 
     return('')

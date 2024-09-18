@@ -207,7 +207,7 @@ def usersedit2(id, cFrom):
     form.note.data = cNote
 
     if form.validate_on_submit():
-        print('---- form validated --------------------------')
+        #print('---- form validated --------------------------')
         newpassword = ""
         lRBAC = get_rbac(request.url_rule.endpoint)
         if "admin" in lRBAC [1]:
@@ -293,10 +293,10 @@ def usersedit2(id, cFrom):
         cRolesAfter = cUserStatus
         cStatusNew = cRolesAfter
 
-        print('#### retrieving status')
+        #print('#### retrieving status')
         x = db.session.query(Users).get(x.Id)
-        print('#### ', x.Username, ' ', x.Status)
-        print('#### cUserStatus: ', cUserStatus)
+        #print('#### ', x.Username, ' ', x.Status)
+        #print('#### cUserStatus: ', cUserStatus)
 
         cTempStatus = cStatusOld
 
@@ -320,15 +320,15 @@ def usersedit2(id, cFrom):
             #print('#### ', x.Username, ' ', x.Status)
             #print('#### cUserStatus: ', cUserStatus)
 
-        print("#### ---------------------------------------------------------------")
-        print("#### before ", lInstructorBefore, ' ', cStatusOld)
-        print("#### after  ", lInstructorAfter, ' ', cStatusNew)
+        #print("#### ---------------------------------------------------------------")
+        #print("#### before ", lInstructorBefore, ' ', cStatusOld)
+        #print("#### after  ", lInstructorAfter, ' ', cStatusNew)
 
         if not lInstructorBefore and not lInstructorAfter:
             x = db.session.query(Users).get(x.Id)
             x.Status = cStatusNew
             db.session.commit() 
-            print("#### changed status from " + chr(34) + cStatusOld + chr(34) + " to " + chr(34) + cStatusNew + chr(34))
+            #print("#### changed status from " + chr(34) + cStatusOld + chr(34) + " to " + chr(34) + cStatusNew + chr(34))
 
         if lInstructorBefore and lInstructorAfter:
             x = db.session.query(Users).get(x.Id)
@@ -338,40 +338,40 @@ def usersedit2(id, cFrom):
         if lInstructorBefore and not lInstructorAfter:
             #print ('#### removing instructor from table instructors')
 
-            print('------------------------------------------------------------------------------')
-            print('')
-            print('#### x.Id:                                   ', x.Id, ' (User.Id)')
+            #print('------------------------------------------------------------------------------')
+            #print('')
+            #print('#### x.Id:                                   ', x.Id, ' (User.Id)')
             dbquery = 'db.session.execute(db.select(Instructors).filter_by(User = x.Id)).scalar_one_or_none()'
-            print('#### ', datetime.datetime.today(), ' dbquery: ', dbquery)
+            #print('#### ', datetime.datetime.today(), ' dbquery: ', dbquery)
             ## instructor = eval(dbquery)
             instructor = db.session.execute(db.select(Instructors.Id, Instructors.User, Instructors.Name).where(Instructors.User == x.Id)).all()
             nStaff = 0
             for i in instructor:
-                print('#### instructor [0]', i [0])
-                print('#### instructor [1]', i [1])
-                print('#### instructor [2]', i [2])
+                #print('#### instructor [0]', i [0])
+                #print('#### instructor [1]', i [1])
+                #print('#### instructor [2]', i [2])
                 nStaffUser = i [0]
                 nStaffId   = i [1]
                 #print('#### instructor.Name', instructor.Name)
-            print('#### nStaffUser: ', nStaffUser)
-            print('#### nStaffId:   ', nStaffId)
+            #print('#### nStaffUser: ', nStaffUser)
+            #print('#### nStaffId:   ', nStaffId)
             instructor2 = []
             for i in instructor:
                 instructor2.append(i)
-            for i in instructor2:
-                print('#### instructor2 [0]', instructor2 [0])
+            #for i in instructor2:
+                #print('#### instructor2 [0]', instructor2 [0])
                 #print('#### instructor2.Name', instructor2.Name)
-            print('#### type(instructor):   all   ', type(instructor))
-            print('#### len(instructor):    al    ', len(instructor))
-            print('#### type(instructor2):  all   ', type(instructor2))
-            print('#### len(instructor2):   all   ', len(instructor2))
-            print('')
-            print('')
+            #print('#### type(instructor):   all   ', type(instructor))
+            #print('#### len(instructor):    al    ', len(instructor))
+            #print('#### type(instructor2):  all   ', type(instructor2))
+            #print('#### len(instructor2):   all   ', len(instructor2))
+            #print('')
+            #print('')
 
             # instructor = db.session.execute(db.select(Instructors.Id, Instructors.User, Instructors.Name).where(Instructors.User == x.Id)).all()
 
-            print('nStaffId:   ', nStaffId)
-            print('nStaffUser: ', nStaffUser)
+            #print('nStaffId:   ', nStaffId)
+            #print('nStaffUser: ', nStaffUser)
 
             current_datetime = datetime.datetime.now()
             nYearFrom  = current_datetime.year
@@ -382,45 +382,45 @@ def usersedit2(id, cFrom):
             dbquery = dbquery + 'where(and_(Appointments.Staff == nStaffUser),'
             dbquery = dbquery + '(Appointments.Date >= datetime.datetime(nYearFrom, nMonthFrom, nDayFrom) ))).all()'
 
-            print('#### ', datetime.datetime.today(), ' dbquery: ', dbquery)
+            #print('#### ', datetime.datetime.today(), ' dbquery: ', dbquery)
 
             appointments = eval(dbquery)
 
             # appointments = db.session.execute(db.select(Appointments.Id, Appointments.User, Appointments.Product, Appointments.Part, Appointments.Date, Appointments.Notes, Appointments.Staff).where(Appointments.Staff == nStaffId )).all()
 
-            print('')
-            print('#### type(appointments):', type(appointments))
-            print('#### len(appointments): ', len(appointments))
+            #print('')
+            #print('#### type(appointments):', type(appointments))
+            #print('#### len(appointments): ', len(appointments))
 
-            for a in appointments:
-                print ('#### a: ', a[0], a[1], a[2], a[3],a[4],a[5])
+            #for a in appointments:
+                #print ('#### a: ', a[0], a[1], a[2], a[3],a[4],a[5])
 
-            print('------------------------------------------------------------------------------')
+            #print('------------------------------------------------------------------------------')
             
-            if appointments is None:
-                print('#### Appointments is None.')
+            #if appointments is None:
+                #print('#### Appointments is None.')
 
             nStaff = 0
             appointments2 = [] 
             for a in appointments:
-                print('#### ', a [0], a [1], a[2], a[3], a[4], a[5], a[6])
+                #print('#### ', a [0], a [1], a[2], a[3], a[4], a[5], a[6])
                 appointments2.append(a)
 
-            if appointments2 is None:
-                print('#### Appointments2 is None.')
+            #if appointments2 is None:
+                #print('#### Appointments2 is None.')
 
-            print('')
-            print('------------------------------------------------------------------------------')
-            print('')
+            #print('')
+            #print('------------------------------------------------------------------------------')
+            #print('')
 
             for a in appointments2:
                 print('#### ', a [0], a [1], a[2], a[3], a[4], a[5], a[6])
                 nStaff = a [6]
 
-            print('#### nStaff:  ', nStaff)
-            print('')
-            print('------------------------------------------------------------------------------')
-            print('')
+            #print('#### nStaff:  ', nStaff)
+            #print('')
+            #print('------------------------------------------------------------------------------')
+            #print('')
 
             #if appointments is not None:
             if nStaff > 0:
@@ -428,23 +428,23 @@ def usersedit2(id, cFrom):
                 lRBAC = get_rbac(request.url_rule.endpoint)        
                 return redirect(url_for('instructorsinfo', id = nStaffId ))
 
-            print ('#### saving new status')
+            #print ('#### saving new status')
             x = db.session.query(Users).get(x.Id)
             x.Status       = cUserStatus
             db.session.commit()
             x = db.session.query(Users).get(x.Id)
-            print('#### ', x.Username, ' ', x.Status)
+            #print('#### ', x.Username, ' ', x.Status)
 
-            print('')
-            print('------------------------------------------------------------------------------')
-            print('')
+            #print('')
+            #print('------------------------------------------------------------------------------')
+            #print('')
             dbquery = 'db.session.execute(db.select(Instructors).filter_by(User = x.Id)).scalar_one_or_none()'
-            print('#### ', datetime.datetime.today(), ' dbquery: ', dbquery)
+            #print('#### ', datetime.datetime.today(), ' dbquery: ', dbquery)
             instructor = eval(dbquery)
 
-            print('')
-            print('------------------------------------------------------------------------------')
-            print('')
+            #print('')
+            #print('------------------------------------------------------------------------------')
+            #print('')
             #print ("#### instructor.Name: ", instructor.Name)
             #db.session.delete(instructor)
             instructor.Active = False
@@ -456,14 +456,14 @@ def usersedit2(id, cFrom):
 
             instructor = db.session.execute(db.select(Instructors).filter_by(User = x.Id)).scalar_one_or_none()
 
-            print('####')
-            print('#### type(instructor): ', type(instructor))
+            #print('####')
+            #print('#### type(instructor): ', type(instructor))
 
             if instructor is None:
 
                 # adding new instructor
 
-                print ('#### adding instructor to table instructors')
+                #print ('#### adding instructor to table instructors')
 
                 instructor_to_create = Instructors(User   = x.Id,
                                                    Name   = x.Firstname + " " + x.Lastname, 
@@ -475,22 +475,22 @@ def usersedit2(id, cFrom):
 
                 # re-instating instructor status
 
-                print ('#### altering instructor in table instructors')
-                print ("#### instructor.Name: ", instructor.Name)
+                #print ('#### altering instructor in table instructors')
+                #print ("#### instructor.Name: ", instructor.Name)
                 # db.session.delete(instructor)
                 instructor.Active = True
                 db.session.commit()
 
-            print ('#### saving new status')
+            #print ('#### saving new status')
             x = db.session.query(Users).get(x.Id)
             x.Status       = cUserStatus
             db.session.commit()
             x = db.session.query(Users).get(x.Id)
-            print('#### ', x.Username, ' ', x.Status)
+            #print('#### ', x.Username, ' ', x.Status)
 
-        print('####')
+        #print('####')
 
-        print("#### ---------------------------------------------------------------")
+        #print("#### ---------------------------------------------------------------")
 
         if cFrom == 'instructors':
             return redirect(url_for('instructors'))
@@ -590,9 +590,15 @@ def usersinfo(id):
         else:
             cInfo = ""
 
+        cDateFrom = request.form.get('datefrom')      # formatted input
+        dt2 = datetime.datetime.strptime(cDateFrom, '%Y-%m-%d')
+        nDateTo  = dt2 - timedelta(days = 7)
+
         cStatus = ''
         for p in products:
+
             value = request.form.get(eval('p.Productname'))    # from checkboxes
+
             if value:
                 cStatus = cStatus + cDate + ' ' + p.Productname + '|'
                         
@@ -604,12 +610,11 @@ def usersinfo(id):
 
                 part = ""
                 t = 0
-                cDateFrom = request.form.get('datefrom')      # formatted input
-                dt2 = datetime.datetime.strptime(cDateFrom, '%Y-%m-%d')
+
                 for b in parts:
                     if b == ":":
 
-                        nDateTo  = dt2 + timedelta(days=t)
+                        nDateTo  = nDateTo + timedelta(days = 7)
                         nYearTo  = nDateTo.year  # nYearTo  = nDateTo.year
                         nMonthTo = nDateTo.month # nMonthTo = nDateTo.month
                         nDayTo   = nDateTo.day   # nDateTo.day + t

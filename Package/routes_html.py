@@ -119,9 +119,9 @@ def htmlexport():
     cTime      = cDateToday.strftime("%H%M")
     cTime2     = cDateToday.strftime("%H:%M")
 
-    dDateFrom  = datetime.date.today() - timedelta(days=14)
-    dDateTo    = datetime.date.today() + timedelta(92)
-    dDateTo    = datetime.date.today() + timedelta(int(4 * 30.5))
+    dDateFrom  = datetime.date.today() - timedelta(days = 14)  # 2 weeks history
+    # dDateTo    = datetime.date.today() + timedelta(days = 153)
+    dDateTo    = datetime.date.today() + timedelta(int(4 * 30.5))  # 4 months future
 
     nYearFrom  = dDateFrom.year
     nMonthFrom = dDateFrom.month  
