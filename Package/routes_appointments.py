@@ -395,17 +395,17 @@ def appointmentsevents(cName, cDate, cFrom):
 
     form = AppointmentsEventsForm(cName)
 
-    print()
-    print('---------------------------------------------------------------------')
-    print('cName: ', cName)
-    print('cFrom: ', cFrom)
-    print('cDate: ', cDate)
+    # print()
+    #print('---------------------------------------------------------------------')
+    #print('cName: ', cName)
+    #print('cFrom: ', cFrom)
+    #print('cDate: ', cDate)
     # print(cDate[6:10])
     # print(cDate[3:5])
     # print(cDate[0:2])
     dDate = datetime.date(int(cDate[6:10]), int(cDate[3:5]), int(cDate[0:2]))
-    print('dDate: ', dDate)
-    print()
+    #print('dDate: ', dDate)
+    #print()
 
     #                                           0                1                  2                3               4                     5                  6                  7                   8                 9               10                    11                       12
     appointments = db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name, Instructors.Id, Appointments.Product, Appointments.Assistants, Users.Active). \
@@ -454,32 +454,32 @@ def appointmentsevents(cName, cDate, cFrom):
     # for a in assistants:
     #     print('a: ', a.Id,a.Firstname,a.Lastname,a.Status)
 
-    print('---------------------------------------------------------------------')
-    print()
+    #print('---------------------------------------------------------------------')
+    #print()
 
     lRBAC = get_rbac(request.url_rule.endpoint)
 
     if form.validate_on_submit():
 
         cNewstudent = string2safe(request.form.get("newstudent"))
-        print('cNewstudent: ', cNewstudent)
+        #print('cNewstudent: ', cNewstudent)
 
         for a in appointments2:
             cInstructor = chr(34) + "instructor" + str(a.Id) + chr(34)
-            print(cInstructor)
+            #print(cInstructor)
             cInstructorValue = request.form.get(eval(cInstructor))       # provided list
             cAssistant = chr(34) + "assistant"+str(a.Id) + chr(34)
-            print(cAssistant)
+            #print(cAssistant)
             cAssistantValue = request.form.get(eval(cAssistant))         # provided list
-            print(cInstructorValue, cAssistantValue)
+            #print(cInstructorValue, cAssistantValue)
         
             nFound = 0
             for i in instructors2:
-                print('- i:',i[0], i[1], i[2])
+                #print('- i:',i[0], i[1], i[2])
                 if cInstructorValue == i[2]:
                     nFound = i[0]
             
-            print('nFound: ', nFound)
+            #print('nFound: ', nFound)
 
             appointment = db.session.execute(db.select(Appointments).filter_by(Id = a.Id)).scalar_one()
             appointment.Staff     = nFound
@@ -506,8 +506,8 @@ def appointmentsevents(cName, cDate, cFrom):
             # user         = Users.query.filter(Users.Username.contains('a'))
             user = db.session.execute(db.select(Users).filter_by(Username = cNewusername)).scalar_one()
 
-            print('user.Id: ', user.Id)
-            print('user.Username: ', user.Username)
+            #print('user.Id: ', user.Id)
+            #print('user.Username: ', user.Username)
 
             cFormTime = request.form.get('time00')              # formatted input
             cFormDate = request.form.get('date00')              # formatted input
@@ -519,24 +519,24 @@ def appointmentsevents(cName, cDate, cFrom):
             cInstructorValue = request.form.get('instructor00') # provided list
             nFound = 0
             for i in instructors2:
-                print('-- i:',i[0], i[1], i[2])
+                #print('-- i:',i[0], i[1], i[2])
                 if cInstructorValue == i[2]:
                     nFound = i[0]
-                    print('-- found')
+                    #print('-- found')
 
-            print('cInstructorValue: ', cInstructorValue)
+            # print('cInstructorValue: ', cInstructorValue)
 
-            print('nFound: ', nFound)
-            print('cFormDate: ', cFormDate)
-            print('cFormTime: ', cFormTime)
+            # print('nFound: ', nFound)
+            # print('cFormDate: ', cFormDate)
+            # print('cFormTime: ', cFormTime)
 
-            print((cFormDate[0:4]))  # year
-            print((cFormDate[5:7]))  # month
-            print((cFormDate[8:10])) # dat
-            print((cFormTime[0:2]))  # hour
-            print((cFormTime[3:5]))  # min
+            # print((cFormDate[0:4]))  # year
+            # print((cFormDate[5:7]))  # month
+            # print((cFormDate[8:10])) # dat
+            # print((cFormTime[0:2]))  # hour
+            # print((cFormTime[3:5]))  # min
 
-            print('date: ', int(cFormDate[0:4]), int(cFormDate[5:7]), int(cFormDate[8:10]), int(cFormTime[0:2]), int(cFormTime[3:5]))
+            # print('date: ', int(cFormDate[0:4]), int(cFormDate[5:7]), int(cFormDate[8:10]), int(cFormTime[0:2]), int(cFormTime[3:5]))
 
             dDate = datetime.datetime(int(cFormDate[0:4]), int(cFormDate[5:7]), int(cFormDate[8:10]), int(cFormTime[0:2]), int(cFormTime[3:5]))
                                   

@@ -45,6 +45,8 @@ appointmentsevents
     
             <td>
                 <select name="assistant{{ ap[0] }}" id="assistant{{ ap[0] }}" style="border-radius: 5px; padding: 7px;">
+                    <option value='none'>none</option>
+
                     {% for as in assistants %}
                         <option value='{{ as.Firstname }} {{ as.Lastname}}'
                         debug:{{ as.Firstname }} {{ as.Lastname }} {{ ap[11] }}

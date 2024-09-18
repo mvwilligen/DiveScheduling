@@ -40,7 +40,7 @@ UserInfo
     
                 {% for appointment in appointments %}
                 <tr>
-                    <td>{{ appointment [6] }}</td>
+                    <td>{{ appointment [6].strftime('%d-%m-%Y') }}</td>
                     <td>{{ appointment [2] + ' ' + appointment [3] }}</td>
                     <td>{{ appointment [4] }}</td>
                     <td>{{ appointment [5] }}</td>

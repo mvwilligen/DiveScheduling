@@ -271,9 +271,15 @@ def htmlexport():
 
                     for a in appointments:
  
+                        # html student
+                        cAddHtmlLine = "<tr><td>" + a [6].strftime("%d-%m-%Y %H:%M") + "</td><td>" + a [4] + "</td><td>" + a [5] + "</td>"
+                        cAddHtmlLine = cAddHtmlLine + "<td><a href='calendar_st_" + (a [2] + " " + a [3]).replace(" ",  "_") + ".html'>" + a [2] + " " + a [3] + "</a></td>"
+                        cAddHtmlLine = cAddHtmlLine + "<td><a href='calendar_in_" +  a[8].replace(' ', '_') + ".html'>" +  a [8] + "</a></td>"
+                        cAddHtmlLine = cAddHtmlLine + "<td><a href='calendar_in_" + a[11].replace(' ', '_') + ".html'>" + a [11] + "</a></td></tr>" + cCRLF
+
                         # date html
-                        cDateline = "<tr><td>" + a [6].strftime('%d-%m-%Y %H:%M') + "</td><td>" + a[4] + "</td><td>" + a[5] + "</td><td>"  + a[2] + " " + a[3] + "</td><td>" + a[8] + "</td><td>" + a[11] + "</td>" + cCRLF
-                        cHtmlDat = cHtmlDat + cDateline
+                        # cDateline = "<tr><td>" + a [6].strftime('%d-%m-%Y %H:%M') + "</td><td>" + a[4] + "</td><td>" + a[5] + "</td><td>"  + a[2] + " " + a[3] + "</td><td>" + a[8] + "</td><td>" + a[11] + "</td>" + cCRLF
+                        cHtmlDat = cHtmlDat + cAddHtmlLine # cDateline
 
                         #---------------------------------------
                         # process student info
@@ -284,9 +290,6 @@ def htmlexport():
                             nCounter = nCounter + 1
                             if i [1] == a [1]:
                                 nFound = nCounter
-
-                        # html student
-                        cAddHtmlLine = "<tr><td>" + a [6].strftime("%d-%m-%Y %H:%M") + "</td><td>" + a [4] + "</td><td>" + a [5] + "</td><td>" + a [2] + " " + a [3] + "</td><td>" + a [8] + "</td><td>" + a [11] + "</td></tr>" + cCRLF
 
                         if nFound == 0:
  
@@ -312,8 +315,8 @@ def htmlexport():
                                 nFound = nCounter
  
                         # html instructor
-                        cAddHtmlIns = "<tr><td>" + a [6].strftime("%d-%m-%Y %H:%M") + "</td><td>" + a [4] + "</td><td>" + a [5] + "</td><td>" + a [2] + " " + a [3] + "</td><td>" + a [8] + "</td><td>" + a [11] + "</td></tr>" + cCRLF
-
+                        # cAddHtmlIns = "<tr><td>" + a [6].strftime("%d-%m-%Y %H:%M") + "</td><td>" + a [4] + "</td><td>" + a [5] + "</td><td>" + a [2] + " " + a [3] + "</td><td>" + a [8] + "</td><td>" + a [11] + "</td></tr>" + cCRLF
+                        cAddHtmlIns = cAddHtmlLine
                         if nFound == 0:
                             nInstructor = nInstructor + 1
 
@@ -535,9 +538,9 @@ def htmlexport():
     cHeader = cHeader + "<a href='/'><img src='logo.png' alt='ds'></a></td><td style='border:none; width:75px;'>" + cCRLF
     cHeader = cHeader + "<a href='index.html'><img src='calendar.png' alt='calendar' width='60' height='60'></a></td>" + cCRLF
     cHeader = cHeader + "<td style='border:none; width:1000px'>" + cCRLF
-    cHeader = cHeader + cInstructorsMenu + cCRLF
+    cHeader = cHeader + "staff: " + cInstructorsMenu + cCRLF
     cHeader = cHeader + '<br>' + cCRLF
-    cHeader = cHeader + cStudentMenu + cCRLF
+    cHeader = cHeader + "students: " + cStudentMenu + cCRLF
     cHeader = cHeader + "</td></tr></table><p style='font-size: 10px;'>created: " + cDate5 + " " + cTime2 + "</p><br><!--EndCut -->" + cCRLF
 
     cFooterHtml = "<br><br>" + cCRLF +"<p style='font-size: 12px;'>powered by divescheduling. created: " + cDate5 + " " + cTime2 + "</p></body></html>"

@@ -57,6 +57,7 @@ users product form
                         <td>
                             <label for="assistant{{ appointment[0] }}"="i"></label>
                             <select name="assistant{{ appointment[0] }}" id="assistant{{ appointment[0] }}" style="border-radius: 5px; padding: 7px;">
+                                <option value='none'>none</option>
                                 {% for a in assistants %}
                                     <option value='{{ a.Firstname }} {{ a.Lastname }}'
                                     {% if ( a.Firstname + ' ' + a.Lastname == appointment[11]) %}
