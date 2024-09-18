@@ -804,7 +804,7 @@ def usersmail(id):
         #print(cMessageText)
         #print('')
 
-        if len(cMessageMailBody) > 0:
+        if len(cMailbody) > 0:
             #print('start sending mail')
             # Turn these into plain/html MIMEText objects
             part1 = MIMEText(cMessageText, "plain")
