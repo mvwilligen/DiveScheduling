@@ -8,6 +8,12 @@ users
 
     <h3><b>&nbsp;users</b></h3>
 
+    {% if cMessage|length > 0 %}
+    <br>
+    {{ cMessage }}
+    <br>
+    {% %}
+
     <table class="table table-hover table-dark">
         <thead>
             <tr>

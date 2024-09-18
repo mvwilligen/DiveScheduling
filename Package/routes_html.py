@@ -547,29 +547,29 @@ def htmlexport():
 
     cFooterHtml = "<br><br>" + cCRLF +"<p style='font-size: 12px;'>powered by divescheduling. created: " + cDate5 + " " + cTime2 + "</p></body></html>"
 
-    cFolderNameOSHtmlDay        = './Exports/' + cDate4 + '/'
-    cFolderNameOSHtml           = './Exports/' + cDate4+ '/divescheduling_' + cDate4 + '_' + cTime + '/'
-    cFolderNameOSMail           = './Exports/Mail/'
-    cFolderNameOSInternal       = './Exports/Internal/'
+    # cFolderNameOSHtmlDay        = './Exports/' + cDate4 + '/'
+    # cFolderNameOSHtml           = './Exports/' + cDate4+ '/divescheduling_' + cDate4 + '_' + cTime + '/'
+    # cFolderNameOSMail           = './Exports/Mail/'
+    # cFolderNameOSInternal       = './Exports/Internal/'
     cFolderNameOSStaticInternal = './static/Internal/'
 
     if not os.path.exists('Exports'):
         os.makedirs('Exports') 
 
-    if not os.path.exists(cFolderNameOSHtmlDay):
-        os.makedirs(cFolderNameOSHtmlDay) 
+    # if not os.path.exists(cFolderNameOSHtmlDay):
+    #     os.makedirs(cFolderNameOSHtmlDay) 
 
-    if not os.path.exists(cFolderNameOSHtml):
-        os.makedirs(cFolderNameOSHtml) 
+    # if not os.path.exists(cFolderNameOSHtml):
+    #     os.makedirs(cFolderNameOSHtml) 
 
-    if not os.path.exists(cFolderNameOSInternal):
-        os.makedirs(cFolderNameOSInternal) 
+    # if not os.path.exists(cFolderNameOSInternal):
+    #     os.makedirs(cFolderNameOSInternal) 
 
     if not os.path.exists(cFolderNameOSStaticInternal):
         os.makedirs(cFolderNameOSStaticInternal) 
 
     import glob
-    files = glob.glob(cFolderNameOSInternal + '/*')
+    files = glob.glob(cFolderNameOSStaticInternal + '/*')
     for f in files:
         # print('removing: ', f)
         os.remove(f)
@@ -588,18 +588,19 @@ def htmlexport():
         # add footer
         cHtml = cHtml + cFooterHtml + cCRLF
 
-        cFileName = cFolderNameOSHtml + h [0]
+        # cFileName = cFolderNameOSHtml + h [0]
+        cFileName = cFolderNameOSStaticInternal + h[0]
 
         f = open(cFileName, 'w')
         f.write(cHtml)
         f.close()
 
-        # cFolderNameOSInternal = './static/Internal/'
-        cFileName = cFolderNameOSInternal + h [0]
+        # # cFolderNameOSInternal = './static/Internal/'
+        # cFileName = cFolderNameOSInternal + h [0]
 
-        f = open(cFileName, 'w')
-        f.write(cHtml)
-        f.close()
+        # f = open(cFileName, 'w')
+        # f.write(cHtml)
+        # f.close()
 
     # print('---- end create html files')
 
@@ -607,11 +608,11 @@ def htmlexport():
     import shutil
     aFiles = []
     #aFiles.append(['./Package/static/images/logo.png',     cFolderNameOSHtml     + 'logo.png'])
-    aFiles.append(['./Package/static/images/logo.png',     cFolderNameOSInternal + 'logo.png'])
+    aFiles.append(['./Package/static/images/logo.png',     cFolderNameOSStaticInternal + 'logo.png'])
     #aFiles.append(['./Package/static/images/calendar.png', cFolderNameOSHtml     + 'calendar.png'])
-    aFiles.append(['./Package/static/images/calendar.png', cFolderNameOSInternal + 'calendar.png'])
+    aFiles.append(['./Package/static/images/calendar.png', cFolderNameOSStaticInternal + 'calendar.png'])
     #aFiles.append(['./Package/static/images/favicon.ico',  cFolderNameOSHtml     + 'favicon.ico'])
-    aFiles.append(['./Package/static/images/favicon.ico',  cFolderNameOSInternal + 'favicon.ico'])
+    aFiles.append(['./Package/static/images/favicon.ico',  cFolderNameOSStaticInternal + 'favicon.ico'])
 
     for f in aFiles:
         # print(f[0], f[1])
@@ -659,13 +660,14 @@ def ftp():
     # cFolderNameOSInternal = './Exports/Internal/'
 
     cFolderNameOSInternal = './static/Internal/'
+    cFolderNameOSStaticInternal = './static/Internal/'
+    
+
     if True:
 
         print('---- start ftp')
 
-        secrets = dotenv_values(".env")
-
-        database_url = os.environ.get('DATABASE_URL')
+        # secrets = dotenv_values(".env")
 
         # ftpuser = secrets['FTP_USER']
         # ftppw   = secrets['FTP_PASSWORD']
@@ -676,11 +678,11 @@ def ftp():
         # print('ftp: ', ftpuser, ftppw)
         ftp.login(user = ftpuser, passwd = ftppw)
 
-        listfiles = glob.glob(cFolderNameOSInternal+ "*.*")
+        listfiles = glob.glob(cFolderNameOSStaticInternal + "*.*")
 
         for l in listfiles:
             filenamefrom = l
-            filenameto = 'divescheduling/' + l[19:]
+            filenameto = 'divescheduling/' + l[len(cFolderNameOSStaticInternal):]
             ftp.storbinary('STOR ' + filenameto, open(filenamefrom, 'rb'))
             # print ('filenameto: ', filenameto)
 

@@ -720,6 +720,7 @@ def strip_tags(html):
 def usersmail(id):
 
     secrets = dotenv_values(".env")
+    cMessage = ""
 
     if current_user.is_anonymous:
         return (no_access_text())
@@ -743,6 +744,10 @@ def usersmail(id):
         bcc_email          = "mvwilligen@hotmail.com"
         receiver_email     = cEmailaddress
 
+        cMessage = cMessage + "sender_email: " + sender_email + cCRLF
+        cMessage = cMessage + "receiver_email: " + receiver_email + cCRLF
+        cMessage = cMessage + "" + cCRLF
+
         message            = MIMEMultipart("alternative")
         message["Subject"] = "Appointments for " + cFullname
         message["From"]    = sender_email
@@ -760,19 +765,25 @@ def usersmail(id):
 
         cMailbody = ""
 
-        cFilename = "./Exports/Internal/calendar_st_" + cFullname2 + ".html"
+        cFilename = "./static/Internal/calendar_st_" + cFullname2 + ".html"
         if os.path.isfile(cFilename):
             f = open(cFilename, "r")
             cMessageHtml = f.read()
             f.close()
-            cMailbody = "Student<br><br>" + cMessageHtml
+            cMailbody = "student:" + cCRLF + cMessageHtml
 
-        cFilename = "./Exports/Internal/calendar_in_" + cFullname2 + ".html"
+        cMessageHtml = ""
+
+        cFilename = "./static/Internal/calendar_in_" + cFullname2 + ".html"
         if os.path.isfile(cFilename):
             f = open(cFilename, "r")
             cMessageHtml = f.read()
             f.close()
-            cMailbody = cMailbody + "<br>--------------------------------<br>" + chr(13) + chr(10) + "staff<br><br>" + cMessageHtml
+            cMailbody = cMailbody + "<br><br>" + cCRLF + cCRLF + "staff" + cCRLF + "<br><br>" + cMessageHtml
+
+        cMessage = cMessage + "len(cMailbody: " + str(len(cMailbody)) + cCRLF
+        cMessage = cMessage + "" + cCRLF
+
 
         # print('cMailFilename: ', cMailFilename)
 
@@ -799,12 +810,16 @@ def usersmail(id):
         cMailbody  = cFirstPart + cLastPart
         #print('after removing studentsmenu and instructorsmenu: ', len(cMailbody))
         cMessageText = cMailbody.replace('</td><td>','; ')
-        cMessageText = strip_tags(cMessageText)
+        cMessageText = strip_tags(cMessageText).replace('student', 'staff')
         #print('after strip_tags: ', len(cMessageText))
         #print(cMessageText)
         #print('')
 
+        #print('cMailbody:    ', cMailbody)
+        #print('cMessageText: ', cMessageText)
+
         if len(cMailbody) > 0:
+
             #print('start sending mail')
             # Turn these into plain/html MIMEText objects
             part1 = MIMEText(cMessageText, "plain")
@@ -819,18 +834,18 @@ def usersmail(id):
             context = ssl.create_default_context()
             with smtplib.SMTP_SSL("mail.mwihosting.nl", 465, context=context) as server:   #587
                 server.login(sender_email, password)
-                server.sendmail(
-                    sender_email, receiver_email, message.as_string()
-                )
+                cResult = server.sendmail(sender_email, receiver_email, message.as_string())
+                cMessage = cMessage + "cResult: " + str(cResult) + cCRLF
             #print('finished sending mail')
 
         #### if len(cMailfile) > 0:
 
+    print(cMessage)
 
     lRBAC = get_rbac(request.url_rule.endpoint) 
 
     # return render_template(url_for('users'), lRBAC = lRBAC)
-    return redirect(url_for('users'))
+    return redirect(url_for('users'), cMessage = cMessage)
 
 #------------------------------------------------------------------------------------------
 
