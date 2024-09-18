@@ -752,33 +752,45 @@ def usersmail(id):
         message["Subject"] = "Appointments for " + cFullname
         message["From"]    = sender_email
         message["To"]      = receiver_email
-        # message["Cc"]    = cc_email
-        # message["Bcc"]   = bcc_email
         message["Subject"] = "Appointments for " + cFullname
 
         cMessageText = ""
-        cMessageHtml = ''
-        cMailbody = ""
-
-        cFilename = "./static/Internal/calendar_st_" + cFullname2 + ".html"
-        if os.path.isfile(cFilename):
-            f = open(cFilename, "r")
-            cMessageHtml = f.read()
-            f.close()
-            cMailbody = "student:" + cCRLF + cMessageHtml
-
         cMessageHtml = ""
+        cMailbodyIn  = ""
+        cMailbodySt  = ""
 
-        cFilename = "./static/Internal/calendar_in_" + cFullname2 + ".html"
-        if os.path.isfile(cFilename):
-            f = open(cFilename, "r")
-            cMessageHtml = f.read()
+        cFilenameSt = "./static/Internal/calendar_st_" + cFullname2 + ".html"
+        cMessage = cMessage + "cFilenameSt: " + cFilenameSt + cCRLF
+        if os.path.isfile(cFilenameSt):
+            f = open(cFilenameSt, "r")
+            cMessageHtmlSt = f.read()
             f.close()
-            cMailbody = cMailbody + "<br><br>" + cCRLF + cCRLF + "staff" + cCRLF + "<br><br>" + cMessageHtml
+            cMailbodySt = "student:" + cMessageHtmlSt        
+            cFirstPart  = cMailbodySt[0:cMailbodySt.find('<!--BeginCut -->')]
+            cLastPart   = cMailbodySt[cMailbodySt.find('<!--EndCut -->')+14:]
+            cMailbodySt = cFirstPart + cLastPart
+            cFirstPart  = cMailbodySt[0:cMailbodySt.find('<style>')]
+            cLastPart   = cMailbodySt[cMailbodySt.find('</style>')+8:]
+            cMailbodySt = cFirstPart + cLastPart
 
-        cMessage = cMessage + "len(cMailbody: " + str(len(cMailbody)) + cCRLF
+        cFilenameIn = "./static/Internal/calendar_in_" + cFullname2 + ".html"
+        cMessage = cMessage + "cFilenameIn: " + cFilenameIn + cCRLF
+        if os.path.isfile(cFilenameIn):
+            f = open(cFilenameIn, "r")
+            cMessageHtmlIn = f.read()
+            f.close()
+            cMailbodyIn = "staff:" + cMessageHtmlIn
+            cFirstPart  = cMailbodyIn[0:cMailbodyIn.find('<!--BeginCut -->')]
+            cLastPart   = cMailbodyIn[cMailbodyIn.find('<!--EndCut -->')+14:]
+            cMailbodyIn = cFirstPart + cLastPart
+            cFirstPart  = cMailbodyIn[0:cMailbodyIn.find('<style>')]
+            cLastPart   = cMailbodyIn[cMailbodyIn.find('</style>')+8:]
+            cMailbodyIn = cFirstPart + cLastPart
+
+        cMailbody = cMailbodyIn + "<br><br>" + cCRLF + cCRLF + cMailbodySt
+
+        cMessage = cMessage + "len(cMailbody): " + str(len(cMailbody)) + cCRLF
         cMessage = cMessage + "" + cCRLF
-
 
         # print('cMailFilename: ', cMailFilename)
 
@@ -789,23 +801,27 @@ def usersmail(id):
         #print('')
         #print('before: ', len(cMailbody))
         # remove all from '<style>' until '</style>'
-        cFirstPart   = cMailbody[0:cMailbody.find('<style>')]
-        cLastPart    = cMailbody[cMailbody.find('</style>')+8:]
-        cMailbody = cFirstPart + cLastPart
-        cFirstPart   = cMailbody[0:cMailbody.find('<style>')]
-        cLastPart    = cMailbody[cMailbody.find('</style>')+8:]
-        cMailbody = cFirstPart + cLastPart
+
+
+        # cFirstPart   = cMailbody[0:cMailbody.find('<style>')]
+        # cLastPart    = cMailbody[cMailbody.find('</style>')+8:]
+
+        # cMailbody = cFirstPart + cLastPart
+
         #print('after removing style part: ', len(cMailbody))
         # remove all from '<!--BeginCut -->' until '<!--EndCut -->'
-        cFirstPart = cMailbody[0:cMailbody.find('<!--BeginCut -->')]
-        cLastPart  = cMailbody[cMailbody.find('<!--EndCut -->')+14:]
-        cMailbody  = cFirstPart + cLastPart
-        cFirstPart = cMailbody[0:cMailbody.find('<!--BeginCut -->')]
-        cLastPart  = cMailbody[cMailbody.find('<!--EndCut -->')+14:]
-        cMailbody  = cFirstPart + cLastPart
+
+
+        # cFirstPart = cMailbody[0:cMailbody.find('<!--BeginCut -->')]
+        # cLastPart  = cMailbody[cMailbody.find('<!--EndCut -->')+14:]
+
+        # cMailbody  = cFirstPart + cLastPart
+
         #print('after removing studentsmenu and instructorsmenu: ', len(cMailbody))
+
         cMessageText = cMailbody.replace('</td><td>','; ')
-        cMessageText = strip_tags(cMessageText).replace('student', 'staff')
+        cMessageText = strip_tags(cMessageText)   # .replace('student', 'staff'
+
         #print('after strip_tags: ', len(cMessageText))
         #print(cMessageText)
         #print('')
@@ -840,7 +856,7 @@ def usersmail(id):
     lRBAC = get_rbac(request.url_rule.endpoint) 
 
     # return render_template(url_for('users'), lRBAC = lRBAC)
-    return redirect(url_for('users'), cMessage = cMessage)
+    return redirect(url_for('users'))
 
 #------------------------------------------------------------------------------------------
 
