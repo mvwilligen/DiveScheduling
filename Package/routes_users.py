@@ -780,8 +780,8 @@ def usersmail(id):
         # cMessageHtml = f.read()
         # f.close()
 
-        print('')
-        print('before: ', len(cMailbody))
+        #print('')
+        #print('before: ', len(cMailbody))
         # remove all from '<style>' until '</style>'
         cFirstPart   = cMailbody[0:cMailbody.find('<style>')]
         cLastPart    = cMailbody[cMailbody.find('</style>')+8:]
@@ -789,7 +789,7 @@ def usersmail(id):
         cFirstPart   = cMailbody[0:cMailbody.find('<style>')]
         cLastPart    = cMailbody[cMailbody.find('</style>')+8:]
         cMailbody = cFirstPart + cLastPart
-        print('after removing style part: ', len(cMailbody))
+        #print('after removing style part: ', len(cMailbody))
         # remove all from '<!--BeginCut -->' until '<!--EndCut -->'
         cFirstPart = cMailbody[0:cMailbody.find('<!--BeginCut -->')]
         cLastPart  = cMailbody[cMailbody.find('<!--EndCut -->')+14:]
@@ -797,15 +797,15 @@ def usersmail(id):
         cFirstPart = cMailbody[0:cMailbody.find('<!--BeginCut -->')]
         cLastPart  = cMailbody[cMailbody.find('<!--EndCut -->')+14:]
         cMailbody  = cFirstPart + cLastPart
-        print('after removing studentsmenu and instructorsmenu: ', len(cMailbody))
+        #print('after removing studentsmenu and instructorsmenu: ', len(cMailbody))
         cMessageText = cMailbody.replace('</td><td>','; ')
         cMessageText = strip_tags(cMessageText)
-        print('after strip_tags: ', len(cMessageText))
-        print(cMessageText)
-        print('')
+        #print('after strip_tags: ', len(cMessageText))
+        #print(cMessageText)
+        #print('')
 
-        if len(cMessageHtml) > 0:
-            print('start sending mail')
+        if len(cMessageMailBody) > 0:
+            #print('start sending mail')
             # Turn these into plain/html MIMEText objects
             part1 = MIMEText(cMessageText, "plain")
             part2 = MIMEText(cMailbody, "html")
@@ -822,7 +822,7 @@ def usersmail(id):
                 server.sendmail(
                     sender_email, receiver_email, message.as_string()
                 )
-            print('finished sending mail')
+            #print('finished sending mail')
 
         #### if len(cMailfile) > 0:
 
