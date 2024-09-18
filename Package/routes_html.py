@@ -349,13 +349,15 @@ def htmlexport():
                             user = Users.query.filter(and_((Users.Firstname == cFirstname), (Users.Lastname == cLastname)))
 
                             cUsername = ""
+                            cStatus = ""
 
                             for u in user:
                                 cUsername = u.Username
                                 # print('Found: ', u.Firstname, u.Lastname)
                                 cStatus = u.Status
 
-                            # print('cUsername: ' + cUsername + ' [' + cStatus + ']')
+                            if len(cStatus) == 0:
+                                print('cUsername: ' + cUsername + ' [' + cStatus + ']', 'a[11]: ', a[11], 'a[6]: ', a[6], 'a2+3}: ', a[2] + a[3])
 
                             if 'instructor' in cStatus:
                                 # print (cText + ' is an instructor.')
@@ -592,6 +594,7 @@ def htmlexport():
         f.write(cHtml)
         f.close()
 
+        # cFolderNameOSInternal = './static/Internal/'
         cFileName = cFolderNameOSInternal + h [0]
 
         f = open(cFileName, 'w')
@@ -603,11 +606,11 @@ def htmlexport():
     # copy static image files
     import shutil
     aFiles = []
-    aFiles.append(['./Package/static/images/logo.png',     cFolderNameOSHtml     + 'logo.png'])
+    #aFiles.append(['./Package/static/images/logo.png',     cFolderNameOSHtml     + 'logo.png'])
     aFiles.append(['./Package/static/images/logo.png',     cFolderNameOSInternal + 'logo.png'])
-    aFiles.append(['./Package/static/images/calendar.png', cFolderNameOSHtml     + 'calendar.png'])
+    #aFiles.append(['./Package/static/images/calendar.png', cFolderNameOSHtml     + 'calendar.png'])
     aFiles.append(['./Package/static/images/calendar.png', cFolderNameOSInternal + 'calendar.png'])
-    aFiles.append(['./Package/static/images/favicon.ico',  cFolderNameOSHtml     + 'favicon.ico'])
+    #aFiles.append(['./Package/static/images/favicon.ico',  cFolderNameOSHtml     + 'favicon.ico'])
     aFiles.append(['./Package/static/images/favicon.ico',  cFolderNameOSInternal + 'favicon.ico'])
 
     for f in aFiles:
@@ -615,14 +618,15 @@ def htmlexport():
         shutil.copyfile(f[0], f[1])
 
     # copy folder
-    src = './Exports/Internal'
-    dst = "./Package/static/Internal"
+    #src = './Exports/Internal'
+    
+    #dst = "./Package/static/Internal"
     # print('src: ', src)
     # print('dst: ', dst)
     # cleanup dst folder
-    shutil.rmtree(dst)
+    #shutil.rmtree(dst)
     # copy folder
-    shutil.copytree(src, dst)
+    #shutil.copytree(src, dst)
 
     nFinishTime = datetime.datetime.today()
 
@@ -652,8 +656,9 @@ def ftp():
 
     # inspiration: https://pythonprogramming.net/ftp-transfers-python-ftplib/
 
-    cFolderNameOSInternal = './Exports/Internal/'
+    # cFolderNameOSInternal = './Exports/Internal/'
 
+    cFolderNameOSInternal = './static/Internal/'
     if True:
 
         print('---- start ftp')
