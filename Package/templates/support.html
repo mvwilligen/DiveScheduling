@@ -1,5 +1,3 @@
-<!-- source: https://getbootstrap.com/docs/5.0/getting-started/introduction/ -->
-
 {% extends 'base.html' %}
 
 {% block title %}
@@ -8,41 +6,36 @@ support
 
 {% block content %}
 <style>
-	td { text-align:left; vertical-align:top; padding-left:5px;padding-right:5px;padding-bottom:5px;padding-top:5px;
+	td { text-align:left; vertical-align:top; padding-left:5px;padding-right:5px;padding-bottom:5px;padding-top:5px; }
 </style>
 		
 <h3>&nbsp;support</h3>
-{% if 'admin' in lRBAC[1] %}
+{% if not 'admin' in lRBAC[1] %}
 
-<a class="btn btn-outline btn-info" href="{{ url_for('test') }}" target='_blank'>test</a>
+welcome to the support section of DiveScheduling.
 
+{% else %}
+
+<main id="top"></main>
+<a href="#variables">variables<a> <a href="#todo">todo<a> <a href="#wishlist">wishlist<a> <a href="#bugs">bugs<a> <a href="#whathow">what-how<a> <a href="#db">db<a> <a href="#journey">journey<a> <a href="#challenges">challenges<a> <a href="#sources">sources<a> <a href="#git">git<a>  <a href="#raspberrypi">raspberry pi<a> <a href="#samba">samba<a> <a href="#starts">starts<a> <a href="#render">render<a><br>
 <br>
-<table>
-<tr style='border-top: 1pt solid white; border-bottom: 1pt solid white;'><td><b>current_user</b></td><td>value</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	<td><b>lRBAC</b></td><td>value</td>	<td></td><td></td>	</tr>
-
-<tr><td>current_user.Username</td><td>{{ current_user.Username }}</td><td></td>
-	<td>lRBAC[0]</td><td>{{ lRBAC[0] }}</td><td>OS version</td><td>{ { os.name }}</td></tr>
-
-<tr><td>current_user.is_active</td><td>{% if current_user.is_active %}true{% else %}false{% endif %}</td><td></td>
-	<td>lRBAC[1]</td><td>{{ lRBAC[1] }}</td><td>sys.platform</td><td>{ { sys.platform }}</td></tr>
-
-<tr><td>current_user.is_authenticated</td><td>{% if current_user.is_authenticated %}true{% else %}false{% endif %}</td><td></td>
-	<td>lRBAC[2]</td><td>{{ lRBAC[2] }}</td><td>platform.system()</td><td>{ { platform.system() }}</td></tr>
-
-<tr><td>current_user.is_anonymous</td><td>{% if current_user.is_anonymous %}true{% else %}false{% endif %}</td><td></td>
-	<td>lRBAC[3]</td><td>{{ lRBAC[3] }}</td><td>platform.release()</td><td>{ { platform.release() }}</td></tr>
-
-<tr><td>current_user.get_id</td><td>{% if current_user.get_id %}true{% else %}false{% endif %}</td><td></td>
-	<td>lRBAC[4]</td><td>{{ lRBAC[4] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>platform.version()</td><td>{ { platform.version() }}</td></tr>
-
-<tr><td>&nbsp;</td><td></td><td></td><td>lRBAC[5]</td><td>{{ lRBAC[5] }}</td><td>platform.platform()</td><td>{ { platform.platform() }}</td></tr>
-
-<tr><td></td><td></td><td></td><td>lRBAC[6]</td><td>{{ lRBAC[6] }}</td><td>Python version</td><td>{ { sys.version }}</td></tr>
+<a class="btn btn-outline btn-info" href="{{ url_for('test') }}" target='_blank'>test</a>
+<br>
+<br>
+<main id="variables"></main>
+<h4><b>some variables...</b></h4><br>
+<a href="#top">[top]<a><br>
+	<table>
+<tr style='border-top: 1pt solid white; border-bottom: 1pt solid white;'><td><b>current_user</b></td><td>values</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>	<td><b>lRBAC</b></td><td>values</td>	<td>tbd</td><td>values</td>	</tr>
+<tr><td>current_user.Username</td><td>{{ current_user.Username }}</td><td></td>	<td>lRBAC[0]</td><td>{{ lRBAC[0] }}</td><td>OS version</td><td>{ { os.name }}</td></tr>
+<tr><td>current_user.is_active</td><td>{% if current_user.is_active %}true{% else %}false{% endif %}</td><td></td>	<td>lRBAC[1]</td><td>{{ lRBAC[1] }}</td><td>sys.platform</td><td>{ { sys.platform }}</td></tr>
+<tr><td>current_user.is_authenticated</td><td>{% if current_user.is_authenticated %}true{% else %}false{% endif %}</td><td></td>	<td>lRBAC[2]</td><td>{{ lRBAC[2] }}</td><td>platform.system()</td><td>{ { platform.system() }}</td></tr>
+<tr><td>current_user.is_anonymous</td><td>{% if current_user.is_anonymous %}true{% else %}false{% endif %}</td><td></td>	<td>lRBAC[3]</td><td>{{ lRBAC[3] }}</td><td>platform.release()</td><td>{ { platform.release() }}</td></tr>
+<tr><td>current_user.get_id</td><td>{% if current_user.get_id %}true{% else %}false{% endif %}</td><td></td>	<td>lRBAC[4]</td><td>{{ lRBAC[4] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>platform.version()</td><td>{ { platform.version() }}</td></tr>
+<tr><td>&nbsp;</td><td></td><td></td><td>lRBAC[5]</td><td>{{ lRBAC[5] }}</td><td>platform.platform()</td><td>{ { platform.platform() }}</td></tr><tr><td></td><td></td><td></td><td>lRBAC[6]</td><td>{{ lRBAC[6] }}</td><td>Python version</td><td>{ { sys.version }}</td></tr>
 <tr><td></td><td></td><td></td><td></td><td></td><td>socket.gethostname()</td><td>{ { socket.gethostname() }}</td></tr>
 <tr><td></td><td></td><td></td><td></td><td></td><td>app</td><td>{ { app }}</td></tr>
 <tr style='border-top: 1pt solid white;'><td>&nbsp;</td><td></td>
-
 </table
 <br>
 
@@ -54,24 +47,27 @@ support
 
 </head>
 <body style="font-family:verdana">
-<h3><p class="p2"><b>TODO</b></p></h3>
-[ ] de-activate appointments instead of deleting, or delete all appointments and all ap-notes (is easier)<br>
-[ ] check new account via mail<br>
-[ ] deployment on render<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[ ] gunicorn?<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[ ] development -> production<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[ ] debug off<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[ ] passwords<br>
+<main id="todo"></main>
+<h3><class="p2"><b>TODO</b></p></h3>
+<a href="#top">[top]<a><br>
+[_] update template cache<br>
+[_] de-activate appointments instead of deleting, or delete all appointments and all ap-notes (is easier)<br>
+[_] check new account via mail<br>
+[_] deployment on render<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] gunicorn?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] development -> production<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] debug off<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] passwords<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[v] anonimize data<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[v] git - updates?<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[ ] external syslog-server<br>
-[ ] there is a incorrect route from a form to a incorrect list<br>
-[ ] move status to table<br>
-[ ] cleanup models.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] external syslog-server<br>
+[_] there is a incorrect route from a form to a incorrect list<br>
+[_] move status to table<br>
 <br>
 <br>
-<br>
+<main id="wishlist"></main>
 <h3><p class="p2"><b>Wishlist</b></p></h3>
+<a href="#top">[top]<a><br>
 [ ] autofill dsd form<br>
 [ ] DTAP<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[v] Dev: mwi20<br>
@@ -141,8 +137,12 @@ support
 <font color='green'>[v] added 'none' to several assistant lists</font><br>
 <font color='green'>[v] optimized usermail</font><br>
 <font color='green'>[v] optimized html creation</font><br>
+20240923<br>
+<font color='green'>[v] cleanup models.py</font><br>
 <br>
+<main id="bugs"></main>
 <h1><p class="p2">Bugs</p></h1>
+<a href="#top">[top]<a><br>
 no showstopping bugs at the moment :-D</font><br>
 [ ] <br>
 [ ] <br>
@@ -200,6 +200,8 @@ no showstopping bugs at the moment :-D</font><br>
 </p>
 </p>
 <br><br>
+<main id="whathow"></main>
+<a href="#top">[top]<a><br>
 <table>
     <tr>
 	    <td valign="top">
@@ -260,10 +262,13 @@ no showstopping bugs at the moment :-D</font><br>
 	</tr>
 --->
 
+
 </table>
 <br>
 <br>
-<h2>My journey: Development of a web-application for scheduling instructors</h2>
+<main id="journey"></main>
+<h2>My journey: Development of a web-application for scheduling appointments</h2>
+<a href="#top">[top]<a><br>
 <br>
 <h4><b>Skills</b></h4>
 - Python 3.12.5<br>
@@ -275,8 +280,10 @@ no showstopping bugs at the moment :-D</font><br>
 - VS Code<br>
 <br>
 <br>
+<main id="challenges"></main>
 <h4><b>Challenges</b></h4>
-- datetime<br>
+<a href="#top">[top]<a><br>
+	- datetime<br>
 - joins\relationships<br>
 - variable in jinja2 loop<br>
 - data from sql query to form<br>
@@ -286,7 +293,9 @@ no showstopping bugs at the moment :-D</font><br>
 <br>
 <br>
 <br>
+<main id="db"></main>
 <h4><b>Database Diagram</b></h4>
+<a href="#top">[top]<a><br>
 <img src="{{ url_for('static', filename='images/Screenshot_2024-09-16_174029.png') }}"><br>
 Date: 16 sep 2024, Source: https://dbdiagram.io/d<br>
 <br>
@@ -302,12 +311,16 @@ C:\Data\Python\DiveScheduling\Export2Website (under development)<br>
 <h4><b>Additional information</b></h4>
 <br>
 <br>
+<main id="git"></main>
 <h4><b>GITHUB</b></h4>
+<a href="#top">[top]<a><br>
 <br>
 [Terminal]<br>
 <br>
 git add .<br>
 git commit .<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- enter push description<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- remove #s<br>
 git push DiveScheduling main<br>
 <br>
 <br>
@@ -317,8 +330,10 @@ $ sudo apt update<br>
 $ sudo apt full-upgrade<br>
 <br>
 ------------------------------------------------------------<br>
+<main id="raspberrypi"></main>
 <b>Remote Control</b><br>
-c:> ssh 192.168.1.109 -l piuser<br>
+<a href="#top">[top]<a><br>
+	c:> ssh 192.168.1.109 -l piuser<br>
 c:> net use p: \\192.168.1.109\pihome /user:piuser *><br>
 c:> xcopy /y /s C:\Data\Python\DiveScheduling\Export2Website\20240916_1357_milestone p:\<br>
 <br>
@@ -355,14 +370,18 @@ http://192.168.1.109:5000<br>
 sudo shutdown -t 1 now<br>
 ------------------------------------------------------------<br>
 <br>
+<main id="samba"></main>
 <b>samba</b><br>
-<a href="https://www.jeffgeerling.com/blog/2021/htgwa-create-samba-smb-share-on-raspberry-pi" target="_blank">Jeff Geerling - Samba</a><br>
+<a href="#top">[top]<a><br>
+	<a href="https://www.jeffgeerling.com/blog/2021/htgwa-create-samba-smb-share-on-raspberry-pi" target="_blank">Jeff Geerling - Samba</a><br>
 <br>
 net use p: \\192.168.1.109\piuser /user:piuser passw0rd<br>
 <br>
 <br>
 ========================================================<br>
+<main id="sources"></main>
 <h3><b>Sources, resources and inspiration...</b></h3>
+<a href="#top">[top]<a><br>
 -----------------------------------------------------------------------------------------------------<br>
 <a href="https://www.youtube.com/watch?v=Qr4QMBUPxWo&t=9424s" target="_blank">Youtube: freecodecamp - Flask Course - Python Web Application Development</a><br>
 <a href="https://github.com/jimdevops19/codesnippets/tree/main/Flask%20Full%20Series" target="_blank">Flask Full Series (jimdevops19)</a><br>
@@ -384,21 +403,25 @@ net use p: \\192.168.1.109\piuser /user:piuser passw0rd<br>
 <a href="https://docs.gunicorn.org/en/stable/" target="_blank">gunicorn</a><br>
 <a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-python-wsgi-apps-using-gunicorn-http-server-behind-nginx" target="_blank">deploy via gunicorn</a><br>
 <a href="https://www.w3schools.com/colors/colors_shades.asp" target="_blank">colors</a><br>
-<a href="" target="_blank"></a><br>
-<a href="" target="_blank"></a><br>
+<a href="https://icons.getbootstrap.com/" target="_blank">bootstrap icons</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://svgtopng.com/" target="_blank">svg2png</a><br>
 <a href="" target="_blank"></a><br>
 <a href="" target="_blank"></a><br>
 <a href="" target="_blank"></a><br>
 <a href="" target="_blank"></a><br>
 <br>
 <br>
+<main id="investigate"></main>
 <h3>to investigate:</h3>
+<a href="#top">[top]<a><br>
 <a href="https://rogerbinns.github.io/apsw/example.html">apsw</a><br>
 <a href="https://www.tutorialspoint.com/python_data_access/index.html">python data access tutorial</a><br>
 <a href="https://docs.python.org/3.9/library/sqlite3.html">sqlite3</a><br>
 <br>
 <br>
-<table>
+<main id="starts"></main>
+<a href="#top">[top]<a><br>
+	<table>
 	<tr>
 		<td><img src="{{ url_for('static', filename='images/RaspberryPi.png') }}"  width="100" height="100"></td><td style="vertical-align:middle;"><h1>Raspberry Pi 4</h1></td></tr>
 </table>
@@ -470,6 +493,27 @@ app:                  <Flask 'Package'><br>
 -----------------------------------------------------------------------------------------------------------<br>
 <br>
 finish: __init__.py<br>
+<br>
+<br>
+<br>
+
+
+
+<main id="render"></main>
+<h3><b>render</b></h3>
+<a href="#top">[top]<a><br>
+<br>
+<a href="https//render.com" target="_blank">render.com</a><br>
+<br>
+<table>
+	<tr><td style="width:50px"></td><td style="width:150px"><b>phase</b></td><td style="width:150px"><b>host</b></td><td style="width:150px"><b>link</b></a></td></tr>
+	<tr><td>d</td><td>development</td><td>mwi20</td><td><a href="http://127.0.0.1:5000" target="_blank">http://127.0.0.1:5000</a></td></tr>
+	<tr><td>t</td><td>test</td><td>raspberry pi</td><td><a href="192.168.1.109:5000" target="_blank">192.168.1.109:5000</a></td></tr>
+	<tr><td>a</td><td>acceptance</td><td>render</td><td><a href="https://divescheduling.onrender.com" target="_blank">https://divescheduling.onrender.com</a></td></tr>
+	<tr><td>p</td><td>production</td><td></td></td><td></tr>
+</table>
+<br>
+<br>
 <br>
 <br>
 <br>

@@ -133,6 +133,8 @@ def homepage():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 
+    message = ""
+
     form = LoginForm()
 
     if request.method == 'POST':

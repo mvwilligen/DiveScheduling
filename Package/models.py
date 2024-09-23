@@ -24,14 +24,15 @@ from flask_login      import UserMixin
 
 class Appointments(db.Model):
     __tablename__ = "Appointments"
-    Id         = db.Column(db.Integer(),                primary_key=True)
-    User       = db.Column(db.Integer(),          ForeignKey('Users.Id'),         nullable=False, unique=False)
-    Product    = db.Column(db.Integer(),          ForeignKey('Products.Id'),      nullable=False, unique=False)
-    Part       = db.Column(db.String(length=5),                                   nullable=True,  unique=False)
-    Date       = db.Column(db.DateTime(timezone=True))
-    Notes      = db.Column(db.String(length=128),                                 nullable=True,  unique=False)
-    Staff      = db.Column(db.Integer(),          ForeignKey('Instructors.Id'),   nullable=True,  unique=False) # 1 - 20240829
-    Assistants = db.Column(db.String(length=64),                                  nullable=True,  unique=False)
+    Id          = db.Column(db.Integer(),                primary_key=True)
+    User        = db.Column(db.Integer(),          ForeignKey('Users.Id'),         nullable=False, unique=False)
+    Product     = db.Column(db.Integer(),          ForeignKey('Products.Id'),      nullable=False, unique=False)
+    Part        = db.Column(db.String(length=5),                                   nullable=True,  unique=False)
+    Date        = db.Column(db.DateTime(timezone=True))
+    # Notes     = db.Column(db.String(length=128),                                 nullable=True,  unique=False)
+    Staff       = db.Column(db.Integer(),          ForeignKey('Instructors.Id'),   nullable=True,  unique=False) # 1 - 20240829
+    Assistants  = db.Column(db.String(length=64),                                  nullable=True,  unique=False)
+    Lastwritten = db.Column(db.DateTime(timezone=True))
 
     app2nam = relationship('Users',       back_populates = 'Appointments')
     app2pro = relationship('Products',    back_populates = 'Appointments')
@@ -50,7 +51,8 @@ class Instructors(db.Model):
     Name            = db.Column(db.String(length=30) )
     Active          = db.Column(db.Boolean() )
     Products        = db.Column(db.String(length=60) )
-    DateLastWritten = db.Column(db.DateTime(timezone=True))
+    # DateLastWritten = db.Column(db.DateTime(timezone=True))
+    Lastwritten = db.Column(db.DateTime(timezone=True))
 
     # relatrionship to Users
     ins2nam = relationship('Users', back_populates = 'Instructors')
@@ -67,14 +69,15 @@ class Notes(db.Model):
     Date            = db.Column(db.DateTime(timezone=True))
     Description     = db.Column(db.String(60),               nullable=True, unique=False)
     Note            = db.Column(db.Text,                     nullable=True, unique=False)
-    Datelastwritten = db.Column(db.DateTime(timezone=True))
+    # Datelastwritten = db.Column(db.DateTime(timezone=True))
     User            = db.Column(db.Integer(),                nullable=True, unique=False)
     Type            = db.Column(db.String(2) ,               nullable=True, unique=False) # st, re, ap, in, pr
-    Product         = db.Column(db.Integer(),                nullable=True, unique=False)
-    Appointment     = db.Column(db.Integer(),                nullable=True, unique=False)
-    Instructor      = db.Column(db.Integer(),                nullable=True, unique=False)
-    Studentrecord   = db.Column(db.Integer(),                nullable=True, unique=False)
-    Text            = db.Column(db.Text(),                   nullable=True, unique=False)
+    Lastwritten = db.Column(db.DateTime(timezone=True))
+    # Product         = db.Column(db.Integer(),                nullable=True, unique=False)
+    # Appointment     = db.Column(db.Integer(),                nullable=True, unique=False)
+    # Instructor      = db.Column(db.Integer(),                nullable=True, unique=False)
+    # Studentrecord   = db.Column(db.Integer(),                nullable=True, unique=False)
+    # Text            = db.Column(db.Text(),                   nullable=True, unique=False)
 
 # -----------------------------
 
@@ -86,7 +89,8 @@ class Products(db.Model):
     Parts           = db.Column(db.String(50),   nullable=True)
     Description     = db.Column(db.String(1024), nullable=True)
     Active          = db.Column(db.Boolean() )
-    DateLastWritten = db.Column(db.DateTime(timezone=True))
+    # DateLastWritten = db.Column(db.DateTime(timezone=True))
+    Lastwritten = db.Column(db.DateTime(timezone=True))
 
     Appointments    = relationship('Appointments', back_populates = "app2pro")
 
@@ -95,17 +99,18 @@ class Products(db.Model):
 
 # -----------------------------
 
-class Studentrecords(db.Model):
-    Id              = db.Column(db.Integer(),                primary_key=True)
-    User            = db.Column(db.Integer(),                nullable=True, unique=False)
-    Appointment     = db.Column(db.Integer(),                nullable=True, unique=False)
-    Author          = db.Column(db.Integer(),                nullable=True, unique=False)
-    Date            = db.Column(db.DateTime(timezone=True))
-    Description     = db.Column(db.String(1024),             nullable=True, unique=False)
-    DateLastWritten = db.Column(db.DateTime(timezone=True))
+# class Studentrecords(db.Model):
+#     Id              = db.Column(db.Integer(),                primary_key=True)
+#     User            = db.Column(db.Integer(),                nullable=True, unique=False)
+#     Appointment     = db.Column(db.Integer(),                nullable=True, unique=False)
+#     Author          = db.Column(db.Integer(),                nullable=True, unique=False)
+#     Date            = db.Column(db.DateTime(timezone=True))
+#     Description     = db.Column(db.String(1024),             nullable=True, unique=False)
+#     # DateLastWritten = db.Column(db.DateTime(timezone=True))
+#     Lastwritten = db.Column(db.DateTime(timezone=True))
 
-    def __repr__(self):
-        return f'products {self.name}'
+#     def __repr__(self):
+#         return f'products {self.name}'
 
 # -----------------------------
 
@@ -121,7 +126,8 @@ class Users(db.Model, UserMixin):
     Status          = db.Column(db.String(length=16))
     Info            = db.Column(db.String(length=1024))
     Active          = db.Column(db.Boolean())
-    DateLastWritten = db.Column(db.DateTime(timezone=True))
+    # DateLastWritten = db.Column(db.DateTime(timezone=True))
+    Lastwritten = db.Column(db.DateTime(timezone=True))
 
     # Relationships from
     Appointments   = relationship('Appointments', back_populates = "app2nam")

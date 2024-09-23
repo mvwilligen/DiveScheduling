@@ -573,7 +573,8 @@ def usersinfo(id):
                                 join(Instructors, Appointments.Staff == Instructors.Id). \
                                 join(Products, Appointments.Product == Products.Id) )
     user         = db.session.execute(db.select(Users).filter_by(Id=id)).scalar_one()
-    products     = db.session.execute(db.select(Products)).scalars()
+    #products     = db.session.execute(db.select(Products)).scalars()
+    products = Products.query.order_by(func.lower(Products.Productname)).all()
     assistants   = Users.query.filter(Users.Status.contains('assistant'))
 
     if form.validate_on_submit():

@@ -143,12 +143,12 @@ def SaveNote(id, type, text, action):
         if (not note) or (action == 'add'):
             #print('adding new note')
             note_to_create = Notes(Author          = lRBAC[2],  
-                                    Date            = datetime.datetime.now(),
-                                    Description     = "notes: " + type,
-                                    Datelastwritten = datetime.datetime.now(),
-                                    User            = id,
-                                    Type            = type,
-                                    Note            = text)
+                                    Date           = datetime.datetime.now(),
+                                    Description    = "notes: " + type,
+                                    Lastwritten    = datetime.datetime.now(),
+                                    User           = id,
+                                    Type           = type,
+                                    Note           = text)
     
             db.session.add(note_to_create)
             db.session.commit()      

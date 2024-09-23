@@ -86,7 +86,7 @@ def instructorsinfo(id):
         # cCSV = cCSV + '#BR#'
 
     #                                            0                1                  2                3               4                    5                   6                  7                   8                 9                   10
-    appointments = db.session.execute( db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name, Appointments.Notes, Appointments.Assistants). \
+    appointments = db.session.execute( db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name, Instructors.Active, Appointments.Assistants). \
                                 order_by(Appointments.Date). \
                                 select_from(Appointments). \
                                 where(Appointments.Staff == id). \

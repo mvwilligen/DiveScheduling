@@ -56,24 +56,24 @@
         <ur class="navbar-nav">
             {% if not current_user.is_anonymous %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('html') }}">html</a>
+                <a class="nav-link" href="{{ url_for('html') }}"><img src={{ url_for('static', filename='images/file-text.png') }} ></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('support') }}">support</a>
+                <a class="nav-link" href="{{ url_for('support') }}"><img src={{ url_for('static', filename='images/tools.png') }} ></a>
             </li>
             {% endif  %}
             {% if current_user.is_anonymous %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('login') }}">login</a>
+                <a class="nav-link" href="{{ url_for('login') }}"><img src={{ url_for('static', filename='images/person-fill-up.png') }} ></a>
             </li>
             {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('logout') }}">logout</a>
+                <a class="nav-link" href="{{ url_for('logout') }}"><img src={{ url_for('static', filename='images/person-fill-down.png') }} ></a>
             </li>
             {% endif %}
             {% if current_user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('usersregister') }}">register</a>
+                <a class="nav-link" href="{{ url_for('usersregister') }}"><img src={{ url_for('static', filename='images/person-add.png') }} ></a>
             </li>
             {% endif %}
             </ur>
