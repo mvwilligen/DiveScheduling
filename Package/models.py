@@ -99,6 +99,12 @@ class Products(db.Model):
 
 # -----------------------------
 
+class Status(db.Model):
+    Id              = db.Column(db.Integer(),                primary_key=True)
+    Name            = db.Column(db.String(length=20))
+
+# -----------------------------
+
 # class Studentrecords(db.Model):
 #     Id              = db.Column(db.Integer(),                primary_key=True)
 #     User            = db.Column(db.Integer(),                nullable=True, unique=False)

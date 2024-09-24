@@ -17,10 +17,11 @@ welcome to the support section of DiveScheduling.
 {% else %}
 
 <main id="top"></main>
-<a href="#variables">variables<a> <a href="#todo">todo<a> <a href="#wishlist">wishlist<a> <a href="#bugs">bugs<a> <a href="#whathow">what-how<a> <a href="#db">db<a> <a href="#journey">journey<a> <a href="#challenges">challenges<a> <a href="#sources">sources<a> <a href="#git">git<a>  <a href="#raspberrypi">raspberry pi<a> <a href="#samba">samba<a> <a href="#starts">starts<a> <a href="#render">render<a><br>
+<a href="#variables">variables<a> <a href="#todo">todo<a> <a href="#wishlist">wishlist<a> <a href="#bugs">bugs<a> <a href="#whathow">what-how<a> <a href="#db">db<a> <a href="#journey">journey<a> <a href="#challenges">challenges<a> <a href="#sources">sources<a> <a href="#git">git<a>  <a href="#raspberrypi">raspberrypi<a> <a href="#samba">samba<a> <a href="#starts">starts<a> <a href="#render">render<a><br>
 <br>
-<a class="btn btn-outline btn-info" href="{{ url_for('test') }}" target='_blank'>test</a>
-<br>
+<a class="btn btn-outline btn-info" href="{{ url_for('test') }}" target='_blank'>test</a>&nbsp;
+
+	<br>
 <br>
 <main id="variables"></main>
 <h4><b>some variables...</b></h4><br>
@@ -50,30 +51,23 @@ welcome to the support section of DiveScheduling.
 <main id="todo"></main>
 <h3><class="p2"><b>TODO</b></p></h3>
 <a href="#top">[top]<a><br>
-[_] update template cache<br>
-[_] de-activate appointments instead of deleting, or delete all appointments and all ap-notes (is easier)<br>
-[_] check new account via mail<br>
+[_] implement try/except:<br>
+[_] there is a incorrect route from a form to a incorrect list<br>
 [_] deployment on render<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[_] gunicorn?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] gunicorn/waitress<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[_] development -> production<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[_] debug off<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[_] passwords<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[v] anonimize data<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[v] git - updates?<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[_] external syslog-server<br>
-[_] there is a incorrect route from a form to a incorrect list<br>
-[_] move status to table<br>
 <br>
 <br>
 <main id="wishlist"></main>
 <h3><p class="p2"><b>Wishlist</b></p></h3>
 <a href="#top">[top]<a><br>
+[_] check new account via mail<br>
 [ ] autofill dsd form<br>
-[ ] DTAP<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[v] Dev: mwi20<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[v] Test: RaspberryPi<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[v] Acc: render.com<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[ ] Prod: proper hosting provider<br>
 [ ] ics-file<br>
 [ ] productform<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[v] mutate instructor in user\product-form<br>
@@ -139,6 +133,19 @@ welcome to the support section of DiveScheduling.
 <font color='green'>[v] optimized html creation</font><br>
 20240923<br>
 <font color='green'>[v] cleanup models.py</font><br>
+<font color='green'>[v] DTAP</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] Dev: mwi20</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] Test: RaspberryPi</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] Acc: render.com</font><br>
+20240924<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[ ] Prod: proper hosting provider<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] antagonist<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] weboke<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] render ($20/monthly)<br>
+<font color='green'>[v] move array status to table</font><br>
+<font color='green'>[v] cleanup: delete all appointments and all ap-notes</font><br>
+<font color='green'>[v] update template cache</font><br>
+
 <br>
 <main id="bugs"></main>
 <h1><p class="p2">Bugs</p></h1>
@@ -405,7 +412,14 @@ net use p: \\192.168.1.109\piuser /user:piuser passw0rd<br>
 <a href="https://www.w3schools.com/colors/colors_shades.asp" target="_blank">colors</a><br>
 <a href="https://icons.getbootstrap.com/" target="_blank">bootstrap icons</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://svgtopng.com/" target="_blank">svg2png</a><br>
-<a href="" target="_blank"></a><br>
+<a href="https://www.digitalocean.com/community/tutorials/a-comparison-of-web-servers-for-python-based-web-applications" target="_blank">comparison wsgi servers</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://docs.pylonsproject.org/projects/waitress/en/latest/" target="_blank">waitress</a><br>
+<a href="https://pypi.org/project/MarkupSafe/" target="_blank">markupsafe</a><br>
+<a href="https://flask.palletsprojects.com/en/3.0.x/deploying/" target="_blank">deploying to production</a><br>
+<a href="https://bootswatch.com/" target="_blank">bootswatch</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://bootswatch.com/simplex/" target="_blank">simplex</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://bootstrap-flask.readthedocs.io/en/stable/examples/" target="_blank">examples</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://getbootstrap.com/docs/5.1/forms/overview/" target="_blank">overview</a><br>
 <a href="" target="_blank"></a><br>
 <a href="" target="_blank"></a><br>
 <a href="" target="_blank"></a><br>
@@ -496,9 +510,16 @@ finish: __init__.py<br>
 <br>
 <br>
 <br>
-
-
-
+<main id="render"></main>
+<h3><b>gunicorn</b></h3>
+<a href="#top">[top]<a><br>
+<br>
+- zip-backup<br>
+- env<br>
+- pip install gunicorn<br>
+- pip freeze...<br>
+<br>
+<br>
 <main id="render"></main>
 <h3><b>render</b></h3>
 <a href="#top">[top]<a><br>
@@ -506,10 +527,10 @@ finish: __init__.py<br>
 <a href="https//render.com" target="_blank">render.com</a><br>
 <br>
 <table>
-	<tr><td style="width:50px"></td><td style="width:150px"><b>phase</b></td><td style="width:150px"><b>host</b></td><td style="width:150px"><b>link</b></a></td></tr>
-	<tr><td>d</td><td>development</td><td>mwi20</td><td><a href="http://127.0.0.1:5000" target="_blank">http://127.0.0.1:5000</a></td></tr>
-	<tr><td>t</td><td>test</td><td>raspberry pi</td><td><a href="192.168.1.109:5000" target="_blank">192.168.1.109:5000</a></td></tr>
-	<tr><td>a</td><td>acceptance</td><td>render</td><td><a href="https://divescheduling.onrender.com" target="_blank">https://divescheduling.onrender.com</a></td></tr>
+	<tr><td style="width:50px"></td><td style="width:150px"><b>phase</b></td><td style="width:150px"><b>host</b></td><td style="width:150px"><b>link</b></a></td><td style="width:150px"><b>wsgi server</b></a></td></tr>
+	<tr><td>d</td><td>development</td><td>mwi20</td><td><a href="http://127.0.0.1:5000" target="_blank">http://127.0.0.1:5000</a></td><td>'flask'</td></tr>
+	<tr><td>t</td><td>test</td><td>raspberry pi</td><td><a href="192.168.1.109:5000" target="_blank">192.168.1.109:5000</a></td><td>flask -> gunicorn</td></tr>
+	<tr><td>a</td><td>acceptance</td><td>render</td><td><a href="https://divescheduling.onrender.com" target="_blank">https://divescheduling.onrender.com</a></td><td>flask -> gunicorn</td></tr>
 	<tr><td>p</td><td>production</td><td></td></td><td></tr>
 </table>
 <br>
@@ -517,6 +538,11 @@ finish: __init__.py<br>
 <br>
 <br>
 <br>
+
+{% if 'Admin' in lRBAC[0] %}
+    <a class="btn btn-outline btn-info" href="{{ url_for('cleanupallappointments') }}" target='_blank'>cleanup all appointments</a>
+{% endif %}
+
 </body>
 </html>
 

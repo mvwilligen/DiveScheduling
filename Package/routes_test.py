@@ -10,7 +10,7 @@
 
 from Package import db
 from Package import app
-from Package.models import Appointments, Users, Instructors, Products
+from Package.models import Appointments, Users, Instructors, Products, Notes
 from flask import Flask, render_template, redirect, url_for, flash, request
 from sqlalchemy import func, and_
 from Package.functions import get_rbac, no_access_text, string2safe

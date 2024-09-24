@@ -459,7 +459,7 @@ def htmlexport():
                         cHtmlDat2 = cHtmlDat2 + cHtmlDat + cCRLF
                         cHtmlDat2 = cHtmlDat2 + '</table>' + cCRLF
 
-                        cFileName = cFolderNameOS + '/calendar_da_' + cDate3 + '.html'
+                        cFileName = 'calendar_da_' + cDate3 + '.html'
 
                         aHtmlFiles.append([cFileName, cHtmlDat2])
                 
@@ -516,7 +516,7 @@ def htmlexport():
         # replace spaces in instructorname with underscores for filename
         cInsName = i[2].replace(' ', '_')
 
-        cFileName = cFolderNameOS + '/calendar_st_' + cInsName + '.html'
+        cFileName = 'calendar_st_' + cInsName + '.html'
         cHtmlIns = "<html>" + cHead + cStyle + "<body>[cInstructorsMenu]<br><br><table><tr><td colspan=6 style='text-align: center;'><h3 style='margin-bottom: 0;'>" + i [2] + "</h3></td></tr>" + cCRLF + i [3] + "</table>"
         aHtmlFiles.append([cFileName, cHtmlIns])
 
@@ -525,12 +525,12 @@ def htmlexport():
         # replace spaces in instructorname with underscores for filename
         cInsName = i [2].replace(' ', '_')
 
-        cFileName = cFolderNameOS + '/calendar_in_' + cInsName + '.html'
+        cFileName = 'calendar_in_' + cInsName + '.html'
         cHtmlIns = "<html>" + cHead + cStyle + "<body>[cInstructorsMenu]<br><br><table><tr><td colspan=6 style='text-align: center;'><h3 style='margin-bottom: 0;'>" + i [2] + "</h3></td></tr>" + cCRLF + i [3] + "</table>" 
         aHtmlFiles.append([cFileName, cHtmlIns])
 
     # add Calendar html to html list
-    cFileName = cFolderNameOS + '/calendar_' + cDate4 + '_' + cTime + '.html'
+    cFileName = 'calendar_' + cDate4 + '_' + cTime + '.html'
     aHtmlFiles.append([cFileName, cHtmlCal])
     aHtmlFiles.append(['index.html', cHtmlCal])
 
@@ -547,11 +547,11 @@ def htmlexport():
 
     cFooterHtml = "<br><br>" + cCRLF +"<p style='font-size: 12px;'>powered by divescheduling. created: " + cDate5 + " " + cTime2 + "</p></body></html>"
 
-    # cFolderNameOSHtmlDay        = './Exports/' + cDate4 + '/'
-    # cFolderNameOSHtml           = './Exports/' + cDate4+ '/divescheduling_' + cDate4 + '_' + cTime + '/'
-    # cFolderNameOSMail           = './Exports/Mail/'
-    # cFolderNameOSInternal       = './Exports/Internal/'
-    cFolderNameOSStaticInternal = './static/Internal/'
+    # cFolderNameOSHtmlDay      = './Exports/' + cDate4 + '/'
+    # cFolderNameOSHtml         = './Exports/' + cDate4+ '/divescheduling_' + cDate4 + '_' + cTime + '/'
+    # cFolderNameOSMail         = './Exports/Mail/'
+    # cFolderNameOSInternal     = './Exports/Internal/'
+    cFolderNameOSStaticInternal = './Package/static/Internal/'
 
     if not os.path.exists('Exports'):
         os.makedirs('Exports') 
@@ -569,9 +569,9 @@ def htmlexport():
         os.makedirs(cFolderNameOSStaticInternal) 
 
     import glob
-    files = glob.glob(cFolderNameOSStaticInternal + '/*')
+    files = glob.glob(cFolderNameOSStaticInternal + '*')
     for f in files:
-        # print('removing: ', f)
+        print('removing: ', f)
         os.remove(f)
 
     # print('---- start create html files')
@@ -580,7 +580,7 @@ def htmlexport():
 
         # replace tag with links to instructor html files
         # cHtml = h [1].replace('[cInstructorsMenu]', cInstructorsMenu + '<br>' + cStudentMenu + '<br>') 
-        cHtml = h [1].replace('[cInstructorsMenu]', cHeader) 
+        cHtml = h[1].replace('[cInstructorsMenu]', cHeader) 
 
         # remove last empty table row
         cHtml = cHtml.replace('</tr><tr><td colspan = 6>&nbsp;</td></tr></table>', '</tr></table>') 
@@ -588,15 +588,16 @@ def htmlexport():
         # add footer
         cHtml = cHtml + cFooterHtml + cCRLF
 
-        # cFileName = cFolderNameOSHtml + h [0]
+        # cFileName = cFolderNameOSHtml + h[0]
         cFileName = cFolderNameOSStaticInternal + h[0]
+        print('cFileName: ' + cFileName)
 
         f = open(cFileName, 'w')
         f.write(cHtml)
         f.close()
 
-        # # cFolderNameOSInternal = './static/Internal/'
-        # cFileName = cFolderNameOSInternal + h [0]
+        # cFolderNameOSInternal = './static/Internal/'
+        # cFileName = cFolderNameOSInternal + h[0]
 
         # f = open(cFileName, 'w')
         # f.write(cHtml)
@@ -615,19 +616,19 @@ def htmlexport():
     aFiles.append(['./Package/static/images/favicon.ico',  cFolderNameOSStaticInternal + 'favicon.ico'])
 
     for f in aFiles:
-        # print(f[0], f[1])
+        print(f[0], f[1])
         shutil.copyfile(f[0], f[1])
 
     # copy folder
-    #src = './Exports/Internal'
+    # src = './Exports/Internal'
     
-    #dst = "./Package/static/Internal"
+    # dst = "./Package/static/Internal"
     # print('src: ', src)
     # print('dst: ', dst)
     # cleanup dst folder
-    #shutil.rmtree(dst)
+    # shutil.rmtree(dst)
     # copy folder
-    #shutil.copytree(src, dst)
+    # shutil.copytree(src, dst)
 
     nFinishTime = datetime.datetime.today()
 

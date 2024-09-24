@@ -15,6 +15,8 @@ appointmentsevents
 {% set cSelectedInstructor = namespace(value = "") %}
 {% set cSelectedAssistant  = namespace(value = "") %}
 
+{% set cAssistantName  = namespace(value = "") %}
+
 <h3>appointment event {{ cDateUrl.value }}</h3>
 
 <br>
@@ -45,16 +47,18 @@ appointmentsevents
     
             <td>
                 <select name="assistant{{ ap[0] }}" id="assistant{{ ap[0] }}" style="border-radius: 5px; padding: 7px;">
-                    <option value='none'>none</option>
 
                     {% for as in assistants %}
-                        <option value='{{ as.Firstname }} {{ as.Lastname}}'
-                        debug:{{ as.Firstname }} {{ as.Lastname }} {{ ap[11] }}
-                        {% if (as.Firstname + ' ' + as.Lastname) == ap[11] %}
+                        {% set cAssistantName.value = as.Firstname + ' ' + as.Lastname %}
+                        {% if cAssistantName.value == 'no ne' %}
+                            {% set cAssistantName.value = 'none' %}
+                        {% endif %}
+                        <option value='{{ cAssistantName.value }}'
+                        {% if ( cAssistantName.value ) == ap[11] %}
                            {% set cSelectedAssistant.value = ap[11] %}
                            selected
                         {% endif %}
-                        >{{ as.Firstname }} {{ as.Lastname}}</option>
+                        >{{ cAssistantName.value }}</option>
                     {% endfor %}
                 </select>
             </td>
@@ -74,6 +78,13 @@ appointmentsevents
       {% set cSelectedInstructor.value = "[none]" %}
     {% endif %}
 
+    {% if cSelectedAssistant.value == "" %}
+      {% set cSelectedAssistant.value = "none" %}
+    {% endif %}
+    {% if cSelectedAssistant.value == "no ne" %}
+      {% set cSelectedAssistant.value = "none" %}
+    {% endif %}
+
     <td>
         <select name="instructor00" id="instructor00" style="border-radius: 5px; padding: 7px;">
             {% for i in instructors %}
@@ -86,11 +97,14 @@ appointmentsevents
 
     <td>
         <select name="assistant00" id="assistant00}}" style="border-radius: 5px; padding: 7px;">
-            <option value='none'>none</option>
         {% for a in assistants %}
-                <option value='{{ a.Firstname }} {{ a.Lastname}}'
-                {% if (a.Firstname + ' ' + a.Lastname) == cSelectedAssistant.value %}selected{% endif %}
-                >{{ a.Firstname }} {{ a.Lastname}}</option>
+            {% set cAssistantName.value = a.Firstname + ' ' + a.Lastname %}
+            {% if cAssistantName.value == 'no ne' %}
+                {% set cAssistantName.value = 'none' %}
+            {% endif %}
+            <option value='{{ cAssistantName.value }}'
+                {% if (cAssistantName.value) == cSelectedAssistant.value %}selected{% endif %}
+                >{{ cAssistantName.value }}</option>
             {% endfor %}
         </select>
     </td>
@@ -99,9 +113,14 @@ appointmentsevents
 
 </table>
 <br>
-<div class="form-group">
+<form class="row row-cols-lg-auto g-3 align-items-center">
     <div class="form-group">
-        <input type="submit" value="Save" class="submit-btn" style="border-radius: 5px; padding: 7px;>
+        <input type="submit" value="Save" class="submit-btn" style="border-radius: 5px; padding: 7px;">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input class="form-check-input" type="checkbox" value="checked" id="autofillin" name="autofillin">
+        <label class="form-check-label" for="autofillin">
+            auto fill in
+        </label>
     </div>
 </form>
 

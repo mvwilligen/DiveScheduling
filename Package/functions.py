@@ -21,11 +21,12 @@ def get_rbac(cPath):
         if len(cPath) > 0:
             lResult [5] = cPath
         lResult.append(socket.gethostname())                 # 6
-        lResult.append('0.9.1')                                # 7
+        lResult.append('0.9.2')                                # 7
 
         return lResult
     
     else:
+        
         lResult = ['']                       # 0
         lResult.append('')                   # 1
         lResult.append('')                   # 2
@@ -33,6 +34,7 @@ def get_rbac(cPath):
         lResult.append('')                   # 4
         lResult.append('')                   # 5
         lResult.append(socket.gethostname()) # 6
+        lResult.append('')                                # 7
 
         return lResult
 
@@ -66,6 +68,7 @@ def no_access_text():
     cText = cText + "This is a demo-environment.<br>"
     cText = cText + "Dot not use personal data.<br></p>"
     cText = cText + "</body></html>" 
+    cMessage = "Hello!"
     return (cText)
 
 

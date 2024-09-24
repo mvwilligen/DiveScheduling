@@ -42,7 +42,7 @@ else:
     SECRET_KEY = os.environ.get('_SECRETKEY_').replace(chr(34), '')
     app.config['SECRET_KEY'] = SECRET_KEY
 
-app.config['SEND_FILE_MAX_AGE_DEFAULT']=0
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 
 # app.config["SQLALCHEMY_ECHO"] = True
 app.config["SQLALCHEMY_ECHO"] = False

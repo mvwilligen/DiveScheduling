@@ -197,7 +197,9 @@ def login():
                 lRBAC = get_rbac(request.url_rule.endpoint)
                 return redirect(url_for('homepage'))
             
-    message = "unknown username or password"
+        message = "unknown username or password"
+
+    message = "" # "Please enter your username and password."
 
     lRBAC = get_rbac(request.url_rule.endpoint)
     return render_template('login.html', form = form, lRBAC = lRBAC, message = message)

@@ -69,11 +69,13 @@ UserInfo
     {% if 'staff' in lRBAC [1] %}
     <h3>add product</h3>
     <br>
+
     {% for p in products %}
-    &nbsp;<input type="checkbox" name="{{ p.Productname }}" id="{{ p.Productname }}" value="{{ p.Productname }}">&nbsp;{{ p.Productname }}<br>
+    &nbsp;&nbsp;&nbsp;<input type="checkbox" name="{{ p.Productname }}" id="{{ p.Productname }}" value="{{ p.Productname }}">&nbsp;{{ p.Productname }}
     {% endfor %}
-    <br>
-    date: <input type="date" name="datefrom" id="datefrom" value="{{ cDate.value|string() }}">
+
+    <br><br>
+    start date: <input type="date" name="datefrom" id="datefrom" value="{{ cDate.value|string() }}">
     <br>
     <br>
     <div class="form-group">

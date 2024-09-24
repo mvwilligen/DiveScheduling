@@ -1,7 +1,7 @@
 
 from Package import db
 from Package import app
-from Package.models import Appointments, Users, Instructors, Products
+from Package.models import Appointments, Users, Instructors, Products, Notes
 from flask import Flask, render_template, redirect, url_for, flash, request
 
 from flask_login import current_user
@@ -202,9 +202,9 @@ def appointmentsedit(id, cFrom):
     form = AppointmentsEditForm()
 
     cDebug = ''
-    #                                           0                1                  2                3               4                    5                   6                  7                   8                 9                  10
+    #                                           0                1                  2                3               4                    5                   6                  7                   8                 9 (temp)             10
     #appointment = db.session.execute(db.select(Appointments).filter_by(Id=id)).scalar_one()
-    appointment = db.session.execute( db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name, Appointments.Notes, Appointments.Assistants). \
+    appointment = db.session.execute( db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name, Instructors.Active , Appointments.Assistants). \
                                 select_from(Appointments). \
                                 filter_by(Id = id). \
                                 join(Users, Appointments.User == Users.Id). \
@@ -461,28 +461,41 @@ def appointmentsevents(cName, cDate, cFrom):
 
     if form.validate_on_submit():
 
+        cAutofillin = request.form.get("autofillin") # checkbox
+        print('cAutofillin: ', cAutofillin)
+
         cNewstudent = string2safe(request.form.get("newstudent"))
         #print('cNewstudent: ', cNewstudent)
 
+        cPrevinstructor = ''
+        cPrevassistant  = ''
+
         for a in appointments2:
             cInstructor = chr(34) + "instructor" + str(a.Id) + chr(34)
-            #print(cInstructor)
             cInstructorValue = request.form.get(eval(cInstructor))       # provided list
             cAssistant = chr(34) + "assistant"+str(a.Id) + chr(34)
-            #print(cAssistant)
             cAssistantValue = request.form.get(eval(cAssistant))         # provided list
-            #print(cInstructorValue, cAssistantValue)
-        
+
+            if cAutofillin == 'checked':
+                if len(cInstructorValue) > 0:
+                    if cInstructorValue == '[none]':
+                        cInstructorValue = cPrevinstructor
+                if len(cPrevassistant) > 0:
+                    if cAssistantValue == 'none':
+                        cAssistantValue = cPrevassistant
+
+            cPrevinstructor = cInstructorValue
+            cPrevassistant  = cAssistantValue
+
             nFound = 0
             for i in instructors2:
-                #print('- i:',i[0], i[1], i[2])
                 if cInstructorValue == i[2]:
                     nFound = i[0]
             
             #print('nFound: ', nFound)
 
             appointment = db.session.execute(db.select(Appointments).filter_by(Id = a.Id)).scalar_one()
-            appointment.Staff     = nFound
+            appointment.Staff      = nFound
             appointment.Assistants = cAssistantValue
             db.session.commit()
 
@@ -545,8 +558,7 @@ def appointmentsevents(cName, cDate, cFrom):
                                                 Product    = 1,
                                                 Part       = 'DSD',
                                                 Staff      = nFound,
-                                                Assistants = cAssistantForm,
-                                                Notes      = 'created by appointmentsevents')
+                                                Assistants = cAssistantForm )
             
             db.session.add(appointment_to_create)
             db.session.commit()
@@ -614,3 +626,30 @@ def appointmentsnotes(text, cFrom):
     lRBAC = get_rbac(request.url_rule.endpoint) 
 
     return render_template('usersnotes.html', cText = cText , lRBAC = lRBAC)
+
+
+
+   ###    ########  ########           ######  ##       ########    ###    ##    ## ##     ## ########  
+  ## ##   ##     ## ##     ##         ##    ## ##       ##         ## ##   ###   ## ##     ## ##     ## 
+ ##   ##  ##     ## ##     ##         ##       ##       ##        ##   ##  ####  ## ##     ## ##     ## 
+##     ## ########  ########          ##       ##       ######   ##     ## ## ## ## ##     ## ########  
+######### ##        ##                ##       ##       ##       ######### ##  #### ##     ## ##        
+##     ## ##        ##                ##    ## ##       ##       ##     ## ##   ### ##     ## ##        
+##     ## ##        ##        #######  ######  ######## ######## ##     ## ##    ##  #######  ##        
+
+
+@app.route('/cleanupallappointments/')
+def cleanupallappointments():
+
+    lRBAC = get_rbac('')
+    if 'Admin' in lRBAC[0]:
+
+        Appointments.query.delete()
+        db.session.commit()
+
+        db.session.query(Notes).filter(Notes.Type=='ap').delete()
+        db.session.commit()
+
+    lRBAC = get_rbac('')
+
+    return render_template('home.html', lRBAC = lRBAC)

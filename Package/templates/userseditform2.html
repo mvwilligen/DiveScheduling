@@ -17,15 +17,18 @@ registerform2
 
             {{ form.firstname.label() }}
             {{ form.firstname(class = "form-control",    placeholder = "firstname",    value = user.Firstname ) }}
-
+            <br>
             {{ form.lastname.label() }}
             {{ form.lastname(class = "form-control",     placeholder = "lastname",     value = user.Lastname ) }}
+            <br>
 
             {{ form.phone.label() }}
             {{ form.phone(class = "form-control",        placeholder = "phone",        value = user.Phone ) }}
+            <br>
 
             {{ form.emailaddress.label() }}
             {{ form.emailaddress(class = "form-control", placeholder = "emailaddress", value = user.Emailaddress ) }}
+            <br>
 
             {{ form.note.label() }}<br>
             {{ form.note(placeholder="note", cols="148", rows="8" ) }}
@@ -36,15 +39,36 @@ registerform2
             {% endif%}
             
             <br>
+            status<br>
+
             {% if ('staff' in lRBAC [1]) %}
               {% for l in listStatus %}
-              <input type="checkbox" name={{ l }} id={{ l }} value={{ l }}
-            
-              {% if l in user.Status %}
-                checked
-              {% endif %}
+                {% if (l.Name == 'admin') and ('admin' not in lRBAC [1]) %}
+                  {% if (l.Name in user.Status) %}
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="{{ l.Name }}" checked disabled>
+                      <label class="form-check-label" for="{{ l.Name }}">
+                        {{ l.Name }}
+                      </label>
+                    </div>                
+                  {% else %}
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{ l.Name }}" disabled>
+                    <label class="form-check-label" for="{{ l.Name }}">
+                      {{ l.Name }}
+                    </label>
+                  </div>                
+                {% endif %}
+                {% else %}
 
-              >&nbsp;{{ l }}<br>
+                  <input type="checkbox" name={{ l.Name }} id={{ l.Name }} value={{ l.Name }}
+            
+                  {% if (l.Name in user.Status) %}
+                    checked
+                  {% endif %}
+
+                  >&nbsp;&nbsp;{{ l.Name }}<br>
+                {% endif %}
               {% endfor %}
             {% endif %}
 

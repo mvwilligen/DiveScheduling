@@ -1,6 +1,6 @@
 from Package import db
 from Package import app
-from Package.models import Appointments, Users, Instructors, Products, Notes
+from Package.models import Appointments, Users, Instructors, Products, Notes, Status
 from flask import Flask, render_template, redirect, url_for, flash, request
 
 from flask_login import current_user
@@ -173,11 +173,8 @@ def usersedit2(id, cFrom):
 
     user = Users.query.filter_by(Id = int(id)).first()
 
-    listStatus = ['new', 'student', 'staff', 'assistant', 'instructor'] # , 'admin'
-
-    lRBAC = get_rbac(request.url_rule.endpoint)
-    if 'admin' in lRBAC [1]:
-        listStatus.append('admin')
+    # listStatus = ['new', 'student', 'staff', 'assistant', 'instructor'] # , 'admin'
+    listStatus = Status.query.all()
 
     lInstructorBefore = False
     cRolesBefore      = user.Status
@@ -378,7 +375,7 @@ def usersedit2(id, cFrom):
             nMonthFrom = current_datetime.month
             nDayFrom   = current_datetime.day
 
-            dbquery = 'db.session.execute(db.select(Appointments.Id, Appointments.User, Appointments.Product, Appointments.Part, Appointments.Date, Appointments.Notes, Appointments.Staff).'
+            dbquery = 'db.session.execute(db.select(Appointments.Id, Appointments.User, Appointments.Product, Appointments.Part, Appointments.Date, Appointments.Assistants, Appointments.Staff).'
             dbquery = dbquery + 'where(and_(Appointments.Staff == nStaffUser),'
             dbquery = dbquery + '(Appointments.Date >= datetime.datetime(nYearFrom, nMonthFrom, nDayFrom) ))).all()'
 
@@ -621,7 +618,7 @@ def usersinfo(id):
                         nDayTo   = nDateTo.day   # nDateTo.day + t
 
                         date0 = datetime.datetime.combine(datetime.date(nYearTo, nMonthTo, nDayTo), datetime.time(20,00))
-                        A0 = Appointments(User = id, Product = p.Id, Part = part, Date = date0, Notes = "[" + cDate + ']', Staff = 1, Assistants = '')
+                        A0 = Appointments(User = id, Product = p.Id, Part = part, Date = date0, Staff = 1, Assistants = '')
                         db.session.add(A0)
                         db.session.commit()
                         part = ""
