@@ -51,8 +51,12 @@ welcome to the support section of DiveScheduling.
 <main id="todo"></main>
 <h3><class="p2"><b>TODO</b></p></h3>
 <a href="#top">[top]<a><br>
+<font color="red"><b>[_] status is being cleared</b></font><br>
 [_] implement try/except:<br>
 [_] there is a incorrect route from a form to a incorrect list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] users/products/edit, save -> appointments
+&nbsp;&nbsp;&nbsp;&nbsp;[_] instructors/<instructor>/edit, save -> https://divescheduling.onrender.com/instructorsinfo/5/ (Marga Engel)
+&nbsp;&nbsp;&nbsp;&nbsp;[?] instructors/<instructor>/info does not work, does work later (?)
 [_] deployment on render<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[_] gunicorn/waitress<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[_] development -> production<br>
@@ -142,6 +146,7 @@ welcome to the support section of DiveScheduling.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] antagonist<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] weboke<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] render ($20/monthly)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] <a href="https://www.pythonanywhere.com" target="_blank>pythonanywhere.com $5/month</a>"<br>
 <font color='green'>[v] move array status to table</font><br>
 <font color='green'>[v] cleanup: delete all appointments and all ap-notes</font><br>
 <font color='green'>[v] update template cache</font><br>
@@ -434,8 +439,52 @@ net use p: \\192.168.1.109\piuser /user:piuser passw0rd<br>
 <br>
 <br>
 <main id="starts"></main>
+<h3><b>starts</b></h3>
 <a href="#top">[top]<a><br>
-	<table>
+<br>
+<br>
+<table>
+	<tr>
+		<td><img src="{{ url_for('static', filename='images/Windows11Logo.png') }}" width="50" height="50"></td>
+		<td><h1>MWI20</h1></td>
+	</tr>
+</table>
+<br>
+* Serving Flask app 'Package'<br>
+	* Debug mode: on<br>
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.<br>
+	* Running on all addresses (0.0.0.0)<br>
+	* Running on http://127.0.0.1:5000<br>
+	* Running on http://192.168.1.57:5000<br>
+Press CTRL+C to quit<br>
+	* Restarting with stat<br>
+	<br>
+start:  __init__.py<br>
+<br>
+===========================================================================================================<br>
+date and time:        2024-09-16 15:16:53.061193<br>
+<br>
+OS version:           nt<br>
+sys.platform:         win32<br>
+platform.system():    Windows<br>
+platform.release():   11<br>
+platform.version():   10.0.22631<br>
+platform.platform():  Windows-11-10.0.22631-SP0<br>
+<br>
+Python version:       3.12.5 (tags/v3.12.5:ff3bc82, Aug  6 2024, 20:45:27) [MSC v.1940 64 bit (AMD64)]<br>
+<br>
+MWI20<br>
+<br>
+app:                  <Flask 'Package'><br>
+-----------------------------------------------------------------------------------------------------------<br>
+<br>
+finish: __init__.py<br>
+<br>
+<br>
+<br>
+	
+
+<table>
 	<tr>
 		<td><img src="{{ url_for('static', filename='images/RaspberryPi.png') }}"  width="100" height="100"></td><td style="vertical-align:middle;"><h1>Raspberry Pi 4</h1></td></tr>
 </table>
@@ -473,40 +522,35 @@ app:                  <Flask 'Package'><br>
 <br>
 <table>
 	<tr>
-		<td><img src="{{ url_for('static', filename='images/Windows11Logo.png') }}" width="50" height="50"></td>
-		<td><h1>MWI20</h1></td>
+		<td><img src="{{ url_for('static', filename='images/RenderLogo.png') }}" width="150" height="50"></td>
+		<td><h5>srv-crklkhm8ii6s738254m0-hibernate-755794c9dd-j5jnf</h5></td>
 	</tr>
 </table>
 <br>
-* Serving Flask app 'Package'<br>
+===========================================================================================================<br>
+date and time:        2024-09-25 05:44:14.164099<br>
+OS version:           posix<br>
+sys.platform:         linux<br>
+platform.system():    Linux<br>
+platform.release():   6.5.0-1021-aws<br>
+platform.version():   #21~22.04.1-Ubuntu SMP Fri May 10 20:04:44 UTC 2024<br>
+platform.platform():  Linux-6.5.0-1021-aws-x86_64-with-glibc2.36<br>
+Python version:       3.11.9 (main, Sep  5 2024, 00:16:19) [GCC 12.2.0]<br>
+Hostname              srv-crklkhm8ii6s738254m0-hibernate-755794c9dd-j5jnf<br>
+app:                  <Flask 'Package'><br>
+-----------------------------------------------------------------------------------------------------------<br>
+finish: __init__.py<br>
+ * Serving Flask app 'Package'<br>
  * Debug mode: on<br>
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.<br>
  * Running on all addresses (0.0.0.0)<br>
  * Running on http://127.0.0.1:5000<br>
- * Running on http://192.168.1.57:5000<br>
+ * Running on http://10.217.75.1:5000<br>
 Press CTRL+C to quit<br>
  * Restarting with stat<br>
- <br>
-start:  __init__.py<br>
-<br>
-===========================================================================================================<br>
-date and time:        2024-09-16 15:16:53.061193<br>
-<br>
-OS version:           nt<br>
-sys.platform:         win32<br>
-platform.system():    Windows<br>
-platform.release():   11<br>
-platform.version():   10.0.22631<br>
-platform.platform():  Windows-11-10.0.22631-SP0<br>
-<br>
-Python version:       3.12.5 (tags/v3.12.5:ff3bc82, Aug  6 2024, 20:45:27) [MSC v.1940 64 bit (AMD64)]<br>
-<br>
-MWI20<br>
-<br>
-app:                  <Flask 'Package'><br>
------------------------------------------------------------------------------------------------------------<br>
-<br>
-finish: __init__.py<br>
+==> Your service is live 🎉<br>
+ * Debugger is active!<br>
+ * Debugger PIN: 139-237-109<br>
 <br>
 <br>
 <br>
