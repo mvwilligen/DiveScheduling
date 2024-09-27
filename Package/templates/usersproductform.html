@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-users product form
+usersproductform
 {% endblock %}
 
 {% block content %}
 <h3>appointments</h3>
+<!-- usersproductform.html, called by /home/<date>/form  -->
 
 <div class="container">
     <form method="POST" class = "userproductform" style = "color:white">
@@ -59,11 +60,13 @@ users product form
                             <select name="assistant{{ appointment[0] }}" id="assistant{{ appointment[0] }}" style="border-radius: 5px; padding: 7px;">
                                 <option value='none'>none</option>
                                 {% for a in assistants %}
-                                    <option value='{{ a.Firstname }} {{ a.Lastname }}'
-                                    {% if ( a.Firstname + ' ' + a.Lastname == appointment[11]) %}
-                                       selected
+                                    {% if (a.Firstname + ' ' + a.Lastname != 'no ne') %}
+                                        <option value='{{ a.Firstname }} {{ a.Lastname }}'
+                                        {% if ( a.Firstname + ' ' + a.Lastname == appointment[11]) %}
+                                           selected
+                                        {% endif %}
+                                        >{{ a.Firstname }} {{ a.Lastname }}</option>
                                     {% endif %}
-                                    >{{ a.Firstname }} {{ a.Lastname }}</option>
                                 {% endfor %}
                             </select>
                         </td>
@@ -72,7 +75,12 @@ users product form
             </tbody>
         </table>
         <div class="form-group">
-            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+            <table>
+                <tr>
+                    <td style="width:200px">{{ form.save(class="btn btn-lg btn-block btn-primary") }}</td>
+                    <td style="width:200px">{{ form.cancel(class="btn btn-lg btn-block btn-primary") }}</td>
+                </tr>
+            </table>
         </div>
     </form>
 </div>

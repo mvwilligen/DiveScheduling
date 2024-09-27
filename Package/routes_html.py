@@ -590,7 +590,7 @@ def htmlexport():
 
         # cFileName = cFolderNameOSHtml + h[0]
         cFileName = cFolderNameOSStaticInternal + h[0]
-        print('cFileName: ' + cFileName)
+        # print('cFileName: ' + cFileName)
 
         f = open(cFileName, 'w')
         f.write(cHtml)
@@ -660,13 +660,13 @@ def ftp():
 
     # cFolderNameOSInternal = './Exports/Internal/'
 
-    cFolderNameOSInternal = './static/Internal/'
+    cFolderNameOSInternal       = './static/Internal/'
     cFolderNameOSStaticInternal = './static/Internal/'
-    
+    cFolderNameOSStaticInternal = './Package/static/Internal/'
 
     if True:
 
-        print('---- start ftp')
+        # print('---- start ftp')
 
         # secrets = dotenv_values(".env")
 
@@ -689,7 +689,7 @@ def ftp():
 
         ftp.quit()
 
-        print('---- end ftp')
+        # print('---- end ftp')
 
         cMessage = "ftp is ready."
 

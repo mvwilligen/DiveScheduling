@@ -49,13 +49,13 @@ UserInfo
                     <td> 
                         <!-- RBAC filter -->
                         {% if (('staff' in lRBAC [1]) and (appointment [6] >= lRBAC [4] )) or ('admin' in lRBAC [1]) %}
-                            <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsedit',id=appointment.Id, cFrom = 'usersinfo' ) }} ">edit</a> 
-                            <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsdelete',id=appointment.Id, cFrom = 'usersinfo' ) }} ">del</a> 
+                            <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsedit', id = appointment.Id, cFrom = 'usersinfo' ) }} ">edit</a> 
+                            <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsdelete', id = appointment.Id, cFrom = 'usersinfo' ) }} ">del</a> 
                         {% endif %}
                         {% if ('staff' in lRBAC [1]) or ('admin' in lRBAC [1]) %}
                             <!-- show one form per product -->
                             {% if ("[" + appointment [4]|string() + "]" not in cProducts.value|string() ) %}
-                                <a class="btn btn-outline btn-info" href="{{ url_for('usersproduct2',id=appointment.Id, cFrom = 'usersinfo' ) }} ">form</a> 
+                                <a class="btn btn-outline btn-info" href="{{ url_for('usersproduct2', id = appointment.Id, cFrom = 'usersinfo' ) }} ">form</a> 
                                 {% set cProducts.value = cProducts.value + "[" + appointment [4] + "]" %}
                             {% endif %}                                       
                         {% endif %}
@@ -78,9 +78,12 @@ UserInfo
     start date: <input type="date" name="datefrom" id="datefrom" value="{{ cDate.value|string() }}">
     <br>
     <br>
-    <div class="form-group">
-        <input type="submit" value="Save" class="submit-btn">
-    </div>
+    <table>
+        <tr>
+            <td style="width:200px">{{ form.save(class="btn btn-lg btn-block btn-primary") }}</td>
+            <td style="width:200px">{{ form.cancel(class="btn btn-lg btn-block btn-primary") }}</td>
+        </tr>
+      </table>
     {% endif %}
 </form>
-    {% endblock %}
+{% endblock %}

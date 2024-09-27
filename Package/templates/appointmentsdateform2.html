@@ -19,7 +19,7 @@ appointmentsdateform2
                     <th scope="col">date</th>
                     <th scope="col">time</th>
                     <th scope="col">instructor</th>
-                    <th scope="col">assistant</th>
+                    <th scope="col">assistant.</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +45,7 @@ appointmentsdateform2
                                 {% for i in instructors %}
                                     <option value='{{ i.Name }}'
                                     {% if i.Name == appointment [8] %}
-                                       selected
+                                    selected
                                     {% endif %}
                                     >{{ i.Name }}</option>
                                 {% endfor %}

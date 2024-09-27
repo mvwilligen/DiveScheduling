@@ -29,8 +29,10 @@ home
                 <td style='width:1000px' colspan=5>
                 {% if (('staff' in lRBAC [1]) and (events [6] >= lRBAC [4] )) or ('admin' in lRBAC [1]) %}
                 <a href="{{ url_for('appointmentsdate2', text = cDate.value|string(), cFrom = 'home' ) }}">form</a>
-                <a href="{{ url_for('appointmentsnotes', text = cDate.value|string(), cFrom = 'home' ) }}">notes</a>
                 <a href="{{ url_for('appointmentsevents', cName = 'dsd', cDate = cDate.value|string(), cFrom = 'home' ) }}">dsd</a>
+                {% endif %}
+                {% if ('staff' in lRBAC [1]) or ('admin' in lRBAC [1]) %}
+                    <a href="{{ url_for('appointmentsnotes', text = cDate.value|string(), cFrom = 'home' ) }}">notes</a>
                 {% endif %}
                 </td>
             </tr>
@@ -46,7 +48,7 @@ home
             {% else %}
                 <td>{{ events[7] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             {% endif %}
-            {% if events[10] == 'no ne' %}
+            {% if events[10] == 'none' %}
                 <td>&nbsp;</td>
             {% else %}
               <td>{{ events[10] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

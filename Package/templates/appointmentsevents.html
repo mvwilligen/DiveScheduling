@@ -113,15 +113,19 @@ appointmentsevents
 
 </table>
 <br>
-<form class="row row-cols-lg-auto g-3 align-items-center">
-    <div class="form-group">
-        <input type="submit" value="Save" class="submit-btn" style="border-radius: 5px; padding: 7px;">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input class="form-check-input" type="checkbox" value="checked" id="autofillin" name="autofillin">
-        <label class="form-check-label" for="autofillin">
-            auto fill in
-        </label>
-    </div>
-</form>
+
+<div class="form-group">
+    <table>
+        <tr>
+            <td style="width:200px">{{ form.save(class="btn btn-lg btn-block btn-primary") }}</td>
+            <td style="width:200px">{{ form.cancel(class="btn btn-lg btn-block btn-primary") }}</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-check-input" type="checkbox" value="checked" id="autofillin" name="autofillin">
+            <label class="form-check-label" for="autofillin">
+                auto fill in
+            </label>
+            </td>
+        </tr>
+    </table>
+</div>
 
 {% endblock content %}

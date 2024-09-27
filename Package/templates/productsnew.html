@@ -32,10 +32,14 @@ productsnew
         <input type="text" name="description" id="description" class="form-control">
     </div>
 
+    {{ form.note.label() }}<br>
+    {{ form.note(placeholder="note", cols="148", rows="8" ) }}
     <br>
-
-    <div class="form-group">
-        <input type="submit" value="Save" class="submit-btn">
-    </div>
+    <table>
+        <tr>
+            <td style="width:200px">{{ form.save(class="btn btn-lg btn-block btn-primary") }}</td>
+            <td style="width:200px">{{ form.cancel(class="btn btn-lg btn-block btn-primary") }}</td>
+        </tr>
+    </table>
 </form>
 {% endblock content %}

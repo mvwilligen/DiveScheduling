@@ -6,8 +6,8 @@
 ##  ██╔══╝  ██║   ██║██╔══██╗██║╚██╔╝██║╚════██║   ██╔═══╝   ╚██╔╝                        ##
 ##  ██║     ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████║██╗██║        ██║                         ##
 ##  ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚═╝╚═╝        ╚═╝                         ##
-##                                                                                        ##
-############################################################################################
+##                                                                                        ## 
+############################################################################################ 
                                                                
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectMultipleField
@@ -29,7 +29,8 @@ class AppointmentsEditForm(FlaskForm):
     password     = PasswordField(label = 'password')    # , validators = [Length(min = 8)])
     note         = TextAreaField('note')
     
-    submit       = SubmitField(label   = 'save')
+    save         = SubmitField(label   = 'save')
+    cancel       = SubmitField(label   = 'cancel')
 
 class AppointmentsEventsForm(FlaskForm):
 
@@ -40,7 +41,8 @@ class AppointmentsEventsForm(FlaskForm):
     emailaddress = StringField(label   = 'emailaddress') # , validators = [Email()])
     password     = PasswordField(label = 'password')    # , validators = [Length(min = 8)])
     
-    submit       = SubmitField(label   = 'save')
+    save         = SubmitField(label   = 'save')
+    cancel       = SubmitField(label   = 'cancel')
 
 class AppointmentsDateForm2(FlaskForm):
 
@@ -50,33 +52,34 @@ class AppointmentsDateForm2(FlaskForm):
     emailaddress = StringField(label   = 'emailaddress') # , validators = [Email()])
     password     = PasswordField(label = 'password')     # , validators = [Length(min = 8)])
     
-    submit       = SubmitField(label   = 'save')
+    save         = SubmitField(label   = 'save')
+    cancel       = SubmitField(label   = 'cancel')
 
 class LoginForm(FlaskForm):
-    username    = StringField('username', validators=[DataRequired()])
-    password    = PasswordField('password', validators=[DataRequired()])
-    remember_me = BooleanField('remember Me')
-    submit      = SubmitField('login')
+    username     = StringField('username',   validators=[DataRequired()])
+    password     = PasswordField('password', validators=[DataRequired()])
+    remember_me  = BooleanField('remember Me')
+    submit       = SubmitField('login')
+    cancel       = SubmitField(label   = 'cancel')
 
 class ProductsEditForm(FlaskForm):
 
-    productname  = StringField(label   = 'productname')
-    parts        = StringField(label   = 'parts')
-    abbr         = StringField(label   = 'abbr')
+    abbr         = StringField(label   = 'abbr')  # , validators=[DataRequired()])
+    parts        = StringField(label   = 'parts') # , validators=[DataRequired()])
     description  = StringField(label   = 'description')
     note         = TextAreaField('note')
-
-    submit       = SubmitField(label   = 'save')
+    save         = SubmitField(label   = 'save')
+    cancel       = SubmitField(label   = 'cancel')
 
 class ProductsNewForm(FlaskForm):
 
-    productname  = StringField(label   = 'productname')
-    parts        = StringField(label   = 'parts')
-    abbr         = StringField(label   = 'abbr')
+    productname  = StringField(label   = 'productname', validators=[DataRequired()])
+    parts        = StringField(label   = 'parts', validators=[DataRequired()])
+    abbr         = StringField(label   = 'abbr', validators=[DataRequired()])
     description  = StringField(label   = 'description')
     note         = TextAreaField('note')
-
-    submit       = SubmitField(label   = 'save')
+    save         = SubmitField(label   = 'save')
+    cancel       = SubmitField(label   = 'cancel')
 
 class ProductsUsersForm(FlaskForm):
 
@@ -84,8 +87,8 @@ class ProductsUsersForm(FlaskForm):
     parts        = StringField(label   = 'parts')
     abbr         = StringField(label   = 'abbr')
     description  = StringField(label   = 'description')
-
-    submit       = SubmitField(label   = 'save')
+    save         = SubmitField(label   = 'save')
+    cancel       = SubmitField(label   = 'cancel')
 
 class UsersEditForm(FlaskForm):
 
@@ -94,13 +97,14 @@ class UsersEditForm(FlaskForm):
     phone        = StringField(label   = 'phone')
     emailaddress = StringField(label   = 'emailaddress') # , validators = [Email()])
     password     = PasswordField(label = 'password')    # , validators = [Length(min = 8)])
-    
-    submit       = SubmitField(label   = 'save')
+    save         = SubmitField(label   = 'save')
+    cancel       = SubmitField(label   = 'cancel')
 
 class UsersInfoForm(FlaskForm):
 
     firstname    = StringField(label   = 'firstname')
-    submit       = SubmitField(label   = 'save')
+    save         = SubmitField(label   = 'save')
+    cancel       = SubmitField(label   = 'cancel')
 
 class UsersRegisterForm(FlaskForm):
 
@@ -110,13 +114,15 @@ class UsersRegisterForm(FlaskForm):
             raise ValidationError('Username already exists, please assign a different username')
 
     username     = StringField(label   = 'username', validators = [Length(min = 2, max = 30), DataRequired()])
-    firstname    = StringField(label   = 'firstname')
-    lastname     = StringField(label   = 'lastname')
+    firstname    = StringField(label   = 'firstname', validators = [DataRequired()])
+    lastname     = StringField(label   = 'lastname', validators = [DataRequired()])
     phone        = StringField(label   = 'phone')
-    emailaddress = StringField(label   = 'emailaddress') # , validators = [Email()])
-    password1    = PasswordField(label = 'password1')    # , validators = [Length(min = 8)])
-    password2    = PasswordField(label = 'password2')    # , validators = [EqualTo('password1')])
+    emailaddress = StringField(label   = 'emailaddress', validators = [Email()])
+    password1    = PasswordField(label = 'password1', validators = [Length(min = 8)])
+    password2    = PasswordField(label = 'password2', validators = [EqualTo('password1')])
+
     submit       = SubmitField(label   = 'create user')
+    cancel       = SubmitField(label   = 'cancel')
 
 class UsersEditForm2(FlaskForm):
 
@@ -129,7 +135,8 @@ class UsersEditForm2(FlaskForm):
     # 20240826 - MvW
     status       = SelectMultipleField('status', choices=[('new', 'new'), ('student', 'student'), ('staff', 'staff'), ('assistant', 'assistant'), ('instructor', 'instructor'), ('admin', 'administrator')])
 
-    submit       = SubmitField(label   = 'save user')
+    save         = SubmitField(label   = 'save')
+    cancel       = SubmitField(label   = 'cancel')
 
 class UsersProductForm2(FlaskForm):
 
@@ -139,5 +146,5 @@ class UsersProductForm2(FlaskForm):
     emailaddress = StringField(label   = 'emailaddress') # , validators = [Email()])
     password     = PasswordField(label = 'password')     # , validators = [Length(min = 8)])
     
-    submit       = SubmitField(label   = 'save')
-
+    save         = SubmitField(label   = 'save')
+    cancel       = SubmitField(label   = 'cancel')

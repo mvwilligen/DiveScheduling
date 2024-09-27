@@ -8,17 +8,15 @@ appointmentsedit
 
 <h3>edit appointment</h3>
 <br>
-  <form method="post">
-    {{ form.hidden_tag() }}
+<form method="post">
+{{ form.hidden_tag() }}
 <table>
-<tr><td>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>     <td>{{ appointment [2] }} {{ appointment [3] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr><td>product&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>{{ appointment [4] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-<tr><td>part&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>   <td>{{ appointment [5] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-</table>
-<br>
-<div class="form-group">
-    <label for="staff">instructor </label>
-    
+    <tr><td style="width:100px">name</td>   <td style="width:200px">{{ appointment [2] }} {{ appointment [3] }}</td></tr>
+    <tr><td>product</td><td>{{ appointment [4] }}</td></tr>
+    <tr><td>part</td>   <td>{{ appointment [5] }}</td></tr>
+
+    <tr><td><label for="staff">instructor </label>
+    </td><td>
     <select name="instructor" id="instructor">
         {% for i in instructors %}
         <option value="{{ i.Name }}"
@@ -30,44 +28,68 @@ appointmentsedit
         >{{ i.Name }}</option>
         {% endfor %}
     </select>
-    
-    <label for="assistants">assistant </label>
-    
+    </td></tr>    
+    <tr><td><label for="assistants">assistant </label>
+    </td><td>
     <select name="assistants1" id="assistants1">
         <option value="{{ 'none' }}">{{ none }}</option>
         {% for a in assistants  %}
-        <option value="{{ a.Firstname + ' ' + a.Lastname}}"
-            {% if (appointment[10]|length == 0) and (a.Name == '[none]') %}
-                selected
-            {% endif %}
+            {% if (a.Firstname + ' ' + a.Lastname) != "no ne" %}
+                <option value="{{ a.Firstname + ' ' + a.Lastname}}"
+                {% if (appointment[10]|length == 0) and (a.Name == '[none]') %}
+                    selected
+                {% endif %}
 
-            {% if (a.Firstname + ' ' + a.Lastname) in appointment [10] %}
-                selected
+                {% if (a.Firstname + ' ' + a.Lastname) in appointment [10] %}
+                    selected
+                {% endif %}
+            
+                >{{ a.Firstname + ' ' + a.Lastname }}</option>
             {% endif %}
-        
-        >{{ a.Firstname + ' ' + a.Lastname }}</option>
         {% endfor %}
     </select>
-    
-    <class="form-control">
-    </div>
+    </td></tr>    
 
     <!-- https://strftime.org/ -->
-    <div class="form-group">
-        <label for="date">date</label>
-        <input type="date" name="date" id="date" value="{{ appointment [6].strftime('%Y-%m-%d') }}" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="time">time</label>
-        <input type="time" name="time" id="time" value="{{ appointment [6].strftime('%H:%M') }}" class="form-control">
-    </div>
-    
-    {{ form.note.label() }}<br>
-    {{ form.note(placeholder="note", cols="148", rows="8" ) }}
-    <br><br>
-
-    <div class="form-group">
-        <input type="submit" value="Save" class="submit-btn">
-    </div>
+<table>
+    <tr>
+        <td style="width:100px">
+            <label for="date">date</label>
+        </td>
+        <td style="width:200px">
+            <input type="date" name="date" id="date" value="{{ appointment [6].strftime('%Y-%m-%d') }}" class="form-control">
+        </td>
+    </tr>    
+    <tr>
+        <td>
+            <label for="time">time</label>
+        </td>
+        <td>
+            <input type="time" name="time" id="time" value="{{ appointment [6].strftime('%H:%M') }}" class="form-control">
+        </td>
+    </tr>    
+</table>
+<table>
+    <tr>
+        <td style="width:100px">
+            {{ form.note.label() }}
+        </td>
+        <td>
+            {{ form.note(placeholder="note", cols="148", rows="8" ) }}
+        </td>
+    </tr>    
+</table>
+<table>
+    <tr>
+        <td style="width:100px">
+        </td>
+        <td style="width:100px">
+            {{ form.save(class="btn btn-lg btn-block btn-primary") }}
+        </td>
+        <td  style="width:100px">
+            {{ form.cancel(class="btn btn-lg btn-block btn-primary") }}
+        </td>
+    </tr>
+</table>
 </form>
 {% endblock content %}

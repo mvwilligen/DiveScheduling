@@ -39,7 +39,7 @@ def products():
 
     lRBAC = get_rbac(request.url_rule.endpoint)
 
-    return render_template('products.html', products=products , lRBAC = lRBAC)
+    return render_template('products.html', products = products , lRBAC = lRBAC)
 
 #------------------------------------------------------------------------------------------
 
@@ -54,27 +54,43 @@ def products():
 @app.route('/productsedit/<id>/', methods=('GET', 'POST'))
 def productsedit(id):
 
+    print('productsedit',id)
+
     if current_user.is_anonymous:
         return (no_access_text())
 
     form = ProductsEditForm(id)
+
     product = db.get_or_404(Products, id)
 
     cNote = GetNote(product.Id, 'pr')
     form.note.data = cNote
 
+    print('pre-validate')
+
     if form.validate_on_submit():
 
+        print("submit")
+
+        if request.form.get('cancel') == 'cancel':
+            print('cancel')
+            return redirect(url_for('products'))
+
+        print("save")
+
         x = db.session.query(Products).get(id)
-        x.Date        = string2safe(request.form["abbr"])
-        x.Parts       = string2safe(request.form["parts"].replace('|',':'))
+        x.Abbr        = string2safe(request.form["abbr"])
+        x.Parts       = string2safe(request.form["parts"].replace('|',':')) # not necessary anymore...
         x.Description = string2safe(request.form["description"] )
+        x.Active      = 1
         db.session.commit()
 
         cNote         = string2safe(request.form["note"])
         SaveNote(product.Id, 'pr', cNote, 'replace')
 
         return redirect(url_for('products'))
+
+    print('post-validate')
 
     lRBAC = get_rbac(request.url_rule.endpoint)
 
@@ -104,10 +120,16 @@ def productsnew():
         product_to_create = Products(Productname = newproductname,
                                      Abbr        = string2safe(request.form["abbr"]),
                                      Parts       = string2safe(request.form["parts"].replace('|',':')),
-                                     Description = string2safe(request.form["description"]))
+                                     Description = string2safe(request.form["description"]),
+                                     Active = 1)
          
         db.session.add(product_to_create)
         db.session.commit()
+
+        product = db.session.execute(db.select(Products).filter_by(Name=newproductname)).scalar_one()
+
+        cNote         = string2safe(request.form["note"])
+        SaveNote(product.Id, 'pr', cNote, 'replace')
 
         return redirect(url_for('products'))
 
@@ -132,7 +154,35 @@ def productsdelete(id):
         return (no_access_text())
 
     product = db.session.execute(db.select(Products).filter_by(Id=id)).scalar_one()
-    db.session.delete(product)
+    # db.session.delete(product)
+
+    x = db.session.query(Products).get(id)
+    x.Active = 0
+    db.session.commit()
+
+    return redirect(url_for('products'))
+
+#------------------------------------------------------------------------------------------
+
+########  ########   #######          ##     ## ##     ## ########  ######## ##       ######## ######## ######## 
+##     ## ##     ## ##     ##         ##     ## ###    ## ##     ## ##       ##       ##          ##    ##       
+##     ## ##     ## ##     ##         ##     ## ####   ## ##     ## ##       ##       ##          ##    ##       
+########  ########  ##     ##         ##     ## ## ##  ## ##     ## ######   ##       ######      ##    ######   
+##        ##   ##   ##     ##         ##     ## ##  ## ## ##     ## ##       ##       ##          ##    ##       
+##        ##    ##  ##     ##         ##     ## ##   #### ##     ## ##       ##       ##          ##    ##       
+##        ##     ##  #######  #######  #######  ##     ## ########  ######## ######## ########    ##    ######## 
+
+@app.route('/productsundelete/<id>/')
+def productsundelete(id):
+
+    if current_user.is_anonymous:
+        return (no_access_text())
+
+    product = db.session.execute(db.select(Products).filter_by(Id=id)).scalar_one()
+    # db.session.delete(product)
+
+    x = db.session.query(Products).get(id)
+    x.Active = 1
     db.session.commit()
 
     return redirect(url_for('products'))
@@ -157,7 +207,7 @@ def productsusers(id):
 
     #                                            0                1                  2                3               4                     5
     appointments = db.session.execute( db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name). \
-                                order_by(Appointments.User). \
+                                order_by(Appointments.Date). \
                                 where(Appointments.Product == id). \
                                 select_from(Appointments). \
                                 join(Users, Appointments.User == Users.Id). \

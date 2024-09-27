@@ -214,6 +214,7 @@ def appointmentsedit(id, cFrom):
     instructors = db.session.execute(db.select(Instructors.Id, Instructors.User, Instructors.Name).where(Instructors.Active).order_by(Instructors.Name))
 
     # user = Users.query.filter(and_((Users.Firstname == cFirstname), (Users.Lastname == cLastname)))
+
     assistants = Users.query.filter(Users.Status.contains('assistant'))
 
     instructors2 = []
@@ -237,10 +238,27 @@ def appointmentsedit(id, cFrom):
 
     appointment = db.get_or_404(Appointments, id)
 
+    nPrevUser = appointment.User
+    nPrevInstructor = appointment.Staff
+
     cNote = GetNote(appointment.Id, 'ap')
     form.note.data = cNote
 
     if form.validate_on_submit():
+
+        if request.form.get('cancel') == 'cancel':
+
+            if cFrom == 'usersinfo':
+                return redirect(url_for('usersinfo', id = nPrevUser))
+            
+            if cFrom == 'instructorsinfo':
+                return redirect(url_for('instructorsinfo', id = nPrevInstructor))
+            
+            if cFrom == "appointments":
+                return redirect(url_for('appointments'))           
+
+            # print('cancel')
+            return redirect(url_for('homepage'))           
 
         cNote          = string2safe(request.form["note"])
         SaveNote(appointment.Id, 'ap', cNote, 'replace')
@@ -271,7 +289,7 @@ def appointmentsedit(id, cFrom):
         x.Date       = dDate
         x.Staff      = nStaff
         x.Assistants = cAssistants
-        print ('cAssistant: ', cAssistants)
+        # print ('cAssistant: ', cAssistants)
         # x.Notes      = request.form["notes"] # cStaff + ' | ' + cDate + ' | ' + cTime + ' | ' + dDateText + ' | ' + dDate.strftime('%Y-%m-%d_%H.%M')
         # x.Notes    = cDebug
         db.session.commit()
@@ -279,11 +297,18 @@ def appointmentsedit(id, cFrom):
         if cFrom == 'home':
             return redirect(url_for('homepage'))
 
+        if cFrom == 'usersinfo':
+            return redirect(url_for('usersinfo', id = nPrevUser))
+        
+        if cFrom == 'instructorsinfo':
+            return redirect(url_for('instructorsinfo', id = nPrevInstructor))
+            
         return redirect(url_for('appointments'))
 
     lRBAC = get_rbac(request.url_rule.endpoint)
 
-    return render_template('appointmentsedit.html', form=form, appointment=appointment2, cDebug=cDebug, instructors=instructors2, instructors2=instructors2, lRBAC = lRBAC, assistants = assistants)
+    return render_template('appointmentsedit.html', form = form, appointment = appointment2, cDebug = cDebug, instructors = instructors2, \
+                           instructors2 = instructors2, lRBAC = lRBAC, assistants = assistants)
 
 #------------------------------------------------------------------------------------------
 
@@ -336,20 +361,28 @@ def appointmentsdate2(text, cFrom):
     assistants = Users.query.filter(Users.Status.contains('assistant'))
 
     if form.validate_on_submit():
+        # print("validate_on_submit")
+        # print("form.cancel.data: ", form.cancel.data)
+        # print("form.save.data: ", form.save.data)
+        # print(request.form.get('save'))
+        # print(request.form.get('cancel'))
+        
+        if request.form.get('cancel') == 'cancel':
+            return redirect(url_for('homepage'))           
 
         for a in filtered:
-            print('--- begin ---')
+            # print('--- begin ---')
             cDate = chr(34) + 'date' + str(a [0]) + chr(34)
-            print('cDate: ', cDate)
+            # print('cDate: ', cDate)
             cDateValue = request.form.get(eval(cDate))                 # formatted input
             cTime = chr(34) + 'time' + str(a [0]) + chr(34)
             cTimeValue = request.form.get(eval(cTime))                 # formatted input
             cInstructor = chr(34) + 'instructor' + str(a [0]) + chr(34)
             cInstructorValue = request.form.get(eval(cInstructor))     # provided list
-            print('cInstructorValue: ', cInstructor, cInstructorValue)
+            # print('cInstructorValue: ', cInstructor, cInstructorValue)
             cAssistantField = chr(34) + 'assistant' + str(a [0]) + chr(34)
             cAssistantValue = request.form.get(eval(cAssistantField))  # provided list
-            print('cAssistantValue:  ', cAssistantField, cAssistantValue)
+            # print('cAssistantValue:  ', cAssistantField, cAssistantValue)
 
             nInstructor = 0
             for i in filtered2:
@@ -362,7 +395,7 @@ def appointmentsdate2(text, cFrom):
             appointment.Staff = nInstructor
             appointment.Assistants = cAssistantValue
             db.session.commit()
-            print('---- end ---')
+            # print('---- end ---')
 
         lRBAC = get_rbac(request.url_rule.endpoint)
 
@@ -460,6 +493,9 @@ def appointmentsevents(cName, cDate, cFrom):
     lRBAC = get_rbac(request.url_rule.endpoint)
 
     if form.validate_on_submit():
+
+        if request.form.get('cancel') == 'cancel':
+            return redirect(url_for('homepage'))           
 
         cAutofillin = request.form.get("autofillin") # checkbox
         print('cAutofillin: ', cAutofillin)

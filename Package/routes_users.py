@@ -25,6 +25,7 @@ from email.mime.multipart import MIMEMultipart
 import os
 import os.path
 
+from flask import request   
 
 
 from flask_bcrypt import Bcrypt
@@ -61,96 +62,34 @@ def users():
 
 #------------------------------------------------------------------------------------------
 
-##     ##  ######  ######## ########   ######  ########  ########   #######  ########  ##     ##  ######  ######## 
-##     ## ##    ## ##       ##     ## ##    ## ##     ## ##     ## ##     ## ##     ## ##     ## ##    ##    ##    
-##     ## ##       ##       ##     ## ##       ##     ## ##     ## ##     ## ##     ## ##     ## ##          ##    
-##     ##  ######  ######   ########   ######  ########  ########  ##     ## ##     ## ##     ## ##          ##    
-##     ##       ## ##       ##   ##         ## ##        ##   ##   ##     ## ##     ## ##     ## ##          ##    
-##     ## ##    ## ##       ##    ##  ##    ## ##        ##    ##  ##     ## ##     ## ##     ## ##    ##    ##    
- #######   ######  ######## ##     ##  ######  ##        ##     ##  #######  ########   #######   ######     ##    
+##     ##  ######  ######## ########  ########  ######## ##       ######## ######## ######## 
+##     ## ##    ## ##       ##     ## ##     ## ##       ##       ##          ##    ##       
+##     ## ##       ##       ##     ## ##     ## ##       ##       ##          ##    ##       
+##     ##  ######  ######   ########  ##     ## ######   ##       ######      ##    ######   
+##     ##       ## ##       ##   ##   ##     ## ##       ##       ##          ##    ##       
+##     ## ##    ## ##       ##    ##  ##     ## ##       ##       ##          ##    ##       
+ #######   ######  ######## ##     ## ########  ######## ######## ########    ##    ######## 
 
-@app.route('/usersproductform2/<id>/', methods=['GET', 'POST'])
-def usersproduct2(id):
+@app.route('/userdelete/<id>')
+def userdelete(id):
 
     if current_user.is_anonymous:
         return (no_access_text())
 
-    form = UsersProductForm2(id)
+    user = db.session.execute(db.select(Users).filter_by(Id=id)).scalar_one()
+    cUsername = user.Username
+    db.session.delete(user)
+    db.session.commit()
 
-    appointment = db.session.execute(db.select(Appointments).filter_by(Id=id)).scalar_one()
+    print('#### cUsername:             ', cUsername)
+    print('#### current_user.Username: ', current_user.Username)
 
-    user    = appointment.User
-    product = appointment.Product
+    if cUsername == current_user.Username:
+        return (url_for('logout'))
 
-    #                                           0                1                  2                3               4                     5                  6                  7                   8                 9               10
-    appointments = db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name, Instructors.Id, Appointments.Product). \
-                                order_by(Appointments.Date). \
-                                filter(Appointments.User == user). \
-                                join(Users,       Appointments.User    == Users.Id). \
-                                join(Instructors, Appointments.Staff   == Instructors.Id). \
-                                join(Products,    Appointments.Product == Products.Id) )
+    lRBAC = get_rbac(request.url_rule.endpoint) 
 
-    instructors = db.session.execute(db.select(Instructors.Id, Instructors.User, Instructors.Name).where(Instructors.Active).order_by(Instructors.Name))
-
-    # pass the option list via a string... there is some room for improvement ;-)
-    cInstructors = ""
-    cOptions     = ""
-    filtered2 = [] # necessary because list could be for/endfor once.
-    for i in instructors:
-        filtered2.append(i)
-        cInstructors = cInstructors + "<option value='" + i.Name + "'>" + i.Name + "</option>"
-        cOptions = cOptions + "<option value='" + i.Name + "'>" + i.Name + "</option>" + '|'
-
-    # filter on product.Id (solution for multiple filters not found)
-    filtered = []
-    for a in appointments:
-        if a [10] == product:
-            filtered.append(a)
-
-    if form.validate_on_submit():
-
-        print ('=================================================================')
-        
-        for a in filtered:
-            cDate = chr(34) + 'date' + str(a [0]) + chr(34)
-            cDateValue = request.form.get(eval(cDate))         # formatted input
-            cTime = chr(34) + 'time' + str(a [0]) + chr(34)
-            cTimeValue = request.form.get(eval(cTime))         # formatted input
-            print ('.')
-            print ('#### cDate: ', cDate , cDateValue)
-            print ('#### cTime: ', cTime , cTimeValue)
-            cInstructor = chr(34) + 'instructor' + str(a [0]) + chr(34)
-            cInstructorValue = request.form.get(eval(cInstructor))        # provided list
-            print ('#### cInstructor: ', cInstructor , cInstructorValue)
-            print ('.')
-
-            nInstructor = 0
-            for i in filtered2:
-                if i.Name == cInstructorValue:
-                    nInstructor = i.Id
-
-            print ('.')
-            print ('#### nInstructor: ', nInstructor)
-            print ('.')
-
-            appointment = db.session.execute(db.select(Appointments).filter_by(Id=a [0])).scalar_one()
-            dDate = datetime.datetime(int(cDateValue[0:4]), int(cDateValue[5:7]), int(cDateValue[8:10]), int(cTimeValue[0:2]), int(cTimeValue[3:5]))
-            appointment.Date = dDate
-            appointment.Staff = nInstructor
-            db.session.commit()
-        print ('=================================================================')
-
-        lRBAC = get_rbac(request.url_rule.endpoint)
-
-        users = Users.query.all()
-
-        return render_template('users.html', users = users, lRBAC = lRBAC)
-
-    instructors = db.session.execute(db.select(Instructors.Id, Instructors.User, Instructors.Name).where(Instructors.Active).order_by(Instructors.Name))
-
-    lRBAC = get_rbac(request.url_rule.endpoint)
-
-    return render_template('usersproductform.html', form=form, instructors=filtered2, appointments=filtered, lRBAC=lRBAC, cInstructors=cInstructors, cOptions=cOptions)
+    return render_template(url_for('users'), lRBAC = lRBAC)
 
 #------------------------------------------------------------------------------------------
 
@@ -204,6 +143,18 @@ def usersedit2(id, cFrom):
     form.note.data = cNote
 
     if form.validate_on_submit():
+        print('submit')
+
+        if request.form.get('cancel') == 'cancel':
+            print('cancel')
+
+            if cFrom == 'instructors':
+                print('instructors')
+
+                return redirect(url_for('instructors'))
+
+            return redirect(url_for('users'))
+
         #print('---- form validated --------------------------')
         newpassword = ""
         lRBAC = get_rbac(request.url_rule.endpoint)
@@ -278,9 +229,9 @@ def usersedit2(id, cFrom):
         cUserStatus = ''
         nC = 0
         for l in listStatus:
-            value = request.form.get(eval('listStatus [nC]'))   # provided as checkboxes
+            value = request.form.get(eval('l.Name'))   # provided as checkboxes
             if value:
-                cUserStatus = cUserStatus + listStatus [nC] + ' '
+                cUserStatus = cUserStatus + l.Name + ' '
             nC = nC + 1
 
         # x.Status       = cUserStatus
@@ -317,9 +268,9 @@ def usersedit2(id, cFrom):
             #print('#### ', x.Username, ' ', x.Status)
             #print('#### cUserStatus: ', cUserStatus)
 
-        #print("#### ---------------------------------------------------------------")
-        #print("#### before ", lInstructorBefore, ' ', cStatusOld)
-        #print("#### after  ", lInstructorAfter, ' ', cStatusNew)
+        print("#### ---------------------------------------------------------------")
+        print("#### before ", lInstructorBefore, ' ', cStatusOld)
+        print("#### after  ", lInstructorAfter,  ' ', cStatusNew)
 
         if not lInstructorBefore and not lInstructorAfter:
             x = db.session.query(Users).get(x.Id)
@@ -504,46 +455,6 @@ def usersedit2(id, cFrom):
 
 #------------------------------------------------------------------------------------------
 
-##     ##  ######  ######## ########   ######  ########  ########  ######   ####  ######  ######## ######## ########  
-##     ## ##    ## ##       ##     ## ##    ## ##     ## ##       ##    ##   ##  ##    ##    ##    ##       ##     ## 
-##     ## ##       ##       ##     ## ##       ##     ## ##       ##         ##  ##          ##    ##       ##     ## 
-##     ##  ######  ######   ########   ######  ########  ######   ##   ####  ##   ######     ##    ######   ########  
-##     ##       ## ##       ##   ##         ## ##   ##   ##       ##    ##   ##        ##    ##    ##       ##   ##   
-##     ## ##    ## ##       ##    ##  ##    ## ##    ##  ##       ##    ##   ##  ##    ##    ##    ##       ##    ##  
- #######   ######  ######## ##     ##  ######  ##     ## ########  ######   ####  ######     ##    ######## ##     ## 
-
-@app.route('/usersregisterform', methods=['GET' ,'POST'])
-def usersregister():
-
-    form = UsersRegisterForm()
-
-    if form.validate_on_submit():
-        pw_hash = bcrypt.generate_password_hash(form.password1.data).decode('utf-8')
-
-        user_to_create = Users(Username     = form.username.data,
-                               Firstname    = form.firstname.data,
-                               Lastname     = form.lastname.data,
-                               Phone        = form.phone.data,
-                               Emailaddress = form.emailaddress.data,
-                               Passwordhash = pw_hash,
-                               Active       = True,
-                               Status       = "new")
-        
-        db.session.add(user_to_create)
-        db.session.commit()
-        return redirect(url_for('users'))
-   
-    if form.errors != {}: # no errors?
-        for err_msg in form.errors.values():
-            flash(f'error: {err_msg}', category = 'danger')
-
-    lRBAC = get_rbac(request.url_rule.endpoint)
-
-    return render_template('usersregisterform.html', form=form , lRBAC = lRBAC)
-
-# ---------------------------------------------------------------------------------------
-
-
 ##     ##  ######  ######## ########   ######  #### ##    ## ########  #######  
 ##     ## ##    ## ##       ##     ## ##    ##  ##  ###   ## ##       ##     ## 
 ##     ## ##       ##       ##     ## ##        ##  ####  ## ##       ##     ## 
@@ -570,11 +481,15 @@ def usersinfo(id):
                                 join(Instructors, Appointments.Staff == Instructors.Id). \
                                 join(Products, Appointments.Product == Products.Id) )
     user         = db.session.execute(db.select(Users).filter_by(Id=id)).scalar_one()
-    #products     = db.session.execute(db.select(Products)).scalars()
-    products = Products.query.order_by(func.lower(Products.Productname)).all()
+    #products    = db.session.execute(db.select(Products)).scalars()
+    products     = Products.query.order_by(func.lower(Products.Productname)).where(Products.Active)
     assistants   = Users.query.filter(Users.Status.contains('assistant'))
 
     if form.validate_on_submit():
+
+        if request.form.get('cancel') == 'cancel':
+            # print('cancel')
+            return redirect(url_for('users'))           
 
         print ("----------------------------------------------------------------")
         #t = datetime.datetime.now()
@@ -638,8 +553,9 @@ def usersinfo(id):
                                 join(Users, Appointments.User == Users.Id). \
                                 join(Instructors, Appointments.Staff == Instructors.Id). \
                                 join(Products, Appointments.Product == Products.Id) )
-        products = db.session.execute(db.select(Products)).scalars()
-
+        
+        # products = db.session.execute(db.select(Products)).scalars()
+        products     = Products.query.order_by(func.lower(Products.Productname)).where(Products.Active)
 
         lRBAC = get_rbac(request.url_rule.endpoint) 
 
@@ -650,59 +566,6 @@ def usersinfo(id):
     lRBAC = get_rbac(request.url_rule.endpoint) 
 
     return render_template('usersinfo.html', form = form, user = user, appointments = appointments, products = products, cDateToday = cDateToday, lRBAC = lRBAC, assistants = assistants)
-
-#------------------------------------------------------------------------------------------
-
-##     ##  ######  ######## ########  ########  ######## ##       ######## ######## ######## 
-##     ## ##    ## ##       ##     ## ##     ## ##       ##       ##          ##    ##       
-##     ## ##       ##       ##     ## ##     ## ##       ##       ##          ##    ##       
-##     ##  ######  ######   ########  ##     ## ######   ##       ######      ##    ######   
-##     ##       ## ##       ##   ##   ##     ## ##       ##       ##          ##    ##       
-##     ## ##    ## ##       ##    ##  ##     ## ##       ##       ##          ##    ##       
- #######   ######  ######## ##     ## ########  ######## ######## ########    ##    ######## 
-
-@app.route('/userdelete/<id>')
-def userdelete(id):
-
-    if current_user.is_anonymous:
-        return (no_access_text())
-
-    user = db.session.execute(db.select(Users).filter_by(Id=id)).scalar_one()
-    cUsername = user.Username
-    db.session.delete(user)
-    db.session.commit()
-
-    print('#### cUsername:             ', cUsername)
-    print('#### current_user.Username: ', current_user.Username)
-
-    if cUsername == current_user.Username:
-        return (url_for('logout'))
-
-    lRBAC = get_rbac(request.url_rule.endpoint) 
-
-    return render_template(url_for('users'), lRBAC = lRBAC)
-
-#------------------------------------------------------------------------------------------
-
-from io import StringIO
-from html.parser import HTMLParser
-
-class MLStripper(HTMLParser):
-    def __init__(self):
-        super().__init__()
-        self.reset()
-        self.strict = False
-        self.convert_charrefs= True
-        self.text = StringIO()
-    def handle_data(self, d):
-        self.text.write(d)
-    def get_data(self):
-        return self.text.getvalue()
-
-def strip_tags(html):
-    s = MLStripper()
-    s.feed(html)
-    return s.get_data()
 
 #------------------------------------------------------------------------------------------
 
@@ -931,3 +794,187 @@ def usersnotes(id):
     lRBAC = get_rbac(request.url_rule.endpoint) 
 
     return render_template('usersnotes.html', cText = cText , lRBAC = lRBAC)
+
+
+##     ##  ######  ######## ########   ######  ########  ########   #######  ########  ##     ##  ######  ######## 
+##     ## ##    ## ##       ##     ## ##    ## ##     ## ##     ## ##     ## ##     ## ##     ## ##    ##    ##    
+##     ## ##       ##       ##     ## ##       ##     ## ##     ## ##     ## ##     ## ##     ## ##          ##    
+##     ##  ######  ######   ########   ######  ########  ########  ##     ## ##     ## ##     ## ##          ##    
+##     ##       ## ##       ##   ##         ## ##        ##   ##   ##     ## ##     ## ##     ## ##          ##    
+##     ## ##    ## ##       ##    ##  ##    ## ##        ##    ##  ##     ## ##     ## ##     ## ##    ##    ##    
+ #######   ######  ######## ##     ##  ######  ##        ##     ##  #######  ########   #######   ######     ##    
+
+@app.route('/usersproductform2/<id>/<cFrom>/', methods=['GET', 'POST'])
+def usersproduct2(id, cFrom):
+
+    if current_user.is_anonymous:
+        return (no_access_text())
+
+    form = UsersProductForm2(id)
+
+    appointment = db.session.execute(db.select(Appointments).filter_by(Id=id)).scalar_one()
+
+    user    = appointment.User
+    product = appointment.Product
+
+    nPrevUser = user
+
+    #                                           0                1                  2                3               4                     5                  6                  7                   8                 9               10                    11
+    appointments = db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name, Instructors.Id, Appointments.Product, Appointments.Assistants). \
+                                order_by(Appointments.Date). \
+                                filter(Appointments.User == user). \
+                                join(Users,       Appointments.User    == Users.Id). \
+                                join(Instructors, Appointments.Staff   == Instructors.Id). \
+                                join(Products,    Appointments.Product == Products.Id) )
+
+    instructors = db.session.execute(db.select(Instructors.Id, Instructors.User, Instructors.Name).where(Instructors.Active).order_by(Instructors.Name))
+
+    # pass the option list via a string... there is some room for improvement ;-)
+    cInstructors = ""
+    cOptions     = ""
+    filtered2 = [] # necessary because list could be for/endfor once.
+    for i in instructors:
+        filtered2.append(i)
+        cInstructors = cInstructors + "<option value='" + i.Name + "'>" + i.Name + "</option>"
+        cOptions = cOptions + "<option value='" + i.Name + "'>" + i.Name + "</option>" + '|'
+
+    # filter on product.Id (solution for multiple filters not found)
+    filtered = []
+    for a in appointments:
+        if a [10] == product:
+            filtered.append(a)
+
+    assistants = Users.query.filter(Users.Status.contains('assistant'))
+
+    if form.validate_on_submit():
+        print('validated')
+
+        if request.form.get('cancel') == 'cancel':
+            print('cancel')
+
+            if cFrom == 'usersinfo':
+                return redirect(url_for('usersinfo', id = nPrevUser))
+
+            return redirect(url_for('users'))
+
+        # print ('=================================================================')
+        
+        for a in filtered:
+            cDate = chr(34) + 'date' + str(a [0]) + chr(34)
+            cDateValue = request.form.get(eval(cDate))         # formatted input
+            cTime = chr(34) + 'time' + str(a [0]) + chr(34)
+            cTimeValue = request.form.get(eval(cTime))         # formatted input
+            # print ('.')
+            # print ('#### cDate: ', cDate , cDateValue)
+            # print ('#### cTime: ', cTime , cTimeValue)
+            cInstructor = chr(34) + 'instructor' + str(a [0]) + chr(34)
+            cInstructorValue = request.form.get(eval(cInstructor))        # provided list
+            cAssistant = chr(34) + 'assistant' + str(a [0]) + chr(34)
+            cAssistantValue = request.form.get(eval(cAssistant))        # provided list
+            # print ('#### cInstructor: ', cInstructor , cInstructorValue)
+            # print ('.')
+
+            nInstructor = 0
+            for i in filtered2:
+                if i.Name == cInstructorValue:
+                    nInstructor = i.Id
+
+            # print ('.')
+            # print ('#### nInstructor: ', nInstructor)
+            # print ('.')
+
+            appointment = db.session.execute(db.select(Appointments).filter_by(Id=a [0])).scalar_one()
+            dDate = datetime.datetime(int(cDateValue[0:4]), int(cDateValue[5:7]), int(cDateValue[8:10]), int(cTimeValue[0:2]), int(cTimeValue[3:5]))
+            appointment.Date = dDate
+            appointment.Staff = nInstructor
+            appointment.Assistants = cAssistantValue
+            db.session.commit()
+        print ('=================================================================')
+
+        #lRBAC = get_rbac(request.url_rule.endpoint)
+
+        #users = Users.query.all()
+
+        if cFrom == 'usersinfo':
+            return redirect(url_for('usersinfo', id = nPrevUser))
+
+        return redirect(url_for('users'))
+
+    instructors = db.session.execute(db.select(Instructors.Id, Instructors.User, Instructors.Name).where(Instructors.Active).order_by(Instructors.Name))
+
+    lRBAC = get_rbac(request.url_rule.endpoint)
+
+    return render_template('usersproductform.html', form=form, instructors = filtered2, appointments = filtered, lRBAC = lRBAC, cInstructors = cInstructors, cOptions = cOptions, assistants = assistants)
+
+#------------------------------------------------------------------------------------------
+
+##     ##  ######  ######## ########   ######  ########  ########  ######   ####  ######  ######## ######## ########  
+##     ## ##    ## ##       ##     ## ##    ## ##     ## ##       ##    ##   ##  ##    ##    ##    ##       ##     ## 
+##     ## ##       ##       ##     ## ##       ##     ## ##       ##         ##  ##          ##    ##       ##     ## 
+##     ##  ######  ######   ########   ######  ########  ######   ##   ####  ##   ######     ##    ######   ########  
+##     ##       ## ##       ##   ##         ## ##   ##   ##       ##    ##   ##        ##    ##    ##       ##   ##   
+##     ## ##    ## ##       ##    ##  ##    ## ##    ##  ##       ##    ##   ##  ##    ##    ##    ##       ##    ##  
+ #######   ######  ######## ##     ##  ######  ##     ## ########  ######   ####  ######     ##    ######## ##     ## 
+
+@app.route('/usersregisterform', methods=['GET' ,'POST'])
+def usersregister():
+
+    form = UsersRegisterForm()
+
+    if form.validate_on_submit():
+
+        cDateToday        = datetime.datetime.today()
+        cDate             = cDateToday.strftime("%d-%m-%Y")
+        cTime             = cDateToday.strftime("%H:%M:%S")
+
+        # source: https://stackoverflow.com/questions/3759981/get-ip-address-of-visitors-using-flask-for-python
+        cInfo = 'date: ' + cDate + ', time: ' + cTime + ', ip:' + request.environ.get('HTTP_X_REAL_IP', request.remote_addr)   
+
+        pw_hash = bcrypt.generate_password_hash(form.password1.data).decode('utf-8')
+
+        user_to_create = Users( Username     = form.username.data,
+                                Firstname    = form.firstname.data,
+                                Lastname     = form.lastname.data,
+                                Phone        = form.phone.data,
+                                Emailaddress = form.emailaddress.data,
+                                Passwordhash = pw_hash,
+                                Active       = True,
+                                Info         = cInfo,
+                                Status       = "new")
+        
+        db.session.add(user_to_create)
+        db.session.commit()
+        return redirect(url_for('users'))
+   
+    if form.errors != {}: # no errors?
+        for err_msg in form.errors.values():
+            flash(f'error: {err_msg}', category = 'danger')
+
+    lRBAC = get_rbac(request.url_rule.endpoint)
+
+    return render_template('usersregisterform.html', form=form , lRBAC = lRBAC)
+
+# ---------------------------------------------------------------------------------------
+
+
+from io import StringIO
+from html.parser import HTMLParser
+
+class MLStripper(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.reset()
+        self.strict = False
+        self.convert_charrefs= True
+        self.text = StringIO()
+    def handle_data(self, d):
+        self.text.write(d)
+    def get_data(self):
+        return self.text.getvalue()
+
+def strip_tags(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
+
+#------------------------------------------------------------------------------------------

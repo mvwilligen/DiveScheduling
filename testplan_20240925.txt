@@ -1,0 +1,161 @@
+
+######## ########  ######  ######## ########  ##          ###    ##    ##    
+   ##    ##       ##    ##    ##    ##     ## ##         ## ##   ###   ##    
+   ##    ##       ##          ##    ##     ## ##        ##   ##  ####  ##    
+   ##    ######    ######     ##    ########  ##       ##     ## ## ## ##    
+   ##    ##             ##    ##    ##        ##       ######### ##  ####    
+   ##    ##       ##    ##    ##    ##        ##       ##     ## ##   ###    
+   ##    ########  ######     ##    ##        ######## ##     ## ##    ##    
+
+
+Date:       25 sep 2024, 07.45
+Author:     MvW
+Location:   https://divescheduling.onrender.com/
+            hostname: srv-crklkhm8ii6s738254m0-hibernate-b645c9895-8c5cg
+
+
+--------------------------------------------------------------------
+General remarks
+--------------------------------------------------------------------
+
+[_] header stationary
+[_] convert 'home/<date>/dsd' to 'general use', like an event, is an event a product? (like: 'dive and picnic')
+[_] light and dark mode
+[_] add tooltips
+    [_] https://getbootstrap.com/docs/5.0/components/tooltips/
+[_] possibilities for frontend word?
+[_] sort tables
+    [_] inspiration: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sort_table
+[_] local time (render.com, Frankfurt) is 2 hours behind
+[_] change passwords on external location
+[_] logon registration
+[_] mail to mvwilligen@gmail.com after logging on?
+[_] correct location in list and format of '[none]' and 'none'
+[_] appointments
+[?] pagination in lists
+[?] sort and/or filter possible in lists?
+[?] action on click on lines?
+
+
+--------------------------------------------------------------------
+Testplan
+--------------------------------------------------------------------
+
+legend: [_] - step to test
+        (_) - issue found in step
+
+
+[_] debugger is active
+[_] test validators
+    [_] username, firstname and lastname not empty
+    [_] valid email
+    [_] password at least 8 chars and p1 equal to p2
+[_] new user before logging on
+    [_] proposal: send a mail for confirmation?
+        [_] set limit from ip-address and to emailaddress
+    (?) 0750: user is not created. 20240926: cannot reproduce. new user is created (?), several new users created.
+    (v) 0753: ValueError: Password must be non-empty.
+(v) 20240926 - saving admin: NameError: name 'nStaffUser' is not defined (no change in status) 
+[_] try logon with new user
+    (v) user with empty status can logon
+    [_] render.com: check ip address in column 'Info'
+[_] logon with an admin-user
+[_] logon with invalid data
+
+{start of segment A}
+[_] home/<date>/form
+    (v) assistant 'no ne' visible: http://127.0.0.1:5000/appointmentsdateform2/20-09-2024/home
+        uses: usersproductform.html
+        not:  appointmentsdateform2.html (?)
+    [_] change, save and check data
+    [_] change notes for several appointments
+    [_] show notes
+    (v) add button 'cancel'
+        # if request.form.get('cancel') == 'cancel':
+        #    return redirect(url_for('homepage'))   
+[_] home/<date>/dsd
+    [_] create new dsd appointment 
+    [_] add instructor
+    [_] add assistant
+    [_] check 'auto fill in' and save
+        (v) location (and size) of checkbox
+    [_] create dsd appointment for other date, check other date
+    (v) add button 'cancel'
+[_] home/form/<appointment>/edit
+[_] test mine/unmine
+[_] home/form/<appointment>/edit
+{end of segment A}
+
+[_] logon as an non admin user, check if older appointments can be managed
+    [_] repeat segment A
+        [!] 'unmine' not available
+        (v) 'none' visible in column assistants
+        (v) make 'notes' available for older appointments
+
+[_] logon as non instructor user
+    [_] repeat segment A
+
+[_] logon as an admin user
+
+[_] products
+[_] products/<product>/edit
+    [_] change a product, check results
+[_] products/new product
+    [_] add times to 'parts'
+    [_] add note to new product
+[_] products/students
+    (v) sort on date and filter out older appointments?
+    (v) date display to dd-mm-yyyy
+    (v) deactivate product instead of delete
+        (v) all products active
+        (v) display in userinfo depends on active
+        (v) active = 0 instead of delete
+
+[_] users/<user>/edit
+    (v) status is being cleared
+        (v) no 'mail' and 'notes' actions (explanation: depends on status of user 'admin')
+    (v) issue with saving status?
+        (v) new user: empty? no changes possible
+[_] users/<user>/delete
+[_] users/<user>/products
+    [_] add product
+    [_] form
+        (v) after 'https://divescheduling.onrender.com/usersproductform2/231/?cFrom=usersinfo' temp users were visible
+    (v) no assistants available users/<user>/products/form in 'http://127.0.0.1:5000/usersproductform2/231/?cFrom=usersinfo' and sometimes there are... :-s (not everytime assistants are loaded?)
+            route: /users/<elvira>/products/form -> usersinfo.py -> usersinfo.html (url_for('usersproduct2'))
+[_] users/<user>/mail
+[_] users/<user>/notes
+(v) incorrect path: users/products/edit,    save -> appointments
+                                            cancel -> home
+                                            should be: http://127.0.0.1:5000/usersinfo/138
+                (v) users/marloes/ "after adding product"
+                (v) na de save (no save!) in: users/ilona/ [http://127.0.0.1:5000/usersproductform2/254/usersinfo/]
+                (v) users/ilona/products/edit
+                (v) usersproductform save 'null's...
+
+[_] instructors
+    (!) change of firstname and lastname needs to be replicated to table instructors :-(
+    (v) instructors/<instructor>/edit, save -> https://divescheduling.onrender.com/instructorsinfo/5/ (Marga Engel)
+    (v) instructors/<instructor>/info does not work, does work later (?)
+    (v) https://divescheduling.onrender.com/instructorsinfo/5/ shows Id's
+
+[_] html
+    [_] html/create
+    [_] html/show internal web
+    [_] html/ftp
+    [_] html/show external web
+
+[_] mail  
+    [_] cc
+    [_] bcc
+    [_] store for receiver and sender
+
+
+[_] support
+
+[_] log off
+
+[_] user registration
+
+[_] 
+[_] 
