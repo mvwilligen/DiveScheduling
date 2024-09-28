@@ -39,13 +39,13 @@ productsedit
         <tr>
             <td>
                 {{ form.note.label() }}<br>
-                {{ form.note(placeholder="note", cols="148", rows="8" ) }}
+                {{ form.note(placeholder="note", cols="148", rows="8", style="border-radius: 5px; padding: 7px;" ) }}
             </td>
         </tr>
     </table>
     <br>
     <div class="form-group">
-        <table>
+        <table style="width:300px">
             <tr>
                 <td style="width:200px">{{ form.save(class="btn btn-lg btn-block btn-primary") }}</td>
                 <td style="width:200px">{{ form.cancel(class="btn btn-lg btn-block btn-primary") }}</td>

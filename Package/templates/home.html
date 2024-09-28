@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-home
+homepage
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,10 @@ home
 {% set cDate = namespace(value = '') %}
 {% set cWeekDays = namespace(value = 'sunmontuewedthufrisat') %}
 
-<table>
+<table class="tableFixHead">
+    <thead>
+        <tr><th>date and time</th><th>student</th><th>product</th><th>part</th><th>instructor</th><th>assistant</th><th>actions</th></tr>
+    </thead>
     {% for events in appointments %}
 
         {% if (events [1] == lRBAC [2]) or ('staff' in lRBAC [1]) %}
@@ -39,7 +42,7 @@ home
         {% endif %}
 
         <tr>
-            <td>{{ events[6].strftime("%H:%M:%S") }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>{{ events[6].strftime("%H:%M") }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td>{{ events[2] + ' ' + events[3] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td>{{ events[4] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td>{{ events[5] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

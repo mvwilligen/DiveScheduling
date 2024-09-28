@@ -28,6 +28,8 @@ class AppointmentsEditForm(FlaskForm):
     emailaddress = StringField(label   = 'emailaddress') # , validators = [Email()])
     password     = PasswordField(label = 'password')    # , validators = [Length(min = 8)])
     note         = TextAreaField('note')
+    date        = StringField(label   = 'date')
+    time        = StringField(label   = 'time')
     
     save         = SubmitField(label   = 'save')
     cancel       = SubmitField(label   = 'cancel')

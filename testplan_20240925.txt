@@ -11,30 +11,31 @@
 Date:       25 sep 2024, 07.45
 Author:     MvW
 Location:   https://divescheduling.onrender.com/
-            hostname: srv-crklkhm8ii6s738254m0-hibernate-b645c9895-8c5cg
+Hostname:   srv-crklkhm8ii6s738254m0-hibernate-b645c9895-8c5cg
 
 
 --------------------------------------------------------------------
 General remarks
 --------------------------------------------------------------------
 
-[_] header stationary
+[v] header stationary
 [_] convert 'home/<date>/dsd' to 'general use', like an event, is an event a product? (like: 'dive and picnic')
 [_] light and dark mode
 [_] add tooltips
     [_] https://getbootstrap.com/docs/5.0/components/tooltips/
-[_] possibilities for frontend word?
+[_] possibilities for frontend work?
 [_] sort tables
     [_] inspiration: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sort_table
 [_] local time (render.com, Frankfurt) is 2 hours behind
 [_] change passwords on external location
 [_] logon registration
 [_] mail to mvwilligen@gmail.com after logging on?
-[_] correct location in list and format of '[none]' and 'none'
+[_] correct location (top or bottom) in list and format of '[none]' and 'none'
 [_] appointments
 [?] pagination in lists
 [?] sort and/or filter possible in lists?
 [?] action on click on lines?
+[v] style="border-radius: 5px; padding: 7px;"
 
 
 --------------------------------------------------------------------

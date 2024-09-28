@@ -31,7 +31,7 @@ registerform2
             <br>
 
             {{ form.note.label() }}<br>
-            {{ form.note(placeholder="note", cols="148", rows="8" ) }}
+            {{ form.note(placeholder="note", cols="148", rows="8", style="border-radius: 5px; padding: 7px;" ) }}
             <br>
             {% if ('admin' in lRBAC [1]) or ( user.Username == lRBAC [0] ) %}
               {{ form.password.label() }}

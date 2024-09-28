@@ -10,14 +10,14 @@ appointmentsedit
 <br>
 <form method="post">
 {{ form.hidden_tag() }}
-<table>
-    <tr><td style="width:100px">name</td>   <td style="width:200px">{{ appointment [2] }} {{ appointment [3] }}</td></tr>
+<table style="width:300px">
+    <tr><td style="width:100px">name</td><td style="width:200px">{{ appointment [2] }} {{ appointment [3] }}</td></tr>
     <tr><td>product</td><td>{{ appointment [4] }}</td></tr>
     <tr><td>part</td>   <td>{{ appointment [5] }}</td></tr>
 
     <tr><td><label for="staff">instructor </label>
     </td><td>
-    <select name="instructor" id="instructor">
+    <select name="instructor" id="instructor" style="border-radius: 5px; padding: 7px;">
         {% for i in instructors %}
         <option value="{{ i.Name }}"
         
@@ -31,7 +31,7 @@ appointmentsedit
     </td></tr>    
     <tr><td><label for="assistants">assistant </label>
     </td><td>
-    <select name="assistants1" id="assistants1">
+    <select name="assistants1" id="assistants1" style="border-radius: 5px; padding: 7px;">
         <option value="{{ 'none' }}">{{ none }}</option>
         {% for a in assistants  %}
             {% if (a.Firstname + ' ' + a.Lastname) != "no ne" %}
@@ -49,20 +49,19 @@ appointmentsedit
         {% endfor %}
     </select>
     </td></tr>    
-
-    <!-- https://strftime.org/ -->
-<table>
+</table>
+<table style="width:300px">
     <tr>
         <td style="width:100px">
-            <label for="date">date</label>
+            {{ form.date.label() }}
         </td>
-        <td style="width:200px">
+        <td style="width:100px">
             <input type="date" name="date" id="date" value="{{ appointment [6].strftime('%Y-%m-%d') }}" class="form-control">
         </td>
     </tr>    
     <tr>
         <td>
-            <label for="time">time</label>
+            {{ form.time.label() }}
         </td>
         <td>
             <input type="time" name="time" id="time" value="{{ appointment [6].strftime('%H:%M') }}" class="form-control">
@@ -71,15 +70,15 @@ appointmentsedit
 </table>
 <table>
     <tr>
-        <td style="width:100px">
+        <td style="width:100px; vertical-align: top;">
             {{ form.note.label() }}
         </td>
         <td>
-            {{ form.note(placeholder="note", cols="148", rows="8" ) }}
+            {{ form.note(placeholder="note", cols="148", rows="8", style="border-radius: 5px; padding: 7px;") }}
         </td>
     </tr>    
 </table>
-<table>
+<table style="width:350px">
     <tr>
         <td style="width:100px">
         </td>

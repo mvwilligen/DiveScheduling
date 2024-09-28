@@ -14,13 +14,13 @@ UserInfo
     {{ form.hidden_tag() }}
 
     <br>
-    <table>
-        <tr><td><b>&nbsp;username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></td><td>{{ user.Username}}</b></td></tr>
-        <tr><td>&nbsp;firstname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>{{ user.Firstname }}</td></tr>
-        <tr><td>&nbsp;lastname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>{{ user.Lastname }}</td></tr>
-        <tr><td>&nbsp;phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>{{ user.Phone }}</td></tr>
-        <tr><td>&nbsp;emailaddress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>{{ user.Emailaddress }}</td></tr>
-        <tr><td>&nbsp;status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>{{ user.Status }}</td></tr>
+    <table style="width:400px">
+        <tr><td style="width:100px"><b>&nbsp;username</b></td><td style="width:200px">{{ user.Username}}</b></td></tr>
+        <tr><td>&nbsp;firstname</td><td>{{ user.Firstname }}</td></tr>
+        <tr><td>&nbsp;lastname</td><td>{{ user.Lastname }}</td></tr>
+        <tr><td>&nbsp;phone</td><td>{{ user.Phone }}</td></tr>
+        <tr><td>&nbsp;emailaddress</td><td>{{ user.Emailaddress }}</td></tr>
+        <tr><td>&nbsp;status</td><td>{{ user.Status }}</td></tr>
     </table>
     <br>
     <table class="table table-hover table-dark">
@@ -78,12 +78,17 @@ UserInfo
     start date: <input type="date" name="datefrom" id="datefrom" value="{{ cDate.value|string() }}">
     <br>
     <br>
-    <table>
+    <table style="width:350px">
         <tr>
-            <td style="width:200px">{{ form.save(class="btn btn-lg btn-block btn-primary") }}</td>
-            <td style="width:200px">{{ form.cancel(class="btn btn-lg btn-block btn-primary") }}</td>
+            <td></td>
+            <td style="width:100px">
+                {{ form.save(class="btn btn-lg btn-block btn-primary") }}
+            </td>
+            <td  style="width:100px">
+                {{ form.cancel(class="btn btn-lg btn-block btn-primary") }}
+            </td>
         </tr>
-      </table>
-    {% endif %}
+    </table>
+{% endif %}
 </form>
 {% endblock %}
