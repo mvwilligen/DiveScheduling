@@ -76,16 +76,26 @@ def test():
 
         print('===========================================================================')
 
-    print('')
-    strings = []
-    strings.append("<b>Martin</b>")
-    strings.append("Martin")
-    strings.append("<>,;:[]{}|()*&^%$#!=+~")
+    if False:
+        print('')
+        strings = []
+        strings.append("<b>Martin</b>")
+        strings.append("Martin")
+        strings.append("<>,;:[]{}|()*&^%$#!=+~")
 
-    for s in strings:
-        print('string2safe(' + s + '): ', string2safe(s))
+        for s in strings:
+            print('string2safe(' + s + '): ', string2safe(s))
 
-    print('')
+        print('')
+
+
+    if True:
+
+        users = db.session.execute(db.select(Users).order_by(Users.Firstname).filter_by(Active = True)).scalars()
+
+        lRBAC = get_rbac('')
+        return render_template('test.html', lRBAC = lRBAC, users = users)
+
 
     lRBAC = get_rbac('')
 

@@ -115,6 +115,9 @@ def productsnew():
 
     if form.validate_on_submit():
 
+        if request.form.get('cancel') == 'cancel':
+            return redirect(url_for('products'))
+        
         newproductname = string2safe(request.form["productname"].replace(' ', '_'))
 
         product_to_create = Products(Productname = newproductname,
@@ -126,7 +129,7 @@ def productsnew():
         db.session.add(product_to_create)
         db.session.commit()
 
-        product = db.session.execute(db.select(Products).filter_by(Name=newproductname)).scalar_one()
+        product = db.session.execute(db.select(Products).filter_by(Productname = newproductname)).scalar_one()
 
         cNote         = string2safe(request.form["note"])
         SaveNote(product.Id, 'pr', cNote, 'replace')

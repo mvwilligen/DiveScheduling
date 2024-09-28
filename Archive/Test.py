@@ -1239,9 +1239,80 @@ cInstructors: {{ cInstructors|safe }}
 ###          
 ###          
              
-             
-             
-             
-             
-             
-             
+##################################################
+# source: https://www.w3schools.com/howto/howto_js_filter_lists.asp
+
+# <script>
+#     function myFunction() {
+#       // Declare variables
+#       var input, filter, ul, li, a, i, txtValue;
+#       input = document.getElementById('myInput');
+#       filter = input.value.toUpperCase();
+#       ul = document.getElementById("myUL");
+#       li = ul.getElementsByTagName('li');
+    
+#       // Loop through all list items, and hide those who don't match the search query
+#       for (i = 0; i < li.length; i++) {
+#         a = li[i].getElementsByTagName("a")[0];
+#         txtValue = a.textContent || a.innerText;
+#         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+#           li[i].style.display = "";
+#         } else {
+#           li[i].style.display = "none";
+#         }
+#       }
+#     }
+# </script>
+
+# <h3>users</h3><br>
+
+# <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+# <ul id="myUL">
+#     {% for u in users %}
+#         <li><a href="#">{{ u.Firstname }} {{ u.Lastname }}</a></li>
+#     {% endfor %}
+# </ul>
+
+
+# {% extends 'base.html' %}
+
+# {% block title %}
+# users
+# {% endblock %}
+
+# {% block content %}
+
+# <script>
+#     function myFunction() {
+#       // Declare variables
+#       var input, filter, ul, li, a, i, txtValue;
+#       input = document.getElementById('myInput');
+#       filter = input.value.toUpperCase();
+#       ul = document.getElementById("myUL");
+#       li = ul.getElementsByTagName('li');
+    
+#       // Loop through all list items, and hide those who don't match the search query
+#       for (i = 0; i < li.length; i++) {
+#         a = li[i].getElementsByTagName("a")[0];
+#         txtValue = a.textContent || a.innerText;
+#         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+#           li[i].style.display = "";
+#         } else {
+#           li[i].style.display = "none";
+#         }
+#       }
+#     }
+# </script>
+
+# <h3>users</h3><br>
+
+# <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+# <ul id="myUL">
+#     {% for u in users %}
+#         <li><a href="#">{{ u.Firstname }} {{ u.Lastname }}</a></li>
+#     {% endfor %}
+# </ul>
+
+# {% endblock %}

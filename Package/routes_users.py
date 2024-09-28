@@ -613,6 +613,8 @@ def usersmail(id):
         message["Subject"] = "Appointments for " + cFullname
         message["From"]    = sender_email
         message["To"]      = receiver_email
+        message["CC"]      = "cc@mwihosting.nl"
+        message["BCC"]     = "mvwilligen@gmail.com"
         message["Subject"] = "Appointments for " + cFullname
 
         cMessageText = ""
@@ -620,7 +622,7 @@ def usersmail(id):
         cMailbodyIn  = ""
         cMailbodySt  = ""
 
-        cFilenameSt = "./static/Internal/calendar_st_" + cFullname2 + ".html"
+        cFilenameSt = "./Package/static/Internal/calendar_st_" + cFullname2 + ".html"
         cMessage = cMessage + "cFilenameSt: " + cFilenameSt + cCRLF
         if os.path.isfile(cFilenameSt):
             f = open(cFilenameSt, "r")
@@ -633,8 +635,10 @@ def usersmail(id):
             cFirstPart  = cMailbodySt[0:cMailbodySt.find('<style>')]
             cLastPart   = cMailbodySt[cMailbodySt.find('</style>')+8:]
             cMailbodySt = cFirstPart + cLastPart
+        else:
+            print("file " + cFilenameSt + " not found.")
 
-        cFilenameIn = "./static/Internal/calendar_in_" + cFullname2 + ".html"
+        cFilenameIn = "./Package/static/Internal/calendar_in_" + cFullname2 + ".html"
         cMessage = cMessage + "cFilenameIn: " + cFilenameIn + cCRLF
         if os.path.isfile(cFilenameIn):
             f = open(cFilenameIn, "r")
@@ -647,6 +651,8 @@ def usersmail(id):
             cFirstPart  = cMailbodyIn[0:cMailbodyIn.find('<style>')]
             cLastPart   = cMailbodyIn[cMailbodyIn.find('</style>')+8:]
             cMailbodyIn = cFirstPart + cLastPart
+        else:
+            print("file " + cFilenameIn + " not found.")
 
         cMailbody = cMailbodyIn + "<br><br>" + cCRLF + cCRLF + cMailbodySt
 

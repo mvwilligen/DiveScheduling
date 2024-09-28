@@ -1,11 +1,85 @@
 {% extends 'base.html' %}
 
 {% block title %}
-calendar
+users
 {% endblock %}
 
 {% block content %}
-<h3>&nbsp;calendar</h3><br>
-{{ cHtml | safe }}
+
+<!-- source: https://stackoverflow.com/questions/9127498/how-to-perform-a-real-time-search-and-filter-on-a-html-table -->
+
+
+
+<h3>users</h3><br>
+
+<input id='myInput' onkeyup='search_table()' type='text'>
+
+<table id='table_id'>
+    {% for user in users %}
+    {% if (user.Id == lRBAC [2]) or ('staff' in lRBAC [1])  %}
+    <tr>
+        <td>{{ user.Username }}</td>
+        <td>{{ user.Firstname }}</td>
+        <td>{{ user.Lastname }}</td>
+        {% if 'staff' in lRBAC [1] %}
+        <td>{{ user.Phone }}</td>
+        <td>{{ user.Emailaddress }}</td>
+        <td>{{ user.Status }}</td>
+        {% endif %}
+        <td>
+            {% if (user.Id != 2) %}
+                {% if (user.Id > 2) or ('admin' in lRBAC [1]) %}
+                    {% if ('staff' in lRBAC [1]) %}
+                        <a class="btn btn-outline btn-info" href="{{ url_for('usersedit2', id = user.Id, cFrom = 'users' ) }} ">edit</a> 
+                        {% if ('admin' in lRBAC [1]) %}
+                            <a class="btn btn-outline btn-info" href="{{ url_for('userdelete', id = user.Id ) }} ">delete</a>
+                        {% endif %}
+                    {% endif %}
+                    <a class="btn btn-outline btn-info" href="{{ url_for('usersinfo', id = user.Id ) }} ">products</a> 
+                    {% if user.Emailaddress|length > 0 %}
+                        {% if ('student' in user.Status) or ('instructor' in user.Status) %}
+                            {% if ('admin' in lRBAC[1]) %}
+                                <a class="btn btn-outline btn-info" href="{{ url_for('usersmail', id = user.Id ) }} ">mail</a> 
+                                <a class="btn btn-outline btn-info" href="{{ url_for('usersnotes', id = user.Id ) }} ">notes</a> 
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                -
+            {% endif %}
+        </td>
+    </tr>
+    {% endif %}
+{% endfor %}
+</table>
+
+<script>
+function search_table(){
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table_id");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td") ; 
+    for(j=0 ; j<td.length ; j++)
+    {
+      let tdata = td[j] ;
+      if (tdata) {
+        if (tdata.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          break ; 
+        } else {
+          tr[i].style.display = "none";
+        }
+      } 
+    }
+  }
+}
+</script>
 
 {% endblock %}

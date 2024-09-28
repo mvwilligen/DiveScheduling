@@ -18,7 +18,6 @@ Hostname:   srv-crklkhm8ii6s738254m0-hibernate-b645c9895-8c5cg
 General remarks
 --------------------------------------------------------------------
 
-[v] header stationary
 [_] convert 'home/<date>/dsd' to 'general use', like an event, is an event a product? (like: 'dive and picnic')
 [_] light and dark mode
 [_] add tooltips
@@ -36,6 +35,7 @@ General remarks
 [?] sort and/or filter possible in lists?
 [?] action on click on lines?
 [v] style="border-radius: 5px; padding: 7px;"
+[v] header stationary
 
 
 --------------------------------------------------------------------

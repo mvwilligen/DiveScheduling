@@ -6,7 +6,16 @@ users
 
 {% block content %}
 
-<h3><b>&nbsp;users</b></h3>
+<table>
+    <tr>
+        <td>
+            <h3><b>&nbsp;users</b></h3>
+        </td>
+        <td style="text-align:right">
+            <img src="{{ url_for('static', filename='images/search.png') }}" width=20px  height=20px> <input id='myInput' onkeyup='search_table()' type='text'>
+        </td>
+    </tr>
+</table>
 
 {% if cMessage|length > 0 %}
 <br>
@@ -14,7 +23,35 @@ users
 <br>
 {% endif %}
 
-<table class="table table-hover table-dark tableFixHead">
+<script>
+    function search_table(){
+      // Declare variables 
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("table_users");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td") ; 
+        for(j=0 ; j<td.length ; j++)
+        {
+          let tdata = td[j] ;
+          if (tdata) {
+            if (tdata.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+              break ; 
+            } else {
+              tr[i].style.display = "none";
+            }
+          } 
+        }
+      }
+    }
+</script>
+
+<table id='table_users' class="table table-hover table-dark tableFixHead">
     <thead>
         <tr>
             <th scope="col" style='width:200px'>username</th>
