@@ -32,11 +32,11 @@ General remarks
 [_] correct location (top or bottom) in list and format of '[none]' and 'none'
 [_] appointments
 [?] pagination in lists
-[?] sort and/or filter possible in lists?
+[?] sort table
 [?] action on click on lines?
 [v] style="border-radius: 5px; padding: 7px;"
 [v] header stationary
-
+[v] filter table
 
 --------------------------------------------------------------------
 Testplan

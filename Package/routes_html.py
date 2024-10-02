@@ -608,12 +608,10 @@ def htmlexport():
     # copy static image files
     import shutil
     aFiles = []
-    #aFiles.append(['./Package/static/images/logo.png',     cFolderNameOSHtml     + 'logo.png'])
-    aFiles.append(['./Package/static/images/logo.png',     cFolderNameOSStaticInternal + 'logo.png'])
-    #aFiles.append(['./Package/static/images/calendar.png', cFolderNameOSHtml     + 'calendar.png'])
-    aFiles.append(['./Package/static/images/calendar.png', cFolderNameOSStaticInternal + 'calendar.png'])
-    #aFiles.append(['./Package/static/images/favicon.ico',  cFolderNameOSHtml     + 'favicon.ico'])
-    aFiles.append(['./Package/static/images/favicon.ico',  cFolderNameOSStaticInternal + 'favicon.ico'])
+    aFiles.append(['./Package/static/images/logo.png',      cFolderNameOSStaticInternal + 'logo.png'])
+    aFiles.append(['./Package/static/images/calendar.png',  cFolderNameOSStaticInternal + 'calendar.png'])
+    aFiles.append(['./Package/static/images/favicon.ico',   cFolderNameOSStaticInternal + 'favicon.ico'])
+    aFiles.append(['./Package/static/images/search_wb.svg', cFolderNameOSStaticInternal + 'search_wb.svg'])
 
     for f in aFiles:
         print(f[0], f[1])
