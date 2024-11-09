@@ -14,7 +14,7 @@ register user
             </h1>
             <br>
             {{ form.username.label() }}
-            {{ form.username(class="form-control", placeholder="username") }}
+            {{ form.username(class="form-control", placeholder="emailaddress") }}
 
             {{ form.firstname.label() }}
             {{ form.firstname(class="form-control", placeholder="firstname") }}
@@ -24,9 +24,6 @@ register user
 
             {{ form.phone.label() }}
             {{ form.phone(class="form-control", placeholder="phone") }}
-
-            {{ form.emailaddress.label() }}
-            {{ form.emailaddress(class="form-control", placeholder="emailaddress") }}
 
             {{ form.password1.label() }}
             {{ form.password1(class="form-control", placeholder="password1") }}

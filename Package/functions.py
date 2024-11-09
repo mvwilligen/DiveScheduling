@@ -5,6 +5,18 @@ import datetime
 from sqlalchemy import func, and_
 import socket
 
+################################################################################################################'
+
+ ######   ######## ########         ########  ########     ###     ######  
+##    ##  ##          ##            ##     ## ##     ##   ## ##   ##    ## 
+##        ##          ##            ##     ## ##     ##  ##   ##  ##       
+##   #### ######      ##            ########  ########  ##     ## ##       
+##    ##  ##          ##            ##   ##   ##     ## ######### ##       
+##    ##  ##          ##            ##    ##  ##     ## ##     ## ##    ## 
+ ######   ########    ##    ####### ##     ## ########  ##     ##  ######  
+
+################################################################################################################'
+
 def get_rbac(cPath):
 
     if current_user.is_authenticated:
@@ -21,9 +33,8 @@ def get_rbac(cPath):
         if len(cPath) > 0:
             lResult [5] = cPath
         lResult.append(socket.gethostname())                 # 6
-        lResult.append('0.9.3')                                # 7
-
-        return lResult
+        lResult.append('0.9.3')                              # 7 - version
+        lResult.append(False)                                # 8 - debug
     
     else:
         
@@ -34,9 +45,24 @@ def get_rbac(cPath):
         lResult.append('')                   # 4
         lResult.append('')                   # 5
         lResult.append(socket.gethostname()) # 6
-        lResult.append('')                                # 7
+        lResult.append('')                   # 7
+        lResult.append(False)                 # 8
 
-        return lResult
+    lResult.append(False)                 # 8
+
+    return lResult
+
+################################################################################################################'
+
+ ######  ######## ########  #### ##    ##  ######    #######   ######     ###    ######## ######## 
+##    ##    ##    ##     ##  ##  ###   ## ##    ##  ##     ## ##    ##   ## ##   ##       ##       
+##          ##    ##     ##  ##  ####  ## ##               ## ##        ##   ##  ##       ##       
+ ######     ##    ########   ##  ## ## ## ##   ####  #######   ######  ##     ## ######   ######   
+      ##    ##    ##   ##    ##  ##  #### ##    ##  ##              ## ######### ##       ##       
+##    ##    ##    ##    ##   ##  ##   ### ##    ##  ##        ##    ## ##     ## ##       ##       
+ ######     ##    ##     ## #### ##    ##  ######   #########  ######  ##     ## ##       ######## 
+
+################################################################################################################'
 
 def string2safe(text):
 
@@ -71,6 +97,17 @@ def no_access_text():
     cMessage = "Hello!"
     return (cText)
 
+################################################################################################################'
+
+ ######   ######## ######## ##    ##  #######  ######## ######## 
+##    ##  ##          ##    ###   ## ##     ##    ##    ##       
+##        ##          ##    ####  ## ##     ##    ##    ##       
+##   #### ######      ##    ## ## ## ##     ##    ##    ######   
+##    ##  ##          ##    ##  #### ##     ##    ##    ##       
+##    ##  ##          ##    ##   ### ##     ##    ##    ##       
+ ######   ########    ##    ##    ##  #######     ##    ######## 
+
+################################################################################################################'
 
 def GetNote(id, type):
 
@@ -112,6 +149,18 @@ def GetNote(id, type):
 
     return(cNote)
 
+################################################################################################################'
+
+ ######     ###    ##     ## ######## ##    ##  #######  ######## ######## 
+##    ##   ## ##   ##     ## ##       ###   ## ##     ##    ##    ##       
+##        ##   ##  ##     ## ##       ####  ## ##     ##    ##    ##       
+ ######  ##     ## ##     ## ######   ## ## ## ##     ##    ##    ######   
+      ## #########  ##   ##  ##       ##  #### ##     ##    ##    ##       
+##    ## ##     ##   ## ##   ##       ##   ### ##     ##    ##    ##       
+ ######  ##     ##    ###    ######## ##    ##  #######     ##    ######## 
+
+################################################################################################################'
+
 def SaveNote(id, type, text, action):
 
     # add after validation of input
@@ -132,11 +181,11 @@ def SaveNote(id, type, text, action):
         #  5   Datelastwritten = db.Column(db.DateTime(timezone=True))
         #  6   User            = db.Column(db.Integer(),                nullable=True, unique=False)
         #  7   Type            = db.Column(db.String(2) ,               nullable=True, unique=False) # st, re, ap, in, pr
-        #     Product         = db.Column(db.Integer(),                nullable=True, unique=False)
-        #     Appointment     = db.Column(db.Integer(),                nullable=True, unique=False)
-        #     Instructor      = db.Column(db.Integer(),                nullable=True, unique=False)
-        #     Studentrecord   = db.Column(db.Integer(),                nullable=True, unique=False)
-        #     Text            = db.Column(db.Text(),                   nullable=True, unique=False)
+        #      Product         = db.Column(db.Integer(),                nullable=True, unique=False)
+        #      Appointment     = db.Column(db.Integer(),                nullable=True, unique=False)
+        #      Instructor      = db.Column(db.Integer(),                nullable=True, unique=False)
+        #      Studentrecord   = db.Column(db.Integer(),                nullable=True, unique=False)
+        #      Text            = db.Column(db.Text(),                   nullable=True, unique=False)
 
         #print('params: ', id, type, text[0:10], action)
         note = Notes.query.where(and_((Notes.User == id),(Notes.Type == type))).first()
@@ -169,3 +218,4 @@ def SaveNote(id, type, text, action):
     #print('--- finish savenote ------------------------------')
 
     return('')
+

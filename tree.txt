@@ -1,0 +1,11 @@
+DiveScheduling---+---Archive
+                 +---Exports
+                 +---Include
+                 +---instance
+                 +---Package
+                 ¦   +---static
+                 ¦   ¦   +---images
+                 ¦   ¦   +---Internal
+                 ¦   +---templates
+                 +---Scripts
+                     +---Scripts

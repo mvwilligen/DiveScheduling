@@ -7,7 +7,7 @@ from flask_login import current_user
 
 from Package.functions import get_rbac, no_access_text, GetNote, SaveNote, string2safe
 
-from Package.forms import AppointmentsEditForm, LoginForm, ProductsEditForm, ProductsUsersForm, ProductsNewForm, UsersRegisterForm, UsersInfoForm, UsersEditForm2, UsersProductForm2, AppointmentsDateForm2
+from Package.forms import AppointmentsEditForm, LoginForm, ProductsEditForm, ProductsUsersForm, ProductsNewForm, UsersRegisterForm, UsersInfoForm, UsersEditForm2, UsersProductForm2, AppointmentsDateForm2, UsersProductNext
 
 import datetime
 from datetime import timedelta
@@ -524,22 +524,40 @@ def usersinfo(id):
                 part = ""
                 t = 0
 
-                for b in parts:
-                    if b == ":":
+                # 20241108 - disabled adding all lessons
+                # for b in parts:
+                #     if b == ":":
 
-                        nDateTo  = nDateTo + timedelta(days = 7)
-                        nYearTo  = nDateTo.year  # nYearTo  = nDateTo.year
-                        nMonthTo = nDateTo.month # nMonthTo = nDateTo.month
-                        nDayTo   = nDateTo.day   # nDateTo.day + t
+                #         nDateTo  = nDateTo + timedelta(days = 7)
+                #         nYearTo  = nDateTo.year  # nYearTo  = nDateTo.year
+                #         nMonthTo = nDateTo.month # nMonthTo = nDateTo.month
+                #         nDayTo   = nDateTo.day   # nDateTo.day + t
 
-                        date0 = datetime.datetime.combine(datetime.date(nYearTo, nMonthTo, nDayTo), datetime.time(20,00))
-                        A0 = Appointments(User = id, Product = p.Id, Part = part, Date = date0, Staff = 1, Assistants = '')
-                        db.session.add(A0)
-                        db.session.commit()
-                        part = ""
-                        t = t + 7
-                    else:
-                        part = part + b
+                #         date0 = datetime.datetime.combine(datetime.date(nYearTo, nMonthTo, nDayTo), datetime.time(20,00))
+                #         A0 = Appointments(User = id, Product = p.Id, Part = part, Date = date0, Staff = 1, Assistants = '')
+                #         db.session.add(A0)
+                #         db.session.commit()
+                #         part = ""
+                #         t = t + 7
+                #     else:
+                #         part = part + b
+
+                nDateTo  = nDateTo + timedelta(days = 7)
+                nYearTo  = nDateTo.year  # nYearTo  = nDateTo.year
+                nMonthTo = nDateTo.month # nMonthTo = nDateTo.month
+                nDayTo   = nDateTo.day   # nDateTo.day + t
+
+                parts = p.Parts
+                nDivider = parts.find(":")
+                if nDivider > 0:
+                    part = parts[0:nDivider]
+                else:
+                    part = parts
+
+                date0 = datetime.datetime.combine(datetime.date(nYearTo, nMonthTo, nDayTo), datetime.time(20,00))
+                A0 = Appointments(User = id, Product = p.Id, Part = part, Date = date0, Staff = 1, Assistants = '')
+                db.session.add(A0)
+                db.session.commit()
 
         x.Info       = cInfo + cStatus
         db.session.commit()
@@ -914,6 +932,116 @@ def usersproduct2(id, cFrom):
 
 #------------------------------------------------------------------------------------------
 
+##     ##  ######  ######## ########   ######  ########  ########   #######  ########  ##     ##  ######  ########  ######  ##    ## ######## ##     ## ######## 
+##     ## ##    ## ##       ##     ## ##    ## ##     ## ##     ## ##     ## ##     ## ##     ## ##    ##    ##    ##    ## ###   ## ##        ##   ##     ##    
+##     ## ##       ##       ##     ## ##       ##     ## ##     ## ##     ## ##     ## ##     ## ##          ##    ##       ####  ## ##         ## ##      ##    
+##     ##  ######  ######   ########   ######  ########  ########  ##     ## ##     ## ##     ## ##          ##     ######  ## ## ## ######      ###       ##    
+##     ##       ## ##       ##   ##         ## ##        ##   ##   ##     ## ##     ## ##     ## ##          ##          ## ##  #### ##         ## ##      ##    
+##     ## ##    ## ##       ##    ##  ##    ## ##        ##    ##  ##     ## ##     ## ##     ## ##    ##    ##    ##    ## ##   ### ##        ##   ##     ##    
+ #######   ######  ######## ##     ##  ######  ##        ##     ##  #######  ########   #######   ######     ##     ######  ##    ## ######## ##     ##    ##    
+
+@app.route('/usersproductnext/<id>/<cFrom>/', methods=['GET', 'POST'])
+def usersproductnext(id, cFrom):
+
+    print("id: ", id)
+
+    if current_user.is_anonymous:
+        return (no_access_text())
+
+    #                                          0                1                  2                3               4                     5                  6                  7                   8                 9               10                    11
+    appointment = db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name, Instructors.Id, Appointments.Product, Appointments.Assistants). \
+                                order_by(Appointments.Date). \
+                                filter(Appointments.Id == id). \
+                                join(Users,       Appointments.User    == Users.Id). \
+                                join(Instructors, Appointments.Staff   == Instructors.Id). \
+                                join(Products,    Appointments.Product == Products.Id) ).one()
+
+    print("type(appointment): ", type(appointment))
+
+    form = UsersProductNext()
+
+    user     = appointment.User
+    nProduct = appointment.Product
+    cPart    = appointment.Part
+    print("user: ", user)
+    print("cPart: ", cPart)
+
+    nPrevUser = user
+
+    cPart = appointment.Part
+
+    # get parts from product
+    product = db.session.execute(db.select(Products).filter_by(Id=nProduct)).scalar_one()
+
+    cParts = product.Parts
+    print("parts: " , cParts)
+
+    nCurrentPart = cParts.find(cPart)
+
+    print("nCurrentPart: ", nCurrentPart)
+    cNextCurrentPart = cParts[nCurrentPart+len(cPart)+1:]
+    print("cNextCurrentPart: ", cNextCurrentPart)
+    nNextColon = cNextCurrentPart.find(":")
+    print("nNextColon: ", nNextColon)
+    if nNextColon > 0:
+        cNextCurrentPart = cNextCurrentPart[:nNextColon]
+
+    print("cNextCurrentPart: ", cNextCurrentPart)
+
+    lTemp = cParts.split(":")
+
+    aParts = []
+    for l in lTemp:
+        aParts.append([l, ""])
+
+    #if cFrom == 'usersinfo':
+    #    return redirect(url_for('usersinfo', id = nPrevUser))
+
+    if form.validate_on_submit():
+
+        print('validated')
+
+        if request.form.get('cancel') == 'cancel':
+            print('cancel')
+
+            if cFrom == 'usersinfo':
+                return redirect(url_for('usersinfo', id = nPrevUser))
+
+            return redirect(url_for('users'))
+
+        cDateValue = request.form.get("date")         # formatted input
+        cTimeValue = request.form.get("time")         # formatted input
+
+        print("date: ", cDateValue, " time: ", cTimeValue)
+
+        for a in aParts:
+           cValue = chr(34) + "part-" + a[0] + chr(34)
+           # print("cValue: ", cValue)
+           cFormValue = request.form.get(eval(cValue))
+           # print("cValue: ", cValue, " cFormValue: ", cFormValue)
+           if cFormValue is not None:
+                print("saving appointment")
+                nYearTo   = int(cDateValue[0:4])
+                nMonthTo  = int(cDateValue[5:7])
+                nDayTo    = int(cDateValue[8:10])
+                nHourTo   = int(cTimeValue[0:2])
+                nMinuteTo = int(cTimeValue[3:5])
+                print(nYearTo,"-", nMonthTo,"-", nDayTo," ", nHourTo,":", nMinuteTo)
+                date0 = datetime.datetime.combine(datetime.date(nYearTo, nMonthTo, nDayTo), datetime.time(nHourTo,nMinuteTo))
+                A0 = Appointments(User = user, Product = nProduct, Part = a[0], Date = date0, Staff = 1, Assistants = '')
+                db.session.add(A0)
+                db.session.commit()
+
+
+        return redirect(url_for('usersinfo', id = nPrevUser))
+
+    lRBAC = get_rbac(request.url_rule.endpoint)
+
+    return render_template('usersproductnext.html', aParts = aParts , cNextCurrentPart = cNextCurrentPart, appointment = appointment, lRBAC = lRBAC, form=form)
+
+
+#------------------------------------------------------------------------------------------
+
 ##     ##  ######  ######## ########   ######  ########  ########  ######   ####  ######  ######## ######## ########  
 ##     ## ##    ## ##       ##     ## ##    ## ##     ## ##       ##    ##   ##  ##    ##    ##    ##       ##     ## 
 ##     ## ##       ##       ##     ## ##       ##     ## ##       ##         ##  ##          ##    ##       ##     ## 
@@ -942,11 +1070,11 @@ def usersregister():
                                 Firstname    = form.firstname.data,
                                 Lastname     = form.lastname.data,
                                 Phone        = form.phone.data,
-                                Emailaddress = form.emailaddress.data,
+                                Emailaddress = form.username.data,
                                 Passwordhash = pw_hash,
                                 Active       = True,
                                 Info         = cInfo,
-                                Status       = "new")
+                                Status       = "new" )
         
         db.session.add(user_to_create)
         db.session.commit()

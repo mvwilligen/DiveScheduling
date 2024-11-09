@@ -6,7 +6,21 @@ support
 
 {% block content %}
 <style>
-	td { text-align:left; vertical-align:top; padding-left:5px;padding-right:5px;padding-bottom:5px;padding-top:5px; }
+	
+	td { 
+		text-align:left; 
+		vertical-align:top; 
+		padding-left:5px;
+		padding-right:5px;
+		padding-bottom:5px;
+		padding-top:5px; 
+	}
+	* { 
+		margin:0px; 
+		padding:0px; 
+		border:0px 
+	}
+
 </style>
 		
 <h3>&nbsp;support</h3>
@@ -27,28 +41,121 @@ welcome to the support section of DiveScheduling.
 <h4><b>some variables...</b></h4><br>
 <a href="#top">[top]<a><br>
 	<table>
-<tr style='border-top: 1pt solid white; border-bottom: 1pt solid white;'><td><b>current_user</b></td><td>values</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>	<td><b>lRBAC</b></td><td>values</td>	<td>tbd</td><td>values</td>	</tr>
-<tr><td>current_user.Username</td><td>{{ current_user.Username }}</td><td></td>	<td>lRBAC[0]</td><td>{{ lRBAC[0] }}</td><td>OS version</td><td>{ { os.name }}</td></tr>
-<tr><td>current_user.is_active</td><td>{% if current_user.is_active %}true{% else %}false{% endif %}</td><td></td>	<td>lRBAC[1]</td><td>{{ lRBAC[1] }}</td><td>sys.platform</td><td>{ { sys.platform }}</td></tr>
-<tr><td>current_user.is_authenticated</td><td>{% if current_user.is_authenticated %}true{% else %}false{% endif %}</td><td></td>	<td>lRBAC[2]</td><td>{{ lRBAC[2] }}</td><td>platform.system()</td><td>{ { platform.system() }}</td></tr>
-<tr><td>current_user.is_anonymous</td><td>{% if current_user.is_anonymous %}true{% else %}false{% endif %}</td><td></td>	<td>lRBAC[3]</td><td>{{ lRBAC[3] }}</td><td>platform.release()</td><td>{ { platform.release() }}</td></tr>
-<tr><td>current_user.get_id</td><td>{% if current_user.get_id %}true{% else %}false{% endif %}</td><td></td>	<td>lRBAC[4]</td><td>{{ lRBAC[4] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>platform.version()</td><td>{ { platform.version() }}</td></tr>
-<tr><td>&nbsp;</td><td></td><td></td><td>lRBAC[5]</td><td>{{ lRBAC[5] }}</td><td>platform.platform()</td><td>{ { platform.platform() }}</td></tr><tr><td></td><td></td><td></td><td>lRBAC[6]</td><td>{{ lRBAC[6] }}</td><td>Python version</td><td>{ { sys.version }}</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>socket.gethostname()</td><td>{ { socket.gethostname() }}</td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td>app</td><td>{ { app }}</td></tr>
-<tr style='border-top: 1pt solid white;'><td>&nbsp;</td><td></td>
+<tr style='border-top: 1pt solid white; border-bottom: 1pt solid white;'>
+	<td><b>current_user</b></td>
+	<td>values</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td><b>lRBAC</b></td>
+	<td>values</td>
+	<td>tbd</td>
+	<td>values</td>
+</tr>
+<tr>
+	<td>current_user.Username</td>
+	<td>{{ current_user.Username }}</td>
+	<td></td>	
+	<td>lRBAC[0]</td><td>{{ lRBAC[0] }}</td>
+	<td>OS version</td><td>{ { os.name }}</td>
+</tr>
+<tr>
+	<td>current_user.is_active</td>
+	<td>{% if current_user.is_active %}true{% else %}false{% endif %}</td>
+	<td></td>	
+	<td>lRBAC[1]</td>
+	<td>{{ lRBAC[1] }}</td>
+	<td>sys.platform</td>
+	<td>{ { sys.platform }}</td>
+</tr>
+<tr>
+	<td>current_user.is_authenticated</td>
+	<td>{% if current_user.is_authenticated %}true{% else %}false{% endif %}</td>
+	<td></td>	
+	<td>lRBAC[2]</td><td>{{ lRBAC[2] }}</td>
+	<td>platform.system()</td>
+	<td>{ { platform.system() }}</td>
+</tr>
+<tr>
+	<td>current_user.is_anonymous</td>
+	<td>{% if current_user.is_anonymous %}true{% else %}false{% endif %}</td>
+	<td></td>	
+	<td>lRBAC[3]</td><td>{{ lRBAC[3] }}</td>
+	<td>platform.release()</td>
+	<td>{ { platform.release() }}</td>
+</tr>
+<tr>
+	<td>current_user.get_id</td>
+	<td>{% if current_user.get_id %}true{% else %}false{% endif %}</td>
+	<td></td>	
+	<td>lRBAC[4]</td><td>{{ lRBAC[4] }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td>platform.version()</td>
+	<td>{ { platform.version() }}</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td></td>
+	<td></td>
+	<td>lRBAC[5]</td>
+	<td>{{ lRBAC[5] }}</td>
+	<td>platform.platform()</td>
+	<td>{ { platform.platform() }}</td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>lRBAC[6]</td>
+	<td>{{ lRBAC[6] }}</td>
+	<td>Python version</td><td>{ { sys.version }}</td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>socket.gethostname()</td>
+	<td>{ { socket.gethostname() }}</td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>app</td><td>{ { app }}</td>
+</tr>
+<tr style='border-top: 1pt solid white;'>
+	<td>&nbsp;</td>
+	<td></td>
 </table
 <br>
 
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-</style>
+
 
 </head>
+
 <body style="font-family:verdana">
 <main id="todo"></main>
+
+<h3><class="p2"><b>Go live...</b></p></h3>
+[_] HTTPS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[v] SSL?<br>
+[_] login with emailadress<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[v] registration form<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[v] inlog form<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] confirm emailadress by owner<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] login confirmation by MFA emailadress<br>
+[v] disable auto complete course<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[v] enable next part of course<br>
+<br>
+<br>
+<br>
+[_] <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] <br>
+<br><br><br>
 <h3><class="p2"><b>TODO</b></p></h3>
 <a href="#top">[top]<a><br>
 <font color="red"><b>[_] status is being cleared</b></font><br>
@@ -66,6 +173,7 @@ welcome to the support section of DiveScheduling.
 &nbsp;&nbsp;&nbsp;&nbsp;[v] anonimize data<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[v] git - updates?<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[_] external syslog-server<br>
+[_] incoorporate logo in mail<br>
 <br>
 <br>
 <main id="wishlist"></main>
@@ -143,15 +251,14 @@ welcome to the support section of DiveScheduling.
 &nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] Test: RaspberryPi</font><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<font color='green'>[v] Acc: render.com</font><br>
 20240924<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[ ] Prod: proper hosting provider<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] antagonist<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[v] Prod: proper hosting provider<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[v] antagonist, 'Plus', Python available and tested<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] weboke<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] render ($20/monthly)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] <a href="https://www.pythonanywhere.com" target="_blank>pythonanywhere.com $5/month</a>"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] render ($20/monthly)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x] <a href="https://www.pythonanywhere.com" target="_blank>pythonanywhere.com $5/month</a>"<br>
 <font color='green'>[v] move array status to table</font><br>
 <font color='green'>[v] cleanup: delete all appointments and all ap-notes</font><br>
 <font color='green'>[v] update template cache</font><br>
-
 <br>
 <main id="bugs"></main>
 <h1><p class="p2">Bugs</p></h1>
@@ -296,13 +403,13 @@ no showstopping bugs at the moment :-D</font><br>
 <main id="challenges"></main>
 <h4><b>Challenges</b></h4>
 <a href="#top">[top]<a><br>
-	- datetime<br>
-- joins\relationships<br>
-- variable in jinja2 loop<br>
-- data from sql query to form<br>
-- instructors<br>
-- imports/froms<br>
-- login<br>
+<a>- datetime</a><br>
+<a>- joins\relationships</a><br>
+<a>- variable in jinja2 loop</a><br>
+<a>- data from sql query to form</a><br>
+<a>- instructors</a><br>
+<a>- imports/froms</a><br>
+<a>- login</a><br>
 <br>
 <br>
 <br>
@@ -583,6 +690,9 @@ Press CTRL+C to quit<br>
 <br>
 <br>
 <br>
+
+<!-- only for user 'Admin' -->
+This option removes all appointments without asking for confirmation... Tread very carefully...
 
 {% if 'Admin' in lRBAC[0] %}
     <a class="btn btn-outline btn-info" href="{{ url_for('cleanupallappointments') }}" target='_blank'>cleanup all appointments</a>

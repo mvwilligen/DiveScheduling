@@ -40,7 +40,7 @@ UserInfo
     
                 {% for appointment in appointments %}
                 <tr>
-                    <td>{{ appointment [6].strftime('%d-%m-%Y') }}</td>
+                    <td>{{ appointment [6].strftime('%d-%m-%Y') }} {{ appointment [6].strftime('%H-%M') }}</td>
                     <td>{{ appointment [2] + ' ' + appointment [3] }}</td>
                     <td>{{ appointment [4] }}</td>
                     <td>{{ appointment [5] }}</td>
@@ -49,16 +49,17 @@ UserInfo
                     <td> 
                         <!-- RBAC filter -->
                         {% if (('staff' in lRBAC [1]) and (appointment [6] >= lRBAC [4] )) or ('admin' in lRBAC [1]) %}
-                            <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsedit', id = appointment.Id, cFrom = 'usersinfo' ) }} ">edit</a> 
-                            <a class="btn btn-outline btn-info" href="{{ url_for('appointmentsdelete', id = appointment.Id, cFrom = 'usersinfo' ) }} ">del</a> 
+                            <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('appointmentsedit', id = appointment.Id, cFrom = 'usersinfo' ) }} ">edit</a> 
+                            <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('appointmentsdelete', id = appointment.Id, cFrom = 'usersinfo' ) }} ">del</a> 
                         {% endif %}
                         {% if ('staff' in lRBAC [1]) or ('admin' in lRBAC [1]) %}
                             <!-- show one form per product -->
                             {% if ("[" + appointment [4]|string() + "]" not in cProducts.value|string() ) %}
-                                <a class="btn btn-outline btn-info" href="{{ url_for('usersproduct2', id = appointment.Id, cFrom = 'usersinfo' ) }} ">form</a> 
+                                <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('usersproduct2', id = appointment.Id, cFrom = 'usersinfo' ) }} ">form</a> 
                                 {% set cProducts.value = cProducts.value + "[" + appointment [4] + "]" %}
                             {% endif %}                                       
                         {% endif %}
+                        <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('usersproductnext', id = appointment.Id, cFrom = 'usersinfo' ) }} ">next</a> 
                     </td>
                 </tr>
                 {% endfor %}
@@ -80,12 +81,8 @@ UserInfo
     <br>
     <table style="width:350px">
         <tr>
-            <td></td>
-            <td style="width:100px">
-                {{ form.save(class="btn btn-lg btn-block btn-primary") }}
-            </td>
-            <td  style="width:100px">
-                {{ form.cancel(class="btn btn-lg btn-block btn-primary") }}
+            <td style="width:50px">
+                {{ form.save(class="btn btn-primary") }} {{ form.cancel(class="btn btn-primary") }}
             </td>
         </tr>
     </table>

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}
+register user
+{% endblock %}
+
+{% block content %}
+
+{% set cDate = namespace(value = lRBAC[4].strftime('%Y-%m-%d')) %}
+{% set cTime = namespace(value = "20:00") %}
+
+        <form method="post">
+            {{ form.hidden_tag() }}
+                    
+            
+            <table style="width:400px">
+                <tr style="width:150px">
+                    <td style="width:50px">
+                        <b>student</b>
+                    </td>
+                    <td style="width:250px">
+                        {{ appointment [2] }} {{ appointment [3] }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>product</b>
+                    </td>
+                    <td>
+                        {{ appointment [4] }} ({{ cNextCurrentPart }})
+                    </td>
+                </tr>
+
+                {% for a in aParts %}
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <input type="checkbox" name="part-{{ a[0] }}" id="part-{{ a[0] }}" value="part-{{ a[0] }}"
+                         
+                        {% if cNextCurrentPart == a[0] %}
+                            checked
+                        {% endif %}
+                         
+                        >&nbsp;{{ a[0] }}  {{ a[1] }}
+                    </td>
+                </tr>
+                {% endfor %}
+
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <input type="date" name="date" id="date" value="{{ cDate.value|string() }}" class="form-control">
+                </tr>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <input type="time" name="time" id="time" value="{{ cTime.value|string() }}" class="form-control">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:50px">
+                    </td>
+                    <td style="width:50px">
+                        {{ form.save(class="btn btn-primary") }} {{ form.cancel(class="btn btn-primary") }}
+                    </td>
+                </tr>
+            </table>
+            
+        </form>
+
+{% endblock %}
+

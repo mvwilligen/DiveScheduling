@@ -12,14 +12,29 @@
 
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
-        </p>
-        <p>{{ form.submit() }}</p>
+
+        <table>
+            <tr>
+                <td style="width:200px">
+                    <div class="w-25 row">
+                    {{ form.username(cols=32, class="form-control", placeholder="emailaddress") }}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="w-25 row">
+                        {{ form.password(cols=32, class="form-control", placeholder="password") }}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="w-10 row">
+                        {{ form.submit() }}
+                    </div>
+                </td>
+            </tr>
+        </table>
     </form>
 {% endblock %}

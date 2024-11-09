@@ -78,17 +78,17 @@ users
                     {% if (user.Id != 2) %}
                         {% if (user.Id > 2) or ('admin' in lRBAC [1]) %}
                             {% if ('staff' in lRBAC [1]) %}
-                                <a class="btn btn-outline btn-info" href="{{ url_for('usersedit2', id = user.Id, cFrom = 'users' ) }} ">edit</a> 
+                                <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('usersedit2', id = user.Id, cFrom = 'users' ) }} ">edit</a> 
                                 {% if ('admin' in lRBAC [1]) %}
-                                    <a class="btn btn-outline btn-info" href="{{ url_for('userdelete', id = user.Id ) }} ">delete</a>
+                                    <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('userdelete', id = user.Id ) }} ">delete</a>
                                 {% endif %}
                             {% endif %}
-                            <a class="btn btn-outline btn-info" href="{{ url_for('usersinfo', id = user.Id ) }} ">products</a> 
+                            <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('usersinfo', id = user.Id ) }} ">products</a> 
                             {% if user.Emailaddress|length > 0 %}
                                 {% if ('student' in user.Status) or ('instructor' in user.Status) %}
                                     {% if ('admin' in lRBAC[1]) %}
-                                        <a class="btn btn-outline btn-info" href="{{ url_for('usersmail', id = user.Id ) }} ">mail</a> 
-                                        <a class="btn btn-outline btn-info" href="{{ url_for('usersnotes', id = user.Id ) }} ">notes</a> 
+                                        <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('usersmail', id = user.Id ) }} ">mail</a> 
+                                        <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('usersnotes', id = user.Id ) }} ">notes</a> 
                                     {% endif %}
                                 {% endif %}
                             {% endif %}

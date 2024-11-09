@@ -115,11 +115,11 @@ class UsersRegisterForm(FlaskForm):
         if user:
             raise ValidationError('Username already exists, please assign a different username')
 
-    username     = StringField(label   = 'username', validators = [Length(min = 2, max = 30), DataRequired()])
+    username     = StringField(label   = 'username' , validators = [Email()]) # , validators = [Length(min = 2, max = 30), DataRequired()])
     firstname    = StringField(label   = 'firstname', validators = [DataRequired()])
     lastname     = StringField(label   = 'lastname', validators = [DataRequired()])
     phone        = StringField(label   = 'phone')
-    emailaddress = StringField(label   = 'emailaddress', validators = [Email()])
+    # emailaddress = StringField(label   = 'emailaddress', validators = [Email()])
     password1    = PasswordField(label = 'password1', validators = [Length(min = 8)])
     password2    = PasswordField(label = 'password2', validators = [EqualTo('password1')])
 
@@ -150,3 +150,9 @@ class UsersProductForm2(FlaskForm):
     
     save         = SubmitField(label   = 'save')
     cancel       = SubmitField(label   = 'cancel')
+
+class UsersProductNext(FlaskForm):
+        
+    save         = SubmitField(label   = 'save')
+    cancel       = SubmitField(label   = 'cancel')
+

