@@ -661,6 +661,8 @@ def htmlexport():
 
 @app.route('/ftp/')
 def ftp():
+    
+    lRBAC = get_rbac(request.url_rule.endpoint)    
 
     # inspiration: https://pythonprogramming.net/ftp-transfers-python-ftplib/
 

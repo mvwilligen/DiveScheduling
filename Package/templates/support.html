@@ -691,10 +691,10 @@ Press CTRL+C to quit<br>
 <br>
 <br>
 
-<!-- only for user 'Admin' -->
-This option removes all appointments without asking for confirmation... Tread very carefully...
-
 {% if 'Admin' in lRBAC[0] %}
+    <!-- only for user 'Admin' -->
+    This option removes all appointments without asking for confirmation... Tread very carefully...
+
     <a class="btn btn-outline btn-info" href="{{ url_for('cleanupallappointments') }}" target='_blank'>cleanup all appointments</a>
 {% endif %}
 

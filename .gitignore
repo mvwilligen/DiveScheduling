@@ -3,6 +3,7 @@
 Archive/
 Exports/
 Export2Website/
+venv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

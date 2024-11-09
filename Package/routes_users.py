@@ -89,7 +89,7 @@ def userdelete(id):
 
     lRBAC = get_rbac(request.url_rule.endpoint) 
 
-    return render_template(url_for('users'), lRBAC = lRBAC)
+    return redirect(url_for('users'))
 
 #------------------------------------------------------------------------------------------
 

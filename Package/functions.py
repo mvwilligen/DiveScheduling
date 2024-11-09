@@ -33,7 +33,7 @@ def get_rbac(cPath):
         if len(cPath) > 0:
             lResult [5] = cPath
         lResult.append(socket.gethostname())                 # 6
-        lResult.append('0.9.3')                              # 7 - version
+        lResult.append('1.0.0')                              # 7 - version
         lResult.append(False)                                # 8 - debug
     
     else:

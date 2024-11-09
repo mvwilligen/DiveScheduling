@@ -80,7 +80,9 @@ users
                             {% if ('staff' in lRBAC [1]) %}
                                 <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('usersedit2', id = user.Id, cFrom = 'users' ) }} ">edit</a> 
                                 {% if ('admin' in lRBAC [1]) %}
-                                    <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('userdelete', id = user.Id ) }} ">delete</a>
+                                    {% if (user.Id > 3) %}
+                                        <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('userdelete', id = user.Id ) }} ">delete</a>
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}
                             <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('usersinfo', id = user.Id ) }} ">products</a> 
