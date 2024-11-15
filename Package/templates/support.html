@@ -693,12 +693,182 @@ Press CTRL+C to quit<br>
 
 {% if 'Admin' in lRBAC[0] %}
     <!-- only for user 'Admin' -->
-    This option removes all appointments without asking for confirmation... Tread very carefully...
+    This option removes all appointments or products without asking for confirmation... Tread very carefully...
 
     <a class="btn btn-outline btn-info" href="{{ url_for('cleanupallappointments') }}" target='_blank'>cleanup all appointments</a>
+    <a class="btn btn-outline btn-info" href="{{ url_for('cleanupallproducts') }}" target='_blank'>cleanup all products</a>
 {% endif %}
+<br>
+#################################################################################################<br>
+<a href="#top">[top]<a><br>
+	<br>
+<h2>publish to antagonist.nl</h2><br>
+<br>
+<br>
+help: https://help.antagonist.nl/hc/nl/articles/8524034445073-Hoe-maak-je-een-webapplicatie-aan-met-de-Python-selector<br>
+<br>
+[_] git add.|git commit |git push DiveScheduling main<br>
+[_] Export2Website.bat CleanerDB<br>
+[_] https://antagonist.nl<br>
+[_] ____ login<br>
+[_] ____ mijn antaginist.nl<br>
+[_] ____ laura.maissan@gmail.com<br>
+[_] https://mijn.antagonist.nl/<br>
+[_] ____ producten<br>
+[_] ____ maidiving.nl - beheren<br>
+[_] ____ hostingpakket beherer<br>
+[_] https://s226.webhostingserver.nl:2222/evo/<br>
+[_] ____ domain: maidiving.nl<br>
+[_] ____ downloaded backups from 'Installatron'<br>
+[_] ____ '+ Extra Features\Python Selector'<br>
+[_] ____ created folder '/domains/maidiving.nl/divescheduler'<br>
+[_] ____ 'Create Application'<br>
+[_] ____ ____ Python version 3.11.10 (recommended)<br>
+[_] ____ ____ Application root: /home/deb67748/domains/maidiving.nl/apps/divescheduler<br>
+[_] ____ ____ Application URL:  maidiving.nl divescheduler<br>
+[_] ____ ____ Application startup file: passenger_wsgi.py<br>
+[_] ____ ____ Application Entry point: leeg laten!<br>
+[_] ____ ____ Passenger log file: /home/deb67748 /apps/divescheduler/logs<br>
+[_] SSH<br>
+[_] ____ https://help.antagonist.nl/hc/nl/articles/8524049041041-Hoe-kan-ik-met-SSH-verbinden<br>
+[_] ____ https://s226.webhostingserver.nl/<br>
+[_] ____ https://s226.webhostingserver.nl:2223/evo/user/plugins/ssh<br>
+[_] ____ 20241109: 31.151.235.150<br>
+[_] ____ venv: source /home/deb67748/virtualenv/domains/maidiving.nl/apps/divescheduler/3.11/bin/activate && cd /home/deb67748/domains/maidiving.nl/apps/divescheduler<br>
+<br>
+file: /home/minjoilr/d/pip_installs.py<br>
+#-------------------------------------------------------<br>
+pip install --upgrade pip<br>
+pip install -U Flask<br>
+pip install -U Flask-SQLAlchemy<br>
+pip install Flask-WTF<br>
+pip install email-validator<br>
+pip install Flask-Login<br>
+pip install python-dotenv<br>
+pip install Flask-Mailman<br>
+pip install Flask-Bcrypt<br>
+<br>
+<br>
+/home/minjoilr/d/pip_installs/pip-24.3.1/setup.py<br>
+/home/minjoilr/d/pip_installs/flask-app-1.0.1/setup.py<br>
+/home/minjoilr/d/pip_installs/Flask-SQLAlchemy-0.11/setup.py<br>
+<br>
+[_] copy files to webserver<br>
+[_] move files on webserver to app-folder<br>
+[_] <br>
+[_] <br>
+[_] <br>
+[_] <br>
+[_] <br>
+[_] <br>
+<br>
+------------------------------------------------------------------------<br>
+possible urls<br>
+------------------------------------------------------------------------<br>
+http:/141.138.169.226:8080<br>
+http://s226.webhostingserver.nl:8080/<br>
+http://www.maidiving.nl:8080/<br>
+http://www.maidiving.nl:8080/divescheduler<br>
+http://www.maidiving.nl/divescheduler   -->  https://www.maidiving.nl/wp-login.php<br>
+http://www.maidiving.nl/divescheduler/login<br>
+<br>
+<br>
+source: https://www.inmotionhosting.com/support/edu/wordpress/set-wordpress-to-ignore-a-file-path/<br>
+file: https://s226.webhostingserver.nl:2222/HTM_FILE_MANAGER_EDIT?path=/domains/maidiving.nl/public_html/.htaccess<br>
+# [start] added 20241101 - 2001 - MvW - for divescheduler<br>
+RewriteCond $1 !^(/divescheduler)<br>
+# [end]<br>
+<br>
+<br>
+https://s226.webhostingserver.nl:2222/CMD_FILE_MANAGER?path=/domains/maidiving.nl/apps/divescheduler<br>
+<br>
+<br>
+<br>
+############################################################################################<br>
+<a href="#top">[top]<a><br>
+	<br>
+<h2>publish to MWIhosting.nl</h2><br>
+<br>
+https://linux2020.webawere.nl:2222/evo/<br>
++ Extra Features  <br>
+    Setup Python App<br>
+        + Create Application<br>
+		    Python version: 3.11.10<br>
+		    Application Root: divescheduling<br>
+			Application URL: mwihosting.nl divescheduling<br>
+			Application startup file: passenger_wsgi.py<br>
+			<added environment variables><br>
+<br>
+			venv: source /home/minjoilr/virtualenv/divescheduling/3.11/bin/activate && cd /home/minjoilr/divescheduling<br>
+<br>
+			uploaded source and db<br>
+<br>
+Result: no terminal available. Msg old version pip.<br>
+<br>
+<br>
+<br>
+##########################################################################################<br>
+<a href="#top">[top]<a><br>
+<br>
+<h2>Publish to IDCrotterdam.nl</h2><br>
+<br>
+- antagonist.nl<br>
+-     mijn antagonist<br>
+-         laura.maissan@gmail.com<br>
+-         producten<br>
+-         beheren<br>
+-         hostingpakket beheren<br>
+-         domain: idcrotterdam.nl<br>
+-         + extra Features<br>
+-             python Selector<br>
+                    - create application<br>
+				        - Python version: 3.12.6<br>
+					    - application root: ds<br>
+					    - application url: idcrotterdam.nl ds<br>
+					    - application startup file: passenger_wsgi.py<br>
+					    - application entry point: <empty><br>
+						- passenger log file: /home/deb67748/ logs/ds/passenger_wsgi.log<br>
+					    - added environment variables<br>
+						- "source /home/deb67748/virtualenv/ds/3.12/bin/activate && cd /home/deb67748/ds"<br>
+           + extra Features<br>
+		       Antagonist ssh<br>
+			   created new ssh key via puttygen, RSA:4096, password stored in Keepass<br>
+			   <br>
+idcrotterdam.nl/ds<br>
+<br>
+- Account manager<br>
+    FTP management<br>
+	    idcr <br>
+		<br>
+		<br>
+pip install --upgrade pip<br>
+pip install python-dotenv<br>
+pip install -U Flask<br>
+pip install -U Flask-SQLAlchemy<br>
+pip install flask-login<br>
+pip install Flask-WTF<br>
+pip install Flask-Bcrypt<br>
+pip install email-validator<br>
+<br>
+<br>
+<br>
 
+<table>
+	<tr><td><b>description</b></td><td><b>link</b></td></tr>
+	<tr><td></td><td><a href="https://idcrotterdam.nl/ds" target="_blank">diverscheduler</a></td></tr>
+	<tr><td>login antagonist</td><td><a href="https://mijn.antagonist.nl/products/hosting/216705/sso/" target="_blank">DirectAdmin</a></td></tr>
+	<tr><td>logfolder</td><td><a href="https://s226.webhostingserver.nl:2222/CMD_FILE_MANAGER?path=/logs/ds" target="_blank">/logs/ds</a></td></tr>
+	<tr><td>app</td><td><a href="https://s226.webhostingserver.nl:2222/CMD_FILE_MANAGER?path=/ds" target="_blank">/ds</a></td></tr>
+	<tr><td></td><td>https://s226.webhostingserver.nl:2222/evo/user/plugins/python_selector" target="_blank">python selector</a></td></tr>
+	<tr><td></td><td></td></tr>
+	<tr><td></td><td></td></tr>
+	<tr><td></td><td></td></tr>
+</table>
 </body>
+<br>
+[_] cronjob: daily, 00.00, rename /logs/ds/passenger_wsgi.log to passenger_wsgi_<yyyymmdd>.log<br>
+[_] cronjob: daily, 00.00, rename /logs/ds/passenger_wsgi.log to passenger_wsgi_<yyyymmdd>.log<br>
+<br>
 </html>
 
 {% endif %}

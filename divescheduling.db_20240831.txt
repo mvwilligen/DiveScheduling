@@ -1,0 +1,56 @@
+Table Users 
+{
+      Id integer [primary key]
+      Username varchar
+      Firstname varchar
+      Lastname varchar
+      Phone varchar
+      Passwordhash varchar
+      Emailaddress varchar
+      Status varchar
+      Info varchar
+}
+Table Products 
+{
+      Id integer [primary key]
+      Productname varchar
+      Abbr varchar
+      Parts varchar
+      Description varchar
+}
+Table Instructors 
+{
+      Id integer [primary key]
+      User integer
+      Name varchar
+}
+
+Table Appointments 
+{
+      Id integer [primary key]
+      User integer
+      Product integer
+      Part varchar
+      Date date
+      Time varchar
+      Notes varchar
+      Staff integer
+}
+
+Table StudentRecords
+{
+    Id integer
+    User integer
+    Appointment integer
+    Date date
+    Time varchar
+    Description varchar  
+}
+
+Ref: Appointments.User > Users.Id
+Ref: Appointments.Staff > Instructors.Id
+Ref: Appointments.Product > Products.Id
+Ref: Instructors.User > Users.Id
+Ref: StudentRecords.User > Users.Id
+Ref: StudentRecords.Appointment > Appointments.Id
+

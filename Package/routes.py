@@ -251,7 +251,7 @@ def logout():
     logout_user()
     lRBAC = []
     print('#### logged out')
-    return redirect(url_for('homepage'))
+    return redirect(url_for('login'))
 
 
 #------------------------------------------------------------------------------------------

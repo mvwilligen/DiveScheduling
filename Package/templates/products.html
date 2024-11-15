@@ -31,15 +31,15 @@ products
                     <td>{% if product.Active %}active{% else %}unactive{% endif %}</td>
                     <td>
                         {% if 'staff' in lRBAC [1] %}
-                            <a class="btn btn-outline btn-info" href="{{ url_for('productsedit', id = product.Id ) }} ">edit</a> 
+                            <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('productsedit', id = product.Id ) }} ">edit</a> 
                             {% if 'admin' in lRBAC [1] %}
                                 {% if product.Active %}
-                                    <a class="btn btn-outline btn-info" href="{{ url_for('productsdelete', id = product.Id ) }} ">deactivate</a>
+                                    <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('productsdelete', id = product.Id ) }} ">deactivate</a>
                                 {% else %}
-                                    <a class="btn btn-outline btn-info" href="{{ url_for('productsundelete', id = product.Id ) }} ">activate</a>
+                                    <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('productsundelete', id = product.Id ) }} ">activate</a>
                                 {% endif %} 
                             {% endif %}
-                            <a class="btn btn-outline btn-info" href="{{ url_for('productsusers', id = product.Id ) }} ">students</a> 
+                            <a class="btn btn-sm btn-outline btn-info" href="{{ url_for('productsusers', id = product.Id ) }} ">students</a> 
                         {% endif %}
                     </td>
                 </tr>

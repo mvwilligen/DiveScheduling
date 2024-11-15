@@ -52,7 +52,9 @@ def get_rbac(cPath):
 
     return lResult
 
+
 ################################################################################################################'
+
 
  ######  ######## ########  #### ##    ##  ######    #######   ######     ###    ######## ######## 
 ##    ##    ##    ##     ##  ##  ###   ## ##    ##  ##     ## ##    ##   ## ##   ##       ##       
@@ -62,7 +64,9 @@ def get_rbac(cPath):
 ##    ##    ##    ##    ##   ##  ##   ### ##    ##  ##        ##    ## ##     ## ##       ##       
  ######     ##    ##     ## #### ##    ##  ######   #########  ######  ##     ## ##       ######## 
 
+
 ################################################################################################################'
+
 
 def string2safe(text):
 
@@ -76,17 +80,47 @@ def string2safe(text):
 
     return cText
 
+
+################################################################################################################'
+
+
+##    ##  #######             ###     ######   ######  ########  ######   ######          ######## ######## ##     ## ######## 
+###   ## ##     ##           ## ##   ##    ## ##    ## ##       ##    ## ##    ##            ##    ##        ##   ##     ##    
+####  ## ##     ##          ##   ##  ##       ##       ##       ##       ##                  ##    ##         ## ##      ##    
+## ## ## ##     ##         ##     ## ##       ##       ######    ######   ######             ##    ######      ###       ##    
+##  #### ##     ##         ######### ##       ##       ##             ##       ##            ##    ##         ## ##      ##    
+##   ### ##     ##         ##     ## ##    ## ##    ## ##       ##    ## ##    ##            ##    ##        ##   ##     ##    
+##    ##  #######  ####### ##     ##  ######   ######  ########  ######   ######  #######    ##    ######## ##     ##    ##    
+
+
+################################################################################################################'
+
+
 def no_access_text():
     cText = ""
     cText = cText + "<html>"
     cText = cText + "<head><style>h3 {text-align: center;}p {text-align: center;}div {text-align: center;}</style></head>"
     cText = cText + "<body><br><br><br><br>"
     cText = cText + "<h3 style='font-family:verdana'>Welcome to the webapp 'DiveScheduling'</h3><br>"
-    cText = cText + "<p style='font-family:verdana'>Please <a href='/login'>login</a> or <a href='/usersregisterform'>register</a></p>"
+
+    # added for idcrotterdam.nl
+    cLink0 = socket.gethostname()
+    cLink1 = ""
+    cLink2 = ""
+
+    if 's226' in socket.gethostname():
+        cLink0 = "s226"
+        cLink1 = "https://idcrotterdam.nl/ds/login"
+        cLink2 = "https://idcrotterdam.nl/ds/usersregisterform"
+    else:
+        cLink1 = "/login"
+        cLink2 = "/usersregisterform"
+
+    cText = cText + "<p style='font-family:verdana'>Please <a href='" + cLink1 + "'>login</a> or <a href='" + cLink2 + "'>register</a></p>"
     cText = cText + "<br>" 
     cText = cText + "<br>" 
     cText = cText + "<br>" 
-    cText = cText + "<br>" 
+    cText = cText + cLink0 + "<br>" 
     cText = cText + "<br>" 
     cText = cText + "<br>" 
     cText = cText + "<br>" 

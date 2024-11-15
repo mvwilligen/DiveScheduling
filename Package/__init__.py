@@ -17,6 +17,7 @@ import datetime
 import platform
 import sys
 import os
+import socket
 
 from dotenv import dotenv_values
 secrets = dotenv_values(".env")
@@ -32,7 +33,16 @@ from sqlalchemy.orm   import relationship
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///divescheduling.db'
 
-import socket
+# added MVW - 20241114
+if 's226' in socket.gethostname():
+    app.config["APPLICATION_ROOT"] = "/ds/"
+    app.config["SESSION_COOKIE_PATH"] = "/ds/"
+    print("APPLICATION_ROOT: /ds/")
+else:
+    app.config["APPLICATION_ROOT"] = "/"
+    app.config["SESSION_COOKIE_PATH"] = "/"
+    print("APPLICATION_ROOT: /")
+
 if socket.gethostname() == "_MWI20_":
     pass
     # app.config['SECRET_KEY'] = secrets["SECRETKEY"]
@@ -41,6 +51,10 @@ else:
 
     SECRET_KEY = os.environ.get('_SECRETKEY_').replace(chr(34), '')
     app.config['SECRET_KEY'] = SECRET_KEY
+
+# 20241114 add by MvW
+app.config['SECRET_KEY'] = "nn4NTEI0OjHjTfJN0hiXMGvkx05yPIFqjnvtY7dUvgzgQMT"
+
 
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 

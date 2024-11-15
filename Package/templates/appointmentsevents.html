@@ -9,7 +9,12 @@ appointmentsevents
 {% set cDate = namespace(value = lRBAC[4].strftime('%Y-%m-%d')) %}
 {% set cTime = namespace(value = "20:00") %}
 
-{% set cDateUrl  = namespace(value = request.url.split('/')[5] ) %}
+{% if ('s226' not in lRBAC[6]) %}
+    {% set cDateUrl  = namespace(value = request.url.split('/')[5] ) %}
+{% else %}
+    {% set cDateUrl  = namespace(value = request.url.split('/')[6] ) %}
+{% endif %}
+
 {% set cDateUrl2 = namespace(value = cDateUrl.value.split('-')[2] + "-" + cDateUrl.value.split('-')[1] +"-"+ cDateUrl.value.split('-')[0]) %}
 
 {% set cSelectedInstructor = namespace(value = "") %}

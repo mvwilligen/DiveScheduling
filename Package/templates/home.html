@@ -77,7 +77,7 @@ homepage
 </table>
 
 {% if ('staff' in lRBAC [1]) %}
-    {% if (cDate.value|string() == '') %}
+    {% if (cDate.value|string() == 'null') %}
         <a href="{{ url_for('appointmentsevents', cName = 'dsd', cDate = '22-07-1968', cFrom = 'home' ) }}">dsd</a>
     {% endif %}
 {% else %}
