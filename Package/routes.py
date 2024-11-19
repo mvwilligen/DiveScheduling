@@ -151,7 +151,7 @@ def login():
         username = string2safe(request.form['username'])
         password = request.form['password']                      # will be processed and stored as hash
 
-        print("username: ", username, " password: ", password)
+        print("username: ", username) # , " password: ", password)
 
         cDateToday        = datetime.datetime.today()
         cDate             = cDateToday.strftime("%d-%b-%Y")
@@ -211,7 +211,7 @@ def login():
             if lRBAC[8]: print('username:          ', username)
             if lRBAC[8]: print(user)
             if lRBAC[8]: print('type:              ', type(user))
-            if lRBAC[8]: print('user.Passwordhash: ', user.Passwordhash)
+            # if lRBAC[8]: print('user.Passwordhash: ', user.Passwordhash)
             if lRBAC[8]: print('-----------------------------------------')
 
             pwhash = user.Passwordhash
@@ -225,7 +225,6 @@ def login():
         else:
             if lRBAC[8]: print("if user is None:")
 
-            
         message = "unknown username or password"
 
     lRBAC = get_rbac(request.url_rule.endpoint)
@@ -274,9 +273,9 @@ def secrets():
     alphabet = string.ascii_letters + string.digits
     password = ''.join(secrets.choice(alphabet) for i in range(24))
 
-    for a in range(0,9):
-        password = ''.join(secrets.choice(alphabet) for i in range(24))
-        print(a + 1, 'password: ', password)
+    # for a in range(0,9):
+    #     password = ''.join(secrets.choice(alphabet) for i in range(24))
+    #     print(a + 1, 'password: ', password)
 
 
 #------------------------------------------------------------------------------------------

@@ -33,15 +33,22 @@ from sqlalchemy.orm   import relationship
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///divescheduling.db'
 
+
 # added MVW - 20241114
 if 's226' in socket.gethostname():
-    app.config["APPLICATION_ROOT"] = "/ds/"
-    app.config["SESSION_COOKIE_PATH"] = "/ds/"
-    print("APPLICATION_ROOT: /ds/")
+    app.config["APPLICATION_ROOT"] = "/ds"
+    app.config["SESSION_COOKIE_PATH"] = "/ds"
+    print("APPLICATION_ROOT: /ds")
+
+    # added 20241119
+    app.config['REMEMBER_COOKIE_PATH'] = '/ds'
 else:
     app.config["APPLICATION_ROOT"] = "/"
     app.config["SESSION_COOKIE_PATH"] = "/"
     print("APPLICATION_ROOT: /")
+
+    # added 20241119
+    app.config['REMEMBER_COOKIE_PATH'] = '/'
 
 if socket.gethostname() == "_MWI20_":
     pass
@@ -52,11 +59,11 @@ else:
     SECRET_KEY = os.environ.get('_SECRETKEY_').replace(chr(34), '')
     app.config['SECRET_KEY'] = SECRET_KEY
 
-# 20241114 add by MvW
+# 20241114 added by MvW
 app.config['SECRET_KEY'] = "nn4NTEI0OjHjTfJN0hiXMGvkx05yPIFqjnvtY7dUvgzgQMT"
 
-
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
+# added for issues with html-calendar
+# app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 
 # app.config["SQLALCHEMY_ECHO"] = True
 app.config["SQLALCHEMY_ECHO"] = False
@@ -80,6 +87,14 @@ csrf = CSRFProtect(app)
 from Package.models import Products, Users, Appointments, Instructors
 
 import socket
+
+
+# # 20241115
+# # source: https://flask-session.readthedocs.io/en/latest/usage.html
+# from flask import session
+# from flask_session import Session
+# SESSION_TYPE = 'sqlalchemy'
+
 
 print('')
 print("===========================================================================================================")

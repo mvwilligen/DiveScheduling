@@ -31,7 +31,7 @@ welcome to the support section of DiveScheduling.
 {% else %}
 
 <main id="top"></main>
-<a href="#variables">variables<a> <a href="#todo">todo<a> <a href="#wishlist">wishlist<a> <a href="#bugs">bugs<a> <a href="#whathow">what-how<a> <a href="#db">db<a> <a href="#journey">journey<a> <a href="#challenges">challenges<a> <a href="#sources">sources<a> <a href="#git">git<a>  <a href="#raspberrypi">raspberrypi<a> <a href="#samba">samba<a> <a href="#starts">starts<a> <a href="#render">render<a><br>
+<a href="#variables">variables<a> <a href="#todo">todo<a> <a href="#wishlist">wishlist<a> <a href="#bugs">bugs<a> <a href="#whathow">what-how<a> <a href="#db">db<a> <a href="#journey">journey<a> <a href="#challenges">challenges<a> <a href="#sources">sources<a> <a href="#git">git<a>  <a href="#raspberrypi">raspberrypi<a> <a href="#samba">samba<a> <a href="#starts">starts<a> <a href="#render">render<a> <a href="#idcrotterdam">idcrotterdam<a><br>
 <br>
 <a class="btn btn-outline btn-info" href="{{ url_for('test') }}" target='_blank'>test</a>&nbsp;
 
@@ -808,39 +808,39 @@ Result: no terminal available. Msg old version pip.<br>
 <br>
 <br>
 ##########################################################################################<br>
+<main id="idcrotterdam"></main>
 <a href="#top">[top]<a><br>
 <br>
 <h2>Publish to IDCrotterdam.nl</h2><br>
 <br>
-- antagonist.nl<br>
--     mijn antagonist<br>
--         laura.maissan@gmail.com<br>
--         producten<br>
--         beheren<br>
--         hostingpakket beheren<br>
--         domain: idcrotterdam.nl<br>
--         + extra Features<br>
--             python Selector<br>
-                    - create application<br>
-				        - Python version: 3.12.6<br>
-					    - application root: ds<br>
-					    - application url: idcrotterdam.nl ds<br>
-					    - application startup file: passenger_wsgi.py<br>
-					    - application entry point: <empty><br>
-						- passenger log file: /home/deb67748/ logs/ds/passenger_wsgi.log<br>
-					    - added environment variables<br>
-						- "source /home/deb67748/virtualenv/ds/3.12/bin/activate && cd /home/deb67748/ds"<br>
-           + extra Features<br>
-		       Antagonist ssh<br>
-			   created new ssh key via puttygen, RSA:4096, password stored in Keepass<br>
-			   <br>
-idcrotterdam.nl/ds<br>
+[_] antagonist.nl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] mijn antagonist<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] laura.maissan@gmail.com<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] producten<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] beheren<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] hostingpakket beheren<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_] domain: idcrotterdam.nl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] + extra Features<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] python Selector<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] create application<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] Python version: 3.12.6<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] application root: ds<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] application url: idcrotterdam.nl ds<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] application startup file: passenger_wsgi.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] application entry point: <empty><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] passenger log file: /home/deb67748/ logs/ds/passenger_wsgi.log<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] added environment variables<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] "source /home/deb67748/virtualenv/ds/3.12/bin/activate && cd /home/deb67748/ds"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] + extra Features<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] Antagonist ssh<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] created new ssh key via puttygen, RSA:4096, password stored in Keepass<br>
 <br>
-- Account manager<br>
-    FTP management<br>
-	    idcr <br>
-		<br>
-		<br>
+<br>
+[_] Account manager<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[_]FTP management<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_] idcr<br>
+<br>
+<br>
 pip install --upgrade pip<br>
 pip install python-dotenv<br>
 pip install -U Flask<br>
@@ -849,17 +849,21 @@ pip install flask-login<br>
 pip install Flask-WTF<br>
 pip install Flask-Bcrypt<br>
 pip install email-validator<br>
+#20241115
+pip install Flask-Session[sqlalchemy]<br>
+python.exe -m pip install --upgrade pip<br>
+
 <br>
 <br>
 <br>
 
 <table>
 	<tr><td><b>description</b></td><td><b>link</b></td></tr>
-	<tr><td></td><td><a href="https://idcrotterdam.nl/ds" target="_blank">diverscheduler</a></td></tr>
 	<tr><td>login antagonist</td><td><a href="https://mijn.antagonist.nl/products/hosting/216705/sso/" target="_blank">DirectAdmin</a></td></tr>
+	<tr><td>app</td><td><a href="https://idcrotterdam.nl/ds" target="_blank">divescheduling</a></td></tr>
+	<tr><td>stop/start app</td><td><a href="https://s226.webhostingserver.nl:2222/evo/user/plugins/python_selector" target="_blank">python selector</a></td></tr>
 	<tr><td>logfolder</td><td><a href="https://s226.webhostingserver.nl:2222/CMD_FILE_MANAGER?path=/logs/ds" target="_blank">/logs/ds</a></td></tr>
 	<tr><td>app</td><td><a href="https://s226.webhostingserver.nl:2222/CMD_FILE_MANAGER?path=/ds" target="_blank">/ds</a></td></tr>
-	<tr><td></td><td>https://s226.webhostingserver.nl:2222/evo/user/plugins/python_selector" target="_blank">python selector</a></td></tr>
 	<tr><td></td><td></td></tr>
 	<tr><td></td><td></td></tr>
 	<tr><td></td><td></td></tr>
@@ -867,7 +871,7 @@ pip install email-validator<br>
 </body>
 <br>
 [_] cronjob: daily, 00.00, rename /logs/ds/passenger_wsgi.log to passenger_wsgi_<yyyymmdd>.log<br>
-[_] cronjob: daily, 00.00, rename /logs/ds/passenger_wsgi.log to passenger_wsgi_<yyyymmdd>.log<br>
+[_] cronjob: daily, 04.00, passenger_wsgi stop, copy db, passenger_wsgi.start?<br>
 <br>
 </html>
 
