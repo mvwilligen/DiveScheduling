@@ -35,6 +35,7 @@ def instructors():
     logtext('/instructors', 'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     instructors = db.session.execute( db.select(Instructors.Id, Instructors.User, Instructors.Name, Instructors.Active). \
@@ -62,6 +63,7 @@ def instructorsinfo(id):
     logtext('/instructorsinfo id:' + str(id), 'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     instructor = db.session.execute( db.select(Instructors.Id, Instructors.User, Instructors.Name). \

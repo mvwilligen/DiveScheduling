@@ -10,6 +10,8 @@ from sqlalchemy import func, and_
 import socket
 import os.path
 
+import inspect
+
 # for remote ip address
 from flask import request
 from flask import jsonify
@@ -301,6 +303,9 @@ def logtext(text, type):
     if cIP1 == "192.168.1.57":
         cIP1 = "[martin]"
 
+    if cIP1 == "85.222.242.22":
+        cIP1 = "[pcs]"
+
     # might solve issue in stderr_20250523_0000.log at 2025-05-18 11:27:47,939 "TypeError: can only concatenate str (not "NoneType") to str"
     user_agent = "" + request.headers.get('User-Agent')
 
@@ -320,7 +325,14 @@ def logtext(text, type):
         print(cDate + ";" + cTime + ";logtext;file not found:" + cFile)
         cHeader = "date;time;type;ip1;ip2;user;description;agent\n"
 
-    cLine = cHeader + cDate + ";" + cTime + ";" + type + ";"  + cIP1  + ";" + cIP2 + ";" + lRBAC [0] + ";" + text + ";" + user_agent + "\n"
+    cStack = inspect.stack()[0][3] + " " + inspect.stack()[1][3] + " " + inspect.stack()[2][3]
+
+    cStack = ""
+    for a in range(1,6):
+        if inspect.stack()[a][3] == "dispatch_request":  break
+        cStack = "\\" + inspect.stack()[a][3] + cStack
+
+    cLine = cHeader + cDate + ";" + cTime + ";" + type + ";"  + cIP1  + ";" + cIP2 + ";" + lRBAC [0] + ";" + cStack + "\\ " + text + ";" + user_agent + ";" + "\n"
 
     if lRBAC [8]:
         print (cLine)
@@ -349,10 +361,6 @@ def myquery(dbquery):
     result = []
 
     if len(dbquery) > 0:
-
-        # print('')
-        # print('#### datetime.datetime.now() - dbquery: ', dbquery)
-        # print('')
 
         logtext(dbquery, "i")
 
@@ -446,8 +454,8 @@ def chk_stderr_log():
     cBottom = "</html>"
 
     cFilename = "stderr_20250523_0000.log"
-    cFilename = "/apps/divescheduler/stderr.log"
     cFilename = "stderr.log"
+    # cFilename = "stderr.log"
 
     if lRBAC[6] == "MWI20":
         cFilename = "stderr.log"
@@ -458,7 +466,7 @@ def chk_stderr_log():
     lToggle = False
     cTimeStamp = ""
 
-    logtext("start reading file '" + cFilename + "'",'i')
+    # logtext("start reading file '" + cFilename + "'",'i')
 
     if os.path.isfile(cFilename):
 
@@ -480,14 +488,14 @@ def chk_stderr_log():
                     cOutput = cOutput + cTimeStamp + x + "<br>\n"
                     cTimeStamp = ""
 
-        logtext("finished reading file",'i')
+        # logtext("finished reading file",'i')
 
         with open(cOutputFile, "w") as f:
             cOutput = cOutput + "<br>[eof]<br>" + cBottom
             f.write(cOutput)
-            logtext("written file",'i')
+            # logtext("written file",'i')
     else:
-        logtext("file '" + cFilename + "' does not exists",'i')
+        logtext("file '" + cFilename + "' does not exists",'w')
 
     return cOutput
 
@@ -536,13 +544,14 @@ def showlogfile():
     cFilename = "_logfile/logfile_linux2025.webawere.nl_" + cDate2 +".txt"
 
     if lRBAC[6] == "MWI20":
-        cFilename = "_logfile\logfile_MWI20_" + cDate2 + ".txt"
+        cFilename = "_logfile\\logfile_MWI20_" + cDate2 + ".txt"
 
     cOutput = cTop + "<h3>" + cDate + " " + cTime + "</h3><br>\n<p>"
     cOutput = cOutput + "filename: " + cFilename + "<br>\n"
 
     lToggle = False
     cTimeStamp = ""
+    cWarnings = ""
 
     logtext("start reading file '" + cFilename + "'",'i')
 
@@ -556,12 +565,16 @@ def showlogfile():
 
                 cOutput = cOutput + x + "<br>\n"
 
+                if ";w;" in x:
+                    cWarnings = cWarnings + x + "<br>\n"
+
         logtext("finished reading file",'i')
 
         with open(cOutputFile, "w") as f:
+            cOutput = cOutput + "<br>\n<br>\n<b>Warnings<b><br>\n<br>\n" + cWarnings
             cOutput = cOutput + "<br>[eof]<br>" + cBottom
             f.write(cOutput)
-            logtext("written file",'i')
+            # logtext("written file",'i')
     else:
         logtext("file does not exists",'w')
 

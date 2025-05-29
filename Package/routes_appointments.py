@@ -39,6 +39,7 @@ def appointments():
     logtext('/appointments','i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     #appointments = Appointments.query.order_by(Appointments.Date.desc()).all()
@@ -98,6 +99,7 @@ def appointmentsdelete(id, cFrom):
 
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     appointment = db.session.execute(db.select(Appointments).filter_by(Id=id)).scalar_one()
@@ -140,8 +142,8 @@ def appointmentsassign(id, cFrom):
 
     logtext('/appointmentsassign id' + str(id) + ' from:' + cFrom,'i')
 
-
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     #print('-------------------------------------------------------')
@@ -206,6 +208,7 @@ def appointmentsunassign(id, cFrom):
 
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     appointment = db.session.execute(db.select(Appointments).filter_by(Id=id)).scalar_one()
@@ -246,6 +249,7 @@ def appointmentsedit(id, cFrom):
     logtext('/appointmentsedit idi' + str(id) + ' from:' + cFrom,'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     form = AppointmentsEditForm()
@@ -294,8 +298,10 @@ def appointmentsedit(id, cFrom):
     form.note.data = cNote
 
     if form.validate_on_submit():
+        logtext('validate_on_submit ' + str(id), 'i')
 
         if request.form.get('cancel') == 'cancel':
+            logtext('cancelled ' + str(id), 'i')
 
             if cFrom == 'usersinfo':
                 return redirect(url_for('usersinfo', id = nPrevUser))
@@ -375,9 +381,10 @@ def appointmentsedit(id, cFrom):
 @app.route('/appointmentsdateform2/<string:text>/<string:cFrom>', methods=['GET', 'POST'])
 def appointmentsdate2(text, cFrom):
 
-    logtext('/appointmentsdateform2 date:' + text + ' from:' + cFrom,'i')
+    logtext('/appointmentsdateform2 date:' + text + ' from:' + cFrom, 'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     form = AppointmentsDateForm2(text)
@@ -415,6 +422,8 @@ def appointmentsdate2(text, cFrom):
     assistants = Users.query.filter(Users.Status.contains('assistant'))
 
     if form.validate_on_submit():
+        logtext('validate_on_submit ' + cDate, 'i')
+
         # print("validate_on_submit")
         # print("form.cancel.data: ", form.cancel.data)
         # print("form.save.data: ", form.save.data)
@@ -422,6 +431,7 @@ def appointmentsdate2(text, cFrom):
         # print(request.form.get('cancel'))
         
         if request.form.get('cancel') == 'cancel':
+            logtext('cancelled ' + cDate, 'i')
             return redirect(url_for('homepage'))           
 
         for a in filtered:
@@ -480,9 +490,10 @@ def appointmentsdate2(text, cFrom):
 @app.route('/appointmentsevents/<string:cName>/<string:cDate>/<string:cFrom>', methods=['GET', 'POST'])
 def appointmentsevents(cName, cDate, cFrom):
 
-    logtext('/appointmentsevents name:' + cName + ' date:' + cDate + ' from:' + cFrom,'i')
+    logtext('open name:' + cName + ' date:' + cDate + ' from:' + cFrom,'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     form = AppointmentsEventsForm(cName)
@@ -552,10 +563,10 @@ def appointmentsevents(cName, cDate, cFrom):
     lRBAC = get_rbac(request.url_rule.endpoint)
 
     if form.validate_on_submit():
-        logtext('appointmentsevents:form.validate_on_submit','i')
+        logtext('validate_on_submit ' + cDate,'i')
 
         if request.form.get('cancel') == 'cancel':
-            logtext('appointmentsevents:form.validate_on_submit:cancel','i')
+            logtext('cancel ' + cDate,'i')
             return redirect(url_for('homepage'))           
 
         cAutofillin = request.form.get("autofillin") # checkbox
@@ -650,7 +661,18 @@ def appointmentsevents(cName, cDate, cFrom):
             # print('date: ', int(cFormDate[0:4]), int(cFormDate[5:7]), int(cFormDate[8:10]), int(cFormTime[0:2]), int(cFormTime[3:5]))
 
             dDate = datetime.datetime(int(cFormDate[0:4]), int(cFormDate[5:7]), int(cFormDate[8:10]), int(cFormTime[0:2]), int(cFormTime[3:5]))
-                                  
+
+            # find dsd in products
+            dbquery = 'db.session.execute(db.select(Products).filter_by(Productname = "Discover_Scuba_Diving")).scalars()' # scalar_one_or_none()
+            nDSD = eval(dbquery)
+            print('#1 nDSD: ', nDSD)
+            logtext('#1 DSD: ' + str(nDSD), 'i')
+
+            dbquery = 'db.session.execute(db.select(Products).filter_by(Productname = "Discover_Scuba_Diving")).scalar_one()' # scalar_one_or_none() # Abbr = "DSD"
+            nDSD = eval(dbquery)
+            print('#2 nDSD: ', nDSD)
+            logtext('#2 DSD: ' + str(nDSD), 'i')
+
             appointment_to_create = Appointments(User      = user.Id,
                                                 Date       = dDate,
                                                 Product    = 1,
@@ -659,6 +681,7 @@ def appointmentsevents(cName, cDate, cFrom):
                                                 Assistants = cAssistantForm )
             
             db.session.add(appointment_to_create)
+            logtext('add appointment', 'i')
             db.session.commit()
 
             # http://127.0.0.1:5000/appointmentsevents/dsd/13-09-2024/home
@@ -685,6 +708,7 @@ def appointmentsnotes(text, cFrom):
     logtext('/appointmentsnotes ' + text + ' from:' + cFrom,'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
     
     print('cDate: ', text)
@@ -708,7 +732,7 @@ def appointmentsnotes(text, cFrom):
     cText = cText + "<table>" + cCRLF
 
     for a in appointments:
-        print(a [6].strftime("&d-%m-%Y %H:%M"))
+        # print(a [6].strftime("%d-%m-%Y %H:%M") )
 
         cText = cText + "<tr style='border-top: 1pt solid white;'><td style='width:200px'>date</td><td style='width:400px'>" + a [6].strftime("%d-%m-%Y %H:%M") + "</td></tr>" + cCRLF
         cText = cText + "<tr><td>product</td><td>" + a[4] + " - " + a[5] + "</td></tr>" + cCRLF

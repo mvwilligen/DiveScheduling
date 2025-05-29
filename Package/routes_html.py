@@ -45,6 +45,7 @@ def html():
     logtext('html', 'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     lRBAC = get_rbac(request.url_rule.endpoint)

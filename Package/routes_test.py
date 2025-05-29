@@ -18,6 +18,11 @@ from Package.functions import get_rbac, no_access_text, string2safe
 @app.route('/test/')
 def test():
 
+    if current_user.is_anonymous:
+        logtext('anonymous','w')
+        return (no_access_text())
+
+
     # inspiration: https://www.digitalocean.com/community/tutorials/how-to-use-flask-sqlalchemy-to-interact-with-databases-in-a-flask-application#step-4-displaying-a-single-record
     
     print('===========================================================================')

@@ -38,7 +38,7 @@ def products():
     logtext('/products','i')
 
     if current_user.is_anonymous:
-        logtext('current_user.is_anonymous','i')
+        logtext('anonymous','w')
         return (no_access_text())
 
     products = Products.query.order_by(func.lower(Products.Productname)).all()
@@ -65,7 +65,7 @@ def productsedit(id):
     print('productsedit',id)
 
     if current_user.is_anonymous:
-        logtext('current_user.is_anonymous','i')
+        logtext('anonymous','w')
         return (no_access_text())
 
     form = ProductsEditForm(id)
@@ -78,6 +78,7 @@ def productsedit(id):
     print('pre-validate')
 
     if form.validate_on_submit():
+        logtext('validate_on_submit ' + str(id), 'i')
 
         print("submit")
 
@@ -120,12 +121,13 @@ def productsnew():
     logtext('/productsnew','i')
 
     if current_user.is_anonymous:
-        logtext('current_user.is_anonymous','i')
+        logtext('anonymous','w')
         return (no_access_text())
 
     form = ProductsNewForm()
 
     if form.validate_on_submit():
+        logtext('validate_on_submit ', 'i')
 
         if request.form.get('cancel') == 'cancel':
             return redirect(url_for('products'))
@@ -168,7 +170,7 @@ def productsdelete(id):
     logtext('/productsdelete','i')
 
     if current_user.is_anonymous:
-        logtext('current_user.is_anonymous','i')
+        logtext('anonymous','w')
         return (no_access_text())
 
     product = db.session.execute(db.select(Products).filter_by(Id=id)).scalar_one()
@@ -196,7 +198,7 @@ def productsundelete(id):
     logtext('/productsundelete','i')
 
     if current_user.is_anonymous:
-        logtext('current_user.is_anonymous','i')
+        logtext('anonymous','w')
         return (no_access_text())
 
     product = db.session.execute(db.select(Products).filter_by(Id=id)).scalar_one()
@@ -225,7 +227,7 @@ def productsusers(id):
     logtext('/productsusers', 'i')
 
     if current_user.is_anonymous:
-        logtext('current_user.is_anonymous','i')
+        logtext('anonymous','w')
         return (no_access_text())
 
     form = ProductsUsersForm(id)

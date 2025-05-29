@@ -59,6 +59,7 @@ def users():
     logtext('users', 'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     # users = Users.query.all()
@@ -84,6 +85,7 @@ def userdelete(id):
     logtext('usersdelete ' + id, 'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     user = db.session.execute(db.select(Users).filter_by(Id=id)).scalar_one()
@@ -117,9 +119,10 @@ def userdelete(id):
 @app.route('/userseditform2/<int:id>/<string:cFrom>', methods=['GET', 'POST'])
 def usersedit2(id, cFrom):
 
-    logtext('userseditform2 ' + str(id) + ' from:' + cFrom, 'i')
+    logtext('open ' + str(id) + ' from:' + cFrom, 'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     form = UsersEditForm2()
@@ -157,19 +160,18 @@ def usersedit2(id, cFrom):
     form.note.data = cNote
 
     if form.validate_on_submit():
-        print('submit')
+
+        logtext('validate on submit ' + str(id), 'i')
 
         if request.form.get('cancel') == 'cancel':
-            print('cancel')
+            logtext('cancel  ' + str(id), 'i')
 
             if cFrom == 'instructors':
-                print('instructors')
 
                 return redirect(url_for('instructors'))
 
             return redirect(url_for('users'))
 
-        #print('---- form validated --------------------------')
         newpassword = ""
         lRBAC = get_rbac(request.url_rule.endpoint)
         if "admin" in lRBAC [1]:
@@ -236,17 +238,22 @@ def usersedit2(id, cFrom):
 
         SaveNote(user.Id, 'st', cNote, 'replace')
 
-        print('')
-
         # -----------------------------------------------------------------------------      
         # process roles
         cUserStatus = ''
         nC = 0
+        nR = 0
         for l in listStatus:
             value = request.form.get(eval('l.Name'))   # provided as checkboxes
             if value:
                 cUserStatus = cUserStatus + l.Name + ' '
+                nR = nR + 1
             nC = nC + 1
+
+        if nR > 1:
+            if 'new ' in cUserStatus:
+                cUserStatus = cUserStatus.replace('new ', '')
+                logtext('removed status new', 'i')
 
         # x.Status       = cUserStatus
         db.session.commit()
@@ -282,9 +289,9 @@ def usersedit2(id, cFrom):
             #print('#### ', x.Username, ' ', x.Status)
             #print('#### cUserStatus: ', cUserStatus)
 
-        print("#### ---------------------------------------------------------------")
-        print("#### before ", lInstructorBefore, ' ', cStatusOld)
-        print("#### after  ", lInstructorAfter,  ' ', cStatusNew)
+        # print("#### ---------------------------------------------------------------")
+        # print("#### before ", lInstructorBefore, ' ', cStatusOld)
+        # print("#### after  ", lInstructorAfter,  ' ', cStatusNew)
 
         if not lInstructorBefore and not lInstructorAfter:
             x = db.session.query(Users).get(x.Id)
@@ -484,6 +491,7 @@ def usersinfo(id):
     logtext('usersinfo ' + str(id), 'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     form = UsersInfoForm(id)
@@ -502,9 +510,12 @@ def usersinfo(id):
     assistants   = Users.query.filter(Users.Status.contains('assistant'))
 
     if form.validate_on_submit():
+        logtext('validate_on_submit ' + str(id), 'i')
 
         if request.form.get('cancel') == 'cancel':
             # print('cancel')
+            logtext('cancelled ' + str(id), 'i')
+
             return redirect(url_for('users'))           
 
         print ("----------------------------------------------------------------")
@@ -620,6 +631,7 @@ def usersmail(id):
     cMessage = ""
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     lRBAC = get_rbac(request.url_rule.endpoint) 
@@ -799,7 +811,7 @@ def usersnotes(id):
     cText = cText + "<table>" + cCRLF
 
     for a in appointments:
-        print(a [6].strftime("&d-%m-%Y %H:%M"))
+        # print(a [6].strftime("&d-%m-%Y %H:%M"))
 
         cText = cText + "<tr style='border-top: 1pt solid white;'><td style='width:200px'>date</td><td style='width:400px'>" + a [6].strftime("%d-%m-%Y %H:%M") + "</td></tr>" + cCRLF
         cText = cText + "<tr><td>product</td><td>" + a[4] + " - " + a[5] + "</td></tr>" + cCRLF
@@ -855,6 +867,7 @@ def usersproduct2(id, cFrom):
     logtext('usersproduct2 ' + str(id) + 'from:' + cFrom, 'i')
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     form = UsersProductForm2(id)
@@ -894,10 +907,12 @@ def usersproduct2(id, cFrom):
     assistants = Users.query.filter(Users.Status.contains('assistant'))
 
     if form.validate_on_submit():
-        print('validated')
+        logtext('validate_on_submit ' + str(id), 'i')
+        print('validate on submit')
 
         if request.form.get('cancel') == 'cancel':
-            print('cancel')
+            logtext('cancelled ' + str(id), 'i')
+            print('cancelled')
 
             if cFrom == 'usersinfo':
                 return redirect(url_for('usersinfo', id = nPrevUser))
@@ -972,6 +987,7 @@ def usersproductnext(id, cFrom):
     print("id: ", id)
 
     if current_user.is_anonymous:
+        logtext('anonymous','w')
         return (no_access_text())
 
     #                                          0                1                  2                3               4                     5                  6                  7                   8                 9               10                    11
@@ -1024,10 +1040,12 @@ def usersproductnext(id, cFrom):
     #    return redirect(url_for('usersinfo', id = nPrevUser))
 
     if form.validate_on_submit():
+        logtext('validate_on_submit ' + str(id), 'i')
 
         print('validated')
 
         if request.form.get('cancel') == 'cancel':
+            logtext('cancelled ' + str(id), 'i')
             print('cancel')
 
             if cFrom == 'usersinfo':
