@@ -36,6 +36,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 cCRLF = chr(13) + chr(10)
 
+from Package.functions import logtext
+from Package.functions import myquery
+
+# import email_validator
+from email_validator import validate_email, EmailNotValidError
+
 #------------------------------------------------------------------------------------------
 
 
@@ -49,6 +55,8 @@ cCRLF = chr(13) + chr(10)
 
 @app.route('/users')
 def users():
+
+    logtext('users', 'i')
 
     if current_user.is_anonymous:
         return (no_access_text())
@@ -73,6 +81,8 @@ def users():
 @app.route('/userdelete/<id>')
 def userdelete(id):
 
+    logtext('usersdelete ' + id, 'i')
+
     if current_user.is_anonymous:
         return (no_access_text())
 
@@ -80,6 +90,8 @@ def userdelete(id):
     cUsername = user.Username
     db.session.delete(user)
     db.session.commit()
+
+    logtext('usersdelete ' + cUsername, 'i')
 
     print('#### cUsername:             ', cUsername)
     print('#### current_user.Username: ', current_user.Username)
@@ -104,6 +116,8 @@ def userdelete(id):
 
 @app.route('/userseditform2/<int:id>/<string:cFrom>', methods=['GET', 'POST'])
 def usersedit2(id, cFrom):
+
+    logtext('userseditform2 ' + str(id) + ' from:' + cFrom, 'i')
 
     if current_user.is_anonymous:
         return (no_access_text())
@@ -467,6 +481,8 @@ def usersedit2(id, cFrom):
 @app.route('/usersinfo/<id>', methods = ['GET', 'POST'])
 def usersinfo(id):
 
+    logtext('usersinfo ' + str(id), 'i')
+
     if current_user.is_anonymous:
         return (no_access_text())
 
@@ -597,6 +613,8 @@ def usersinfo(id):
 
 @app.route('/usersmail/<id>')
 def usersmail(id):
+
+    logtext('usersmail', 'i')
 
     secrets = dotenv_values(".env")
     cMessage = ""
@@ -757,7 +775,9 @@ def usersmail(id):
 
 @app.route('/usersnotes/<id>')
 def usersnotes(id):
-    
+
+    logtext('usersnotes ' + str(id), 'i')
+
     print('--- usersnotes:' + str(id) + '-----------------------------------------------')
     #                                            0                1                  2                3               4                     5                  6                  7                   8                 9
     appointments = db.session.execute( db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name, Appointments.Assistants). \
@@ -770,6 +790,7 @@ def usersnotes(id):
 
     user               = db.session.execute(db.select(Users).filter_by(Id=id)).scalar_one()
     cFullname          = user.Firstname + ' ' + user.Lastname
+    logtext('usersinfo ' + cFullname, 'i')
 
     cText = "<h3>Notes " + cFullname + "</h3><br><br>"
     cCRLF = chr(13) + chr(10)
@@ -830,6 +851,8 @@ def usersnotes(id):
 
 @app.route('/usersproductform2/<id>/<cFrom>/', methods=['GET', 'POST'])
 def usersproduct2(id, cFrom):
+
+    logtext('usersproduct2 ' + str(id) + 'from:' + cFrom, 'i')
 
     if current_user.is_anonymous:
         return (no_access_text())
@@ -943,6 +966,9 @@ def usersproduct2(id, cFrom):
 @app.route('/usersproductnext/<id>/<cFrom>/', methods=['GET', 'POST'])
 def usersproductnext(id, cFrom):
 
+    logtext('usersproductsnext ' + str(id) + ' from:' + cFrom, 'i')
+
+
     print("id: ", id)
 
     if current_user.is_anonymous:
@@ -1053,9 +1079,13 @@ def usersproductnext(id, cFrom):
 @app.route('/usersregisterform', methods=['GET' ,'POST'])
 def usersregister():
 
+    logtext('usersregisterform', 'i')
+
     form = UsersRegisterForm()
 
     if form.validate_on_submit():
+
+        logtext('usersregisterform > form_is_validated', 'i')
 
         cDateToday        = datetime.datetime.today()
         cDate             = cDateToday.strftime("%d-%m-%Y")
@@ -1066,18 +1096,30 @@ def usersregister():
 
         pw_hash = bcrypt.generate_password_hash(form.password1.data).decode('utf-8')
 
-        user_to_create = Users( Username     = form.username.data,
-                                Firstname    = form.firstname.data,
-                                Lastname     = form.lastname.data,
-                                Phone        = form.phone.data,
-                                Emailaddress = form.username.data,
-                                Passwordhash = pw_hash,
+        cUsername     = form.username.data
+        cFirstname    = form.firstname.data
+        cLastname     = form.lastname.data
+        cPhone        = form.phone.data
+        cEmailaddress = form.username.data
+        cPasswordhash = pw_hash
+
+        user_to_create = Users( Username     = cUsername,
+                                Firstname    = cFirstname,
+                                Lastname     = cLastname,
+                                Phone        = cPhone,
+                                Emailaddress = cEmailaddress,
+                                Passwordhash = cPasswordhash,
                                 Active       = True,
                                 Info         = cInfo,
                                 Status       = "new" )
-        
+
+        logtext("usersregisterform > cInfo=" + cInfo, "i")
+
+        logtext("add user:" + cUsername + "," + cFirstname + "," + cLastname + "," + cPhone,"i")
+
         db.session.add(user_to_create)
         db.session.commit()
+        
         return redirect(url_for('users'))
    
     if form.errors != {}: # no errors?

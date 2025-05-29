@@ -12,8 +12,8 @@ pip install flask
 pip install flask-sqlalchemy
 pip install flask-wtf
 pip install email_validator
-rem pip install flask_bcrypt
-rem pip install flask_login
+pip install flask_bcrypt
+pip install flask_login
 rem source: https://flask-login.readthedocs.io/en/latest/
 pip install flask-login
 pip install python-dotenv

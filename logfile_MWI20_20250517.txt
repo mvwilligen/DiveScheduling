@@ -1,0 +1,16 @@
+17-05-2025;16:49:55;i;;__init__.py
+17-05-2025;16:49:58;i;;__init__.py
+17-05-2025;16:54:29;i;;;;__init__.py
+17-05-2025;16:54:31;i;;;;__init__.py
+17-05-2025;16:55:10;i;192.168.1.57;;;/;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+17-05-2025;16:55:10;i;192.168.1.57;;;current_user.is_anonymous;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+17-05-2025;16:55:10;w;192.168.1.57;;;no_access_text;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+17-05-2025;16:55:14;i;192.168.1.57;;;login;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+17-05-2025;16:55:18;i;192.168.1.57;;;login;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+17-05-2025;16:55:18;i;192.168.1.57;;;login - POST;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+17-05-2025;16:55:18;i;192.168.1.57;;;username: laura@maidiving.nl;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+17-05-2025;16:55:18;i;192.168.1.57;;;if user is not None:;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+17-05-2025;16:55:19;i;192.168.1.57;;Laura;user logged in;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+17-05-2025;16:55:19;i;192.168.1.57;;Laura;/;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+17-05-2025;16:55:19;i;192.168.1.57;;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 9),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,15))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+17-05-2025;17:06:23;i;;;;__init__.py

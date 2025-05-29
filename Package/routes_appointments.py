@@ -17,6 +17,8 @@ from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy as sa
 from sqlalchemy import func, and_
+from Package.functions import logtext
+from Package.functions import myquery
 
 
 ##########################################################################################################################
@@ -33,6 +35,8 @@ from sqlalchemy import func, and_
 
 @app.route('/appointments')
 def appointments():
+
+    logtext('/appointments','i')
 
     if current_user.is_anonymous:
         return (no_access_text())
@@ -67,6 +71,8 @@ def appointments():
 @app.route('/appointmentscalendar')
 def appointmentscalendar():
 
+    logtext('/appointmentscalendar','i')
+
     cHtml = ""
 
 
@@ -87,6 +93,9 @@ def appointmentscalendar():
 
 @app.route('/appointmentsdelete/<int:id>/<string:cFrom>')
 def appointmentsdelete(id, cFrom):
+
+    logtext('/appointmentsdelete id:' + str(id) + ' from:' + cFrom,'i')
+
 
     if current_user.is_anonymous:
         return (no_access_text())
@@ -129,6 +138,9 @@ def appointmentsdelete(id, cFrom):
 @app.route('/appointmentsassign/<int:id>/<string:cFrom>')
 def appointmentsassign(id, cFrom):
 
+    logtext('/appointmentsassign id' + str(id) + ' from:' + cFrom,'i')
+
+
     if current_user.is_anonymous:
         return (no_access_text())
 
@@ -141,8 +153,8 @@ def appointmentsassign(id, cFrom):
     #    print('current_user.is_authenticated')
     #    print(current_user.is_authenticated)
 
-    user = db.session.execute(db.select(Users).filter_by(Username = current_user.Username)).scalar_one()
-    instructor = db.session.execute(db.select(Instructors).filter_by(User = user.Id)).scalar_one()
+    user        = db.session.execute(db.select(Users).filter_by(Username = current_user.Username)).scalar_one()
+    instructor  = db.session.execute(db.select(Instructors).filter_by(User = user.Id)).scalar_one()
     appointment = db.session.execute(db.select(Appointments).filter_by(Id=id)).scalar_one()
 
     appointment.Staff = instructor.Id
@@ -190,6 +202,9 @@ def appointmentsassign(id, cFrom):
 @app.route('/appointmentsunassign/<int:id>/<string:cFrom>')
 def appointmentsunassign(id, cFrom):
 
+    logtext('/appointmentsunassign id:' + str(id) + ' from:' + cFrom,'i')
+
+
     if current_user.is_anonymous:
         return (no_access_text())
 
@@ -227,6 +242,8 @@ def appointmentsunassign(id, cFrom):
 
 @app.route('/appointmentsedit/<int:id>/<string:cFrom>', methods=['GET', 'POST'])
 def appointmentsedit(id, cFrom):
+
+    logtext('/appointmentsedit idi' + str(id) + ' from:' + cFrom,'i')
 
     if current_user.is_anonymous:
         return (no_access_text())
@@ -358,6 +375,8 @@ def appointmentsedit(id, cFrom):
 @app.route('/appointmentsdateform2/<string:text>/<string:cFrom>', methods=['GET', 'POST'])
 def appointmentsdate2(text, cFrom):
 
+    logtext('/appointmentsdateform2 date:' + text + ' from:' + cFrom,'i')
+
     if current_user.is_anonymous:
         return (no_access_text())
 
@@ -461,6 +480,8 @@ def appointmentsdate2(text, cFrom):
 @app.route('/appointmentsevents/<string:cName>/<string:cDate>/<string:cFrom>', methods=['GET', 'POST'])
 def appointmentsevents(cName, cDate, cFrom):
 
+    logtext('/appointmentsevents name:' + cName + ' date:' + cDate + ' from:' + cFrom,'i')
+
     if current_user.is_anonymous:
         return (no_access_text())
 
@@ -531,12 +552,15 @@ def appointmentsevents(cName, cDate, cFrom):
     lRBAC = get_rbac(request.url_rule.endpoint)
 
     if form.validate_on_submit():
+        logtext('appointmentsevents:form.validate_on_submit','i')
 
         if request.form.get('cancel') == 'cancel':
+            logtext('appointmentsevents:form.validate_on_submit:cancel','i')
             return redirect(url_for('homepage'))           
 
         cAutofillin = request.form.get("autofillin") # checkbox
         print('cAutofillin: ', cAutofillin)
+        # logtext('appointmentsevents:form.validate_on_submit:autofillin=' + cAutofillin,'i')
 
         cNewstudent = string2safe(request.form.get("newstudent"))
         #print('cNewstudent: ', cNewstudent)
@@ -630,7 +654,7 @@ def appointmentsevents(cName, cDate, cFrom):
             appointment_to_create = Appointments(User      = user.Id,
                                                 Date       = dDate,
                                                 Product    = 1,
-                                                Part       = 'DSD',
+                                                Part       = 'zw',
                                                 Staff      = nFound,
                                                 Assistants = cAssistantForm )
             
@@ -640,7 +664,7 @@ def appointmentsevents(cName, cDate, cFrom):
             # http://127.0.0.1:5000/appointmentsevents/dsd/13-09-2024/home
         return redirect(url_for('appointmentsevents', cName = 'dsd', cDate = cDate, cFrom = 'home' ))
     
-    return render_template('appointmentsevents.html', form = form, appointments = appointments2, assistants=assistants, instructors=instructors2, lRBAC = lRBAC)
+    return render_template('appointmentsevents.html', form=form, appointments=appointments2, assistants=assistants, instructors=instructors2, lRBAC=lRBAC)
 
 
 ##########################################################################################################################
@@ -657,6 +681,8 @@ def appointmentsevents(cName, cDate, cFrom):
 
 @app.route('/appointmentsnotes/<string:text>/<string:cFrom>', methods=['GET', 'POST'])
 def appointmentsnotes(text, cFrom):
+
+    logtext('/appointmentsnotes ' + text + ' from:' + cFrom,'i')
 
     if current_user.is_anonymous:
         return (no_access_text())
@@ -724,6 +750,9 @@ def appointmentsnotes(text, cFrom):
 @app.route('/cleanupallappointments/')
 def cleanupallappointments():
 
+    logtext('/cleanupallappointments','i')
+
+
     lRBAC = get_rbac('')
     if 'Admin' in lRBAC[0]:
 
@@ -757,6 +786,8 @@ def cleanupallappointments():
 
 @app.route('/cleanupallproducts/')
 def cleanupallproducts():
+
+    logtext('/cleanupallproducts','i')
 
     lRBAC = get_rbac('')
     if 'Admin' in lRBAC[0]:

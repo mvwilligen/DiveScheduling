@@ -1,0 +1,68 @@
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:56:41;i;192.168.1.57;;;/;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:56:41;i;192.168.1.57;;;current_user.is_anonymous;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:56:41;w;192.168.1.57;;;no_access_text;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:57:32;i;192.168.1.57;;;login;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:57:35;i;192.168.1.57;;;login;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:57:35;i;192.168.1.57;;;login - POST;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:57:35;i;192.168.1.57;;;username: laura@maidiving.nl;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:57:35;i;192.168.1.57;;;if user is not None:;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:57:36;i;192.168.1.57;;Laura;user logged in;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:57:36;i;192.168.1.57;;Laura;/;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:57:36;i;192.168.1.57;;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 15),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,21))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:57:47;i;192.168.1.57;;Laura;/support;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:59:02;i;192.168.1.57;;Laura;/support;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;20:59:48;i;192.168.1.57;;Laura;/support;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:00:14;i;192.168.1.57;;Laura;/support;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:00:25;i;192.168.1.57;;Laura;/support;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:00:27;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:01:40;i;192.168.1.57;;Laura;/support;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:01:42;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:03:10;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:03:17;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:04:06;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:05:38;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:05:38;i;192.168.1.57;;Laura;stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:07:15;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:07:15;i;192.168.1.57;;Laura;stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:07:24;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:07:24;i;192.168.1.57;;Laura;stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:08:47;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:08:47;i;192.168.1.57;;Laura;stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:08:48;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+date;time;type;ip1;ip2;user;description;agent
+23-05-2025;21:08:48;i;192.168.1.57;;Laura;stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+23-05-2025;21:09:23;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+23-05-2025;21:09:23;i;192.168.1.57;;Laura;stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+23-05-2025;21:09:24;i;192.168.1.57;;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+23-05-2025;21:09:24;i;192.168.1.57;;Laura;stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36

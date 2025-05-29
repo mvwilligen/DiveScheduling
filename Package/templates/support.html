@@ -35,6 +35,20 @@ welcome to the support section of DiveScheduling.
 <br>
 <a class="btn btn-outline btn-info" href="{{ url_for('test') }}" target='_blank'>test</a>&nbsp;
 
+{% if lRBAC[8] %}
+
+{% endif %}
+
+{% if 'admin' in lRBAC[1] %}
+
+    <a href="https://linux2025.webawere.nl:2222/evo/" target="_blank">evo</a>
+    <a href="https://linux2025.webawere.nl:2222/evo/user/plugins/python_selector#/" target="_blank">python</a>
+    <a class="btn btn-outline btn-info" href="{{ url_for('chk_stderr_log') }}" target='_blank'>read stderr.log</a>
+    <a class="btn btn-outline btn-info" href="{{ url_for('showlogfile') }}" target='_blank'>show logfile</a>
+
+{% endif %}
+
+
 	<br>
 <br>
 <main id="variables"></main>
@@ -111,8 +125,8 @@ welcome to the support section of DiveScheduling.
 	<td></td>
 	<td></td>
 	<td></td>
-	<td></td>
-	<td></td>
+	<td>lRBAC[7]</td>
+	<td>{{ lRBAC[7] }}</td>
 	<td>socket.gethostname()</td>
 	<td>{ { socket.gethostname() }}</td>
 </tr>
@@ -120,8 +134,8 @@ welcome to the support section of DiveScheduling.
 	<td></td>
 	<td></td>
 	<td></td>
-	<td></td>
-	<td></td>
+	<td>lRBAC[8]</td>
+	<td>{{ lRBAC[8] }}</td>
 	<td>app</td><td>{ { app }}</td>
 </tr>
 <tr style='border-top: 1pt solid white;'>
@@ -139,6 +153,20 @@ welcome to the support section of DiveScheduling.
 
 <body style="font-family:verdana">
 <main id="todo"></main>
+
+<br>
+Testing 20250311<br>
+<br>
+[v] \home\notes - error => fixed typo in logtext<br>
+[v] \home\form - error => fixed typo in logtext<br>
+[v] \home\dsd - text 'DSD' => fixed text in source<br>
+[_] \home\dsd - after entering other date: show other date<br>
+[_] \home\form - misalignment field assistant<br>
+[_] \users\<user>\note - student note isn't shown, only product notes<br>
+[_] cleanup of notes after removing users and appointments<br>
+<br>
+<br>
+<tr style='border-top: 1pt solid white;'>
 
 <h3><class="p2"><b>Go live...</b></p></h3>
 [_] HTTPS<br>
@@ -692,6 +720,8 @@ Press CTRL+C to quit<br>
 <br>
 
 {% if 'Admin' in lRBAC[0] %}
+
+    <a class="btn btn-outline btn-info" href="{{ url_for('chk_stderr_log') }}" target='_blank'>cleanup all appointments</a>
     <!-- only for user 'Admin' -->
     This option removes all appointments or products without asking for confirmation... Tread very carefully...
 
@@ -852,11 +882,9 @@ pip install email-validator<br>
 #20241115
 pip install Flask-Session[sqlalchemy]<br>
 python.exe -m pip install --upgrade pip<br>
-
 <br>
 <br>
 <br>
-
 <table>
 	<tr><td><b>description</b></td><td><b>link</b></td></tr>
 	<tr><td>login antagonist</td><td><a href="https://mijn.antagonist.nl/products/hosting/216705/sso/" target="_blank">DirectAdmin</a></td></tr>
@@ -873,8 +901,58 @@ python.exe -m pip install --upgrade pip<br>
 [_] cronjob: daily, 00.00, rename /logs/ds/passenger_wsgi.log to passenger_wsgi_<yyyymmdd>.log<br>
 [_] cronjob: daily, 04.00, passenger_wsgi stop, copy db, passenger_wsgi.start?<br>
 <br>
-</html>
-
+<br>
+<h3>20241122 - ds.idcrotterdam.nl</h3><br>
+<a href="https://ds.idcrotterdam.nl/login" target="_blank">ds.idcrotterdam.nl</a><br>
+source /home/deb67748/virtualenv/divescheduling/3.12/bin/activate && cd /home/deb67748/divescheduling<br>
+<br>
+<br>
+<br>
+##########################################################################################<br>
+<main id="maischeduler.nl"></main>
+<a href="#top">[top]<a><br>
+<br>
+<h2>Publish to maischeduling.nl</h2><br>
+<br>
+[v] maischeduling.nl<br>
+____ [v] setup python app<br>
+____ ____ [v] Python version: 3.9.20<br>
+____ ____ [v] Application root: /home/ljnpscqd/apps/divescheduler/<br>
+____ ____ [v] Application URL: maischeduler.nl<br>
+____ ____ [v] Application startup file: passenger_wsgi.py<br>
+____ ____ [v] Environment variables: <done><br>
+____ ____ [v] Enter to the virtual environment.To enter to virtual environment, run the command: source /home/ljnpscqd/virtualenv/apps/divescheduler/3.9/bin/activate && cd /home/ljnpscqd/apps/divescheduler<br>
+____ [v] terminal<br>
+____ ____ [v] pip install --upgrade pip<br>
+____ ____ [v] pip install python-dotenv<br>
+____ ____ [v] pip install -U Flask<br>
+____ ____ [v] pip install -U Flask-SQLAlchemy<br>
+____ ____ [v] pip install flask-login<br>
+____ ____ [v] pip install Flask-WTF<br>
+____ ____ [v] pip install Flask-Bcrypt<br>
+____ ____ [v] pip install email-validator<br>
+____ ____ [v] pip install email-validator<br>
+[v] new run.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from Package import app as application<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if __name__ == '__main__':<br>
+&nbsp;&nbsp;&nbsp;&nbsp;    app.run(debug=True, host='0.0.0.0', port=10000)<br>
+[v] upload app (filezilla)<br>
+[_] cleanup idcrotterdam.nl<br>
+[_] cleanup maidiving.nl<br>
+[v] daily cronjobs<br>
+____ [v] copy /home/ljnpscqd/apps/divescheduler/stderr.log to stderr_<yyyymmdd>.log<br>
+____ [v] compress sourcefiles to divescheduler_<yyyymmdd>.zip<br>
+____ ____ [v] exclude cache files<br>
+____ [_] check results<br>	
+[_] issue with forms (csrftoken)(secret)(when multiuser?)<br>
+[_] google No CAPTCHA / ReCAPTCHA, https://developers.google.com/search/blog/2014/12/are-you-robot-introducing-no-captcha<br>
+[_] check security level on web<br>
+[_] check-out https://goaccess.io/<br>
+[_] check 'pip freeze ...'<br>
+[_] geen passenger_wsgi.log?<br>
+<br>
+<br>
+<br>
 {% endif %}
 
 {% endblock %}

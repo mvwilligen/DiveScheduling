@@ -1,0 +1,32 @@
+01-03-2025; 17:22:44; start login01-03-2025; 17:22:56; start login01-03-2025; 17:22:56; POST01-03-2025; 17:23:39; start login01-03-2025; 17:23:39; POST01-03-2025; 17:23:39; username: laura@maidiving.nl01-03-2025; 17:23:48; start login01-03-2025; 17:23:52; start login01-03-2025; 17:23:52; POST01-03-2025; 17:23:52; username: laura@maidiving.nl01-03-2025; 17:24:45; start login01-03-2025; 17:24:45; POST01-03-2025; 17:24:45; username: laura@maidiving.nl01-03-2025; 17:25:32; start login
+01-03-2025; 17:25:33; POST
+01-03-2025; 17:25:33; username: laura@maidiving.nl
+01-03-2025; 18:00:21; db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025; 18:00:46; start login
+01-03-2025; 18:00:51; start login
+01-03-2025; 18:00:51; POST
+01-03-2025; 18:00:51; username: laura@maidiving.nl
+01-03-2025; 18:00:51; db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025; 18:01:10; db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025; 18:11:42; i; login
+01-03-2025; 18:11:47; i; login
+01-03-2025; 18:11:47; i; login - POST
+01-03-2025; 18:11:47; i; username: a
+01-03-2025; 18:12:28; i; login
+01-03-2025; 18:12:32; i; login
+01-03-2025; 18:12:32; i; login - POST
+01-03-2025; 18:12:32; i; username: a
+01-03-2025; 18:12:32; i; unknown username a|
+01-03-2025; 18:12:38; i; login
+01-03-2025; 18:12:38; i; login - POST
+01-03-2025; 18:12:38; i; username: a
+01-03-2025; 18:12:38; i; unknown username a|a
+01-03-2025; 18:12:43; i; login
+01-03-2025; 18:12:43; i; login - POST
+01-03-2025; 18:12:43; i; username: lau
+01-03-2025; 18:12:43; i; unknown username lau|
+01-03-2025; 18:12:48; i; login
+01-03-2025; 18:12:48; i; login - POST
+01-03-2025; 18:12:48; i; username: laura@maidiving.nl
+01-03-2025; 18:12:48; i; user logged in
+01-03-2025; 18:12:48; i; db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )

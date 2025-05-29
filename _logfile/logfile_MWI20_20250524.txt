@@ -1,0 +1,144 @@
+date;time;type;ip1;ip2;user;description;agent
+24-05-2025;12:34:31;i;[ip:martin];;;/;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:31;i;[ip:martin];;;current_user.is_anonymous;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:31;w;[ip:martin];;;no_access_text;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:37;i;[ip:martin];;;login;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:40;i;[ip:martin];;;login;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:40;i;[ip:martin];;;login - POST;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:40;i;[ip:martin];;;username: laura@maidiving.nl;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:40;i;[ip:martin];;;if user is not None:;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:41;i;[ip:martin];;Laura;user logged in;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:41;i;[ip:martin];;Laura;/;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:41;i;[ip:martin];;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 16),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,22))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:46;i;[ip:martin];;Laura;/support;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:48;i;[ip:martin];;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:48;i;[ip:martin];;Laura;start reading file;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:34:48;i;[ip:martin];;Laura;file does not exists;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:35:48;i;[ip:martin];;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:35:48;i;[ip:martin];;Laura;start reading file;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:35:48;i;[ip:martin];;Laura;file does not exists;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:46:08;i;[ip:martin];;Laura;/support;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:46:11;i;[ip:martin];;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:46:11;i;[ip:martin];;Laura;start reading file;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;12:46:11;i;[ip:martin];;Laura;file does not exists;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:34:51;i;[ip:martin];;Laura;/;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:34:51;i;[ip:martin];;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 16),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,22))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:34:56;i;[ip:martin];;Laura;/support;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:34:58;i;[ip:martin];;Laura;showlogfile;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:34:58;i;[ip:martin];;Laura;start reading file '/apps/divescheduler/_logfile/logfile_linux2025.webawere.nl_20250524.txt';Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:34:58;w;[ip:martin];;Laura;file does not exists;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:35:31;i;[ip:martin];;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:35:31;i;[ip:martin];;Laura;start reading file '/apps/divescheduler/stderr.log';Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:35:31;i;[ip:martin];;Laura;file does not exists;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:37:06;i;[ip:martin];;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:38:11;i;[ip:martin];;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:38:11;i;[ip:martin];;Laura;start reading file 'stderr.log';Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:38:11;i;[ip:martin];;Laura;file 'stderr.log' exists;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:38:11;i;[ip:martin];;Laura;finished reading file;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:38:11;i;[ip:martin];;Laura;written file;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:38:42;i;[ip:martin];;Laura;showlogfile;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:38:42;i;[ip:martin];;Laura;start reading file '/apps/divescheduler/_logfile/logfile_linux2025.webawere.nl_20250524.txt';Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:38:42;w;[ip:martin];;Laura;file does not exists;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:41:41;i;[ip:martin];;Laura;showlogfile;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:41:41;i;[ip:martin];;Laura;start reading file 'C:\Data\Python\DiveScheduling\_logfile\logfile_MWI20_20250524.txt';Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:41:41;i;[ip:martin];;Laura;file 'C:\Data\Python\DiveScheduling\_logfile\logfile_MWI20_20250524.txt' exists;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:41:41;i;[ip:martin];;Laura;finished reading file;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:41:41;i;[ip:martin];;Laura;written file;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:45:01;i;[ip:martin];;Laura;chk_stderr.log;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:45:01;i;[ip:martin];;Laura;start reading file 'stderr.log';Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:45:01;i;[ip:martin];;Laura;file 'stderr.log' exists;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:45:01;i;[ip:martin];;Laura;finished reading file;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;13:45:01;i;[ip:martin];;Laura;written file;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+24-05-2025;14:38:36;i;[martin];;Laura;/;Chrome
+24-05-2025;14:38:36;i;[martin];;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 16),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,22))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Chrome
+24-05-2025;14:38:38;i;[martin];;Laura;/support;Chrome
+24-05-2025;14:39:06;i;[martin];;Laura;users;Chrome
+24-05-2025;14:47:53;i;;;;
+24-05-2025;14:47:53;i;;;;__init__.py
+24-05-2025;14:48:36;i;;;;
+24-05-2025;14:48:36;i;;;;__init__.py
+24-05-2025;14:50:06;i;;;;
+24-05-2025;14:50:06;i;;;;__init__.py
+24-05-2025;14:50:58;i;;;;
+24-05-2025;14:50:58;i;;;;__init__.py
+24-05-2025;14:51:24;i;;;;
+24-05-2025;14:51:24;i;;;;__init__.py
+24-05-2025;14:51:59;i;;;;
+24-05-2025;14:51:59;i;;;;__init__.py
+24-05-2025;14:52:20;i;;;;
+24-05-2025;14:52:20;i;;;;__init__.py
+24-05-2025;14:53:15;i;;;;
+24-05-2025;14:53:15;i;;;;__init__.py
+24-05-2025;14:54:02;i;;;;
+24-05-2025;14:54:02;i;;;;__init__.py
+24-05-2025;14:54:33;i;;;;
+24-05-2025;14:54:33;i;;;;__init__.py
+24-05-2025;14:55:52;i;;;;
+24-05-2025;14:55:52;i;;;;__init__.py
+24-05-2025;14:56:30;i;;;;
+24-05-2025;14:56:30;i;;;;__init__.py
+24-05-2025;14:57:07;i;[martin];;Laura@Maidiving.nl;users;Chrome
+24-05-2025;14:57:13;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;14:58:51;i;;;;
+24-05-2025;14:58:51;i;;;;__init__.py
+24-05-2025;14:58:55;i;[martin];;Laura@Maidiving.nl;users;Chrome
+24-05-2025;14:58:59;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;14:59:27;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:00:29;i;;;;
+24-05-2025;15:00:29;i;;;;__init__.py
+24-05-2025;15:00:38;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:01:10;i;;;;
+24-05-2025;15:01:10;i;;;;__init__.py
+24-05-2025;15:01:15;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:01:20;i;[martin];;Laura@Maidiving.nl;/;Chrome
+24-05-2025;15:01:20;i;[martin];;Laura@Maidiving.nl;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 16),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,22))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Chrome
+24-05-2025;15:01:22;i;[martin];;Laura@Maidiving.nl;users;Chrome
+24-05-2025;15:01:25;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:01:50;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:03:12;i;;;;
+24-05-2025;15:03:12;i;;;;__init__.py
+24-05-2025;15:03:13;i;[martin];;Laura@Maidiving.nl;/;Chrome
+24-05-2025;15:03:13;i;[martin];;Laura@Maidiving.nl;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 16),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,22))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Chrome
+24-05-2025;15:03:15;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:03:33;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:13:31;i;;;;
+24-05-2025;15:13:31;i;;;;__init__.py
+24-05-2025;15:20:30;i;[martin];;Laura@Maidiving.nl;/;Chrome
+24-05-2025;15:20:30;i;[martin];;Laura@Maidiving.nl;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 16),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,22))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Chrome
+24-05-2025;15:20:32;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:20:34;i;[martin];;Laura@Maidiving.nl;users;Chrome
+24-05-2025;15:20:38;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:20:58;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:27:46;i;[martin];;Laura@Maidiving.nl;/;Chrome
+24-05-2025;15:27:46;i;[martin];;Laura@Maidiving.nl;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 16),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,22))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Chrome
+24-05-2025;15:27:48;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:28:07;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:30:47;i;;;;
+24-05-2025;15:30:47;i;;;;__init__.py
+24-05-2025;15:30:58;i;[martin];;Laura@Maidiving.nl;/;Chrome
+24-05-2025;15:30:58;i;[martin];;Laura@Maidiving.nl;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 16),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,22))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Chrome
+24-05-2025;15:31:00;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:31:15;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:34:12;i;;;;
+24-05-2025;15:34:12;i;;;;__init__.py
+24-05-2025;15:34:14;i;;;;
+24-05-2025;15:34:14;i;;;;__init__.py
+24-05-2025;15:34:36;i;[martin];;Laura@Maidiving.nl;/;Chrome
+24-05-2025;15:34:36;i;[martin];;Laura@Maidiving.nl;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 16),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,22))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Chrome
+24-05-2025;15:34:38;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:34:58;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+24-05-2025;15:34:59;i;[martin];;Laura@Maidiving.nl;users;Chrome
+24-05-2025;15:35:05;i;[martin];;Laura@Maidiving.nl;userseditform2 4 from:users;Chrome
+24-05-2025;15:35:05;i;[martin];;Laura@Maidiving.nl;functions/getnote 4 type:st;Chrome
+24-05-2025;15:35:09;i;[martin];;Laura@Maidiving.nl;userseditform2 4 from:users;Chrome
+24-05-2025;15:35:09;i;[martin];;Laura@Maidiving.nl;functions/getnote 4 type:st;Chrome
+24-05-2025;15:35:09;i;[martin];;Laura@Maidiving.nl;functions/savenote 4 type:st length:0 action:replace;Chrome
+24-05-2025;15:35:09;i;[martin];;Laura@Maidiving.nl;users;Chrome
+24-05-2025;15:35:13;i;[martin];;Laura@Maidiving.nl;/support;Chrome
+24-05-2025;15:35:15;i;[martin];;Laura@Maidiving.nl;showlogfile;Chrome
+24-05-2025;15:35:15;i;[martin];;Laura@Maidiving.nl;start reading file '_logfile\logfile_MWI20_20250524.txt';Chrome
+24-05-2025;15:35:15;i;[martin];;Laura@Maidiving.nl;file '_logfile\logfile_MWI20_20250524.txt' exists;Chrome
+24-05-2025;15:35:15;i;[martin];;Laura@Maidiving.nl;finished reading file;Chrome
+24-05-2025;15:35:15;i;[martin];;Laura@Maidiving.nl;written file;Chrome
+24-05-2025;15:39:09;i;;;;
+24-05-2025;15:39:09;i;;;;__init__.py

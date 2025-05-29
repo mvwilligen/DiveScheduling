@@ -1,14 +1,16 @@
-###########################################################################################
-##                                                                                       ##
-##                 #### ##    ## #### ########                     ########  ##    ##    ##
-##                  ##  ###   ##  ##     ##                        ##     ##  ##  ##     ##
-##                  ##  ####  ##  ##     ##                        ##     ##   ####      ##
-##                  ##  ## ## ##  ##     ##                        ########     ##       ##
-##                  ##  ##  ####  ##     ##                        ##           ##       ##
-##                  ##  ##   ###  ##     ##                    ### ##           ##       ##
-## ####### ####### #### ##    ## ####    ##    ####### ####### ### ##           ##       ##
-##                                                                                       ##
-###########################################################################################
+# ###########################################################################################
+# ##                                                                                       ##
+# ##                 #### ##    ## #### ########                     ########  ##    ##    ##
+# ##                  ##  ###   ##  ##     ##                        ##     ##  ##  ##     ##
+# ##                  ##  ####  ##  ##     ##                        ##     ##   ####      ##
+# ##                  ##  ## ## ##  ##     ##                        ########     ##       ##
+# ##                  ##  ##  ####  ##     ##                        ##           ##       ##
+# ##                  ##  ##   ###  ##     ##                    ### ##           ##       ##
+# ## ####### ####### #### ##    ## ####    ##    ####### ####### ### ##           ##       ##
+# ##                                                                                       ##
+# ###########################################################################################
+
+# from Package.functions import logtext
 
 print('')
 print("start:  __init__.py")
@@ -33,9 +35,16 @@ from sqlalchemy.orm   import relationship
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///divescheduling.db'
 
+cDateToday = datetime.datetime.today()
+cDate      = cDateToday.strftime("%d-%m-%Y")
+cTime      = cDateToday.strftime("%H:%M:%S")
+cDate2     = cDateToday.strftime("%Y%m%d")
+cTime2     = cDateToday.strftime("%H%M%S")
+cYYYYMMDD  = cDateToday.strftime("%Y%m%d")
+
 
 # added MVW - 20241114
-if 's226' in socket.gethostname():
+if '_s226_' in socket.gethostname():
     app.config["APPLICATION_ROOT"] = "/ds"
     app.config["SESSION_COOKIE_PATH"] = "/ds"
     print("APPLICATION_ROOT: /ds")
@@ -45,7 +54,7 @@ if 's226' in socket.gethostname():
 else:
     app.config["APPLICATION_ROOT"] = "/"
     app.config["SESSION_COOKIE_PATH"] = "/"
-    print("APPLICATION_ROOT: /")
+    print(cDate2 + ";" + cTime2 + ";__init__.py;" + "APPLICATION_ROOT: /")
 
     # added 20241119
     app.config['REMEMBER_COOKIE_PATH'] = '/'
@@ -88,32 +97,44 @@ from Package.models import Products, Users, Appointments, Instructors
 
 import socket
 
-
 # # 20241115
 # # source: https://flask-session.readthedocs.io/en/latest/usage.html
 # from flask import session
 # from flask_session import Session
 # SESSION_TYPE = 'sqlalchemy'
 
+# logtext("start:  __init__.py", "i")
+print(cDate2 + ";" + cTime2 + ";" + "__init__.py;socket.gethostename():" + socket.gethostname())
 
-print('')
-print("===========================================================================================================")
-print('date and time:       ', datetime.datetime.today())
-print('')
-print('OS version:          ', os.name)
-print('sys.platform:        ', sys.platform)
-print('platform.system():   ', platform.system())
-print('platform.release():  ', platform.release())
-print('platform.version():  ', platform.version())
-print('platform.platform(): ', platform.platform())
-print('')
-print('Python version:      ', sys.version)
-print('')
-print('Hostname             ', socket.gethostname())
-print('')
-print('app:                 ', app)
-print('-----------------------------------------------------------------------------------------------------------')
-print('')
+cOutfile = '_logfile/logfile_' + socket.gethostname() + '_' + cYYYYMMDD + '.txt'
+
+if socket.gethostname() == "MWI20":
+    cOutfile = "_logfile\\logfile_" + socket.gethostname() + "_" + cYYYYMMDD + ".txt"
+
+print(cDate2 + ";" + cTime2 + ";" + "__init__.py;cOutfile:" + cOutfile)
+
+with open(cOutfile, 'a') as the_file:
+    the_file.write(cDate + ";" + cTime + ";i;;;;\n")
+    the_file.write(cDate + ";" + cTime + ";i;;;;__init__.py\n")
+
+# print('')
+# print("===========================================================================================================")
+# print('date and time:       ', datetime.datetime.today())
+# print('')
+# print('OS version:          ', os.name)
+# print('sys.platform:        ', sys.platform)
+# print('platform.system():   ', platform.system())
+# print('platform.release():  ', platform.release())
+# print('platform.version():  ', platform.version())
+# print('platform.platform(): ', platform.platform())
+# print('')
+# print('Python version:      ', sys.version)
+# print('')
+# print('Hostname             ', socket.gethostname())
+# print('')
+# print('app:                 ', app)
+# print('-----------------------------------------------------------------------------------------------------------')
+# print('')
 print("finish: __init__.py")
 print ("")
 

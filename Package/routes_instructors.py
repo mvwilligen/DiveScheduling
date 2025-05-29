@@ -17,7 +17,8 @@ from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy as sa
 from sqlalchemy import func, and_
 
-
+from Package.functions import logtext
+from Package.functions import myquery
 
 
 #### ##    ##  ######  ######## ########  ##     ##  ######  ########  #######  ########   ######  
@@ -30,6 +31,8 @@ from sqlalchemy import func, and_
 
 @app.route('/instructors')
 def instructors():
+
+    logtext('/instructors', 'i')
 
     if current_user.is_anonymous:
         return (no_access_text())
@@ -55,6 +58,8 @@ def instructors():
 
 @app.route('/instructorsinfo/<id>/')
 def instructorsinfo(id):
+
+    logtext('/instructorsinfo id:' + str(id), 'i')
 
     if current_user.is_anonymous:
         return (no_access_text())

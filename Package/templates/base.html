@@ -75,7 +75,7 @@
                     <a class="nav-link" href="{{ url_for('products') }}">products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('users') }}">users</a>
+                    <a class="nav-link" href="{{ url_for('users') }}">students</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('appointments') }}">appointments</a>
@@ -91,12 +91,14 @@
                 {% if current_user.is_authenticated %}
                 {{ current_user.Username }}&nbsp;&nbsp;
                 {% endif %}
+                <!--
                 user_id: {{ user_id }}<br>
                 current_user.is_authenticated: {{ current_user.is_authenticated }}<br>
                 is_active: {{ is_active }}<br>
                 is_anonymous: {{ is_anonymous }}<br>
                 current_user.Username: {{ current_user.Username }}<br>
                 get_id(): { { get_id() } } <br>
+                -->
             </uc>
             <ur class="navbar-nav">
                 {% if not current_user.is_anonymous %}

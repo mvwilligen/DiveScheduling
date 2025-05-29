@@ -17,46 +17,55 @@ from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy as sa
 from sqlalchemy import func, and_
 
+from Package.functions import logtext
+from Package.functions import myquery
 
 
-#------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
-########  ########   #######  ########  ##     ##  ######  ########  ######  
-##     ## ##     ## ##     ## ##     ## ##     ## ##    ##    ##    ##    ## 
-##     ## ##     ## ##     ## ##     ## ##     ## ##          ##    ##       
-########  ########  ##     ## ##     ## ##     ## ##          ##     ######  
-##        ##   ##   ##     ## ##     ## ##     ## ##          ##          ## 
-##        ##    ##  ##     ## ##     ## ##     ## ##    ##    ##    ##    ## 
-##        ##     ##  #######  ########   #######   ######     ##     ######  
+# ########  ########   #######  ########  ##     ##  ######  ########  ######
+# ##     ## ##     ## ##     ## ##     ## ##     ## ##    ##    ##    ##    ##
+# ##     ## ##     ## ##     ## ##     ## ##     ## ##          ##    ##
+# ########  ########  ##     ## ##     ## ##     ## ##          ##     ######
+# ##        ##   ##   ##     ## ##     ## ##     ## ##          ##          ##
+# ##        ##    ##  ##     ## ##     ## ##     ## ##    ##    ##    ##    ##
+# ##        ##     ##  #######  ########   #######   ######     ##     ######
+
 
 @app.route('/products')
 def products():
 
+    logtext('/products','i')
+
     if current_user.is_anonymous:
+        logtext('current_user.is_anonymous','i')
         return (no_access_text())
 
     products = Products.query.order_by(func.lower(Products.Productname)).all()
 
     lRBAC = get_rbac(request.url_rule.endpoint)
 
-    return render_template('products.html', products = products , lRBAC = lRBAC)
+    return render_template('products.html', products=products, lRBAC=lRBAC)
 
-#------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
-########  ########   #######          ######## ########  #### ######## 
-##     ## ##     ## ##     ##         ##       ##     ##  ##     ##    
-##     ## ##     ## ##     ##         ##       ##     ##  ##     ##    
-########  ########  ##     ##         ######   ##     ##  ##     ##    
-##        ##   ##   ##     ##         ##       ##     ##  ##     ##    
-##        ##    ##  ##     ##         ##       ##     ##  ##     ##    
-##        ##     ##  #######  ####### ######## ########  ####    ##    
+# ########  ########   #######          ######## ########  #### ########
+# ##     ## ##     ## ##     ##         ##       ##     ##  ##     ##
+# ##     ## ##     ## ##     ##         ##       ##     ##  ##     ##
+# ########  ########  ##     ##         ######   ##     ##  ##     ##
+# ##        ##   ##   ##     ##         ##       ##     ##  ##     ##
+# ##        ##    ##  ##     ##         ##       ##     ##  ##     ##
+# ##        ##     ##  #######  ####### ######## ########  ####    ##
 
 @app.route('/productsedit/<id>/', methods=('GET', 'POST'))
 def productsedit(id):
 
+    logtext('/productsedit ' + id,'i')
+
     print('productsedit',id)
 
     if current_user.is_anonymous:
+        logtext('current_user.is_anonymous','i')
         return (no_access_text())
 
     form = ProductsEditForm(id)
@@ -108,7 +117,10 @@ def productsedit(id):
 @app.route('/productsnew/', methods=('GET', 'POST'))
 def productsnew():
 
+    logtext('/productsnew','i')
+
     if current_user.is_anonymous:
+        logtext('current_user.is_anonymous','i')
         return (no_access_text())
 
     form = ProductsNewForm()
@@ -153,7 +165,10 @@ def productsnew():
 @app.route('/productsdelete/<id>/')
 def productsdelete(id):
 
+    logtext('/productsdelete','i')
+
     if current_user.is_anonymous:
+        logtext('current_user.is_anonymous','i')
         return (no_access_text())
 
     product = db.session.execute(db.select(Products).filter_by(Id=id)).scalar_one()
@@ -178,7 +193,10 @@ def productsdelete(id):
 @app.route('/productsundelete/<id>/')
 def productsundelete(id):
 
+    logtext('/productsundelete','i')
+
     if current_user.is_anonymous:
+        logtext('current_user.is_anonymous','i')
         return (no_access_text())
 
     product = db.session.execute(db.select(Products).filter_by(Id=id)).scalar_one()
@@ -192,29 +210,33 @@ def productsundelete(id):
 
 #------------------------------------------------------------------------------------------
 
-########  ########   #######          ##     ##  ######  ######## ########   ######  
-##     ## ##     ## ##     ##         ##     ## ##    ## ##       ##     ## ##    ## 
-##     ## ##     ## ##     ##         ##     ## ##       ##       ##     ## ##       
-########  ########  ##     ##         ##     ##  ######  ######   ########   ######  
-##        ##   ##   ##     ##         ##     ##       ## ##       ##   ##         ## 
-##        ##    ##  ##     ##         ##     ## ##    ## ##       ##    ##  ##    ## 
-##        ##     ##  #######  #######  #######   ######  ######## ##     ##  ######  
+# ########  ########   #######          ##     ##  ######  ######## ########   ######
+# ##     ## ##     ## ##     ##         ##     ## ##    ## ##       ##     ## ##    ##
+# ##     ## ##     ## ##     ##         ##     ## ##       ##       ##     ## ##
+# ########  ########  ##     ##         ##     ##  ######  ######   ########   ######
+# ##        ##   ##   ##     ##         ##     ##       ## ##       ##   ##         ##
+# ##        ##    ##  ##     ##         ##     ## ##    ## ##       ##    ##  ##    ##
+# ##        ##     ##  #######  #######  #######   ######  ######## ##     ##  ######
+
 
 @app.route('/productsusers/<id>/')
 def productsusers(id):
 
+    logtext('/productsusers', 'i')
+
     if current_user.is_anonymous:
+        logtext('current_user.is_anonymous','i')
         return (no_access_text())
 
     form = ProductsUsersForm(id)
 
     #                                            0                1                  2                3               4                     5
     appointments = db.session.execute( db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Appointments.Staff, Instructors.Name). \
-                                order_by(Appointments.Date). \
-                                where(Appointments.Product == id). \
-                                select_from(Appointments). \
-                                join(Users, Appointments.User == Users.Id). \
-                                join(Instructors, Appointments.Staff == Instructors.Id). \
+                                order_by(Appointments.Date).
+                                where(Appointments.Product == id).
+                                select_from(Appointments).
+                                join(Users, Appointments.User == Users.Id).
+                                join(Instructors, Appointments.Staff == Instructors.Id).
                                 join(Products, Appointments.Product == Products.Id) )
 
     appointments2 = []
@@ -241,5 +263,5 @@ def productsusers(id):
 
     lRBAC = get_rbac(request.url_rule.endpoint)
 
-    return render_template('productsusers.html', appointments = appointments2, form = form, cAppointments = cAppointments , lRBAC = lRBAC)
-
+    return render_template('productsusers.html', appointments=appointments2,
+            form=form, cAppointments=cAppointments, lRBAC=lRBAC)

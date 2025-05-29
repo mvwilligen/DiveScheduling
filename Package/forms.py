@@ -108,7 +108,7 @@ class UsersInfoForm(FlaskForm):
     save         = SubmitField(label   = 'save')
     cancel       = SubmitField(label   = 'cancel')
 
-class UsersRegisterForm(FlaskForm):
+class UsersRegisterForm(FlaskForm): 
 
     def validate_username(self, username_to_check):
         user = Users.query.filter_by(Username=username_to_check.data).first()

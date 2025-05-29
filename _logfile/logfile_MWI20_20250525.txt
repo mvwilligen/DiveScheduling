@@ -1,0 +1,44 @@
+25-05-2025;11:45:43;i;;;;
+25-05-2025;11:45:43;i;;;;__init__.py
+25-05-2025;11:45:46;i;;;;
+25-05-2025;11:45:46;i;;;;__init__.py
+25-05-2025;12:35:17;i;;;;
+25-05-2025;12:35:17;i;;;;__init__.py
+25-05-2025;12:35:28;i;[martin];;;/;Chrome
+25-05-2025;12:35:28;i;[martin];;;current_user.is_anonymous;Chrome
+25-05-2025;12:35:28;w;[martin];;;no_access_text;Chrome
+25-05-2025;12:35:29;i;[martin];;;login;Chrome
+25-05-2025;12:35:34;i;[martin];;;login;Chrome
+25-05-2025;12:35:34;i;[martin];;;login - POST;Chrome
+25-05-2025;12:35:34;i;[martin];;;username: laura@maidiving.nl;Chrome
+25-05-2025;12:35:34;i;[martin];;;if user is not None:;Chrome
+25-05-2025;12:35:35;i;[martin];;Laura@Maidiving.nl;user logged in;Chrome
+25-05-2025;12:35:35;i;[martin];;Laura@Maidiving.nl;/;Chrome
+25-05-2025;12:35:35;i;[martin];;Laura@Maidiving.nl;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 17),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,23))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Chrome
+25-05-2025;12:35:41;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+25-05-2025;12:36:03;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+25-05-2025;12:36:03;i;[martin];;Laura@Maidiving.nl;usersregisterformorm_is_validated;Chrome
+25-05-2025;12:36:03;i;[martin];;Laura@Maidiving.nl;usersregisterform\cInfo=date: 25-05-2025, time: 12:36:03, ip:192.168.1.57;Chrome
+25-05-2025;12:36:20;i;;;;
+25-05-2025;12:36:20;i;;;;__init__.py
+25-05-2025;12:39:54;i;;;;
+25-05-2025;12:39:54;i;;;;__init__.py
+25-05-2025;12:40:00;i;[martin];;Laura@Maidiving.nl;/;Chrome
+25-05-2025;12:40:00;i;[martin];;Laura@Maidiving.nl;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 17),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,23))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Chrome
+25-05-2025;12:40:02;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+25-05-2025;12:40:20;i;[martin];;Laura@Maidiving.nl;usersregisterform;Chrome
+25-05-2025;12:40:20;i;[martin];;Laura@Maidiving.nl;usersregisterform > form_is_validated;Chrome
+25-05-2025;12:40:20;i;[martin];;Laura@Maidiving.nl;usersregisterform > cInfo=date: 25-05-2025, time: 12:40:20, ip:192.168.1.57;Chrome
+25-05-2025;12:40:20;i;[martin];;Laura@Maidiving.nl;add user:annelies4@maischeduler.nl,a4,a4,4444;Chrome
+25-05-2025;12:40:20;i;[martin];;Laura@Maidiving.nl;users;Chrome
+25-05-2025;12:49:10;i;[martin];;Laura@Maidiving.nl;/support;Chrome
+25-05-2025;12:49:12;i;[martin];;Laura@Maidiving.nl;showlogfile;Chrome
+25-05-2025;12:49:12;i;[martin];;Laura@Maidiving.nl;start reading file '_logfile\logfile_MWI20_20250525.txt';Chrome
+25-05-2025;12:49:12;i;[martin];;Laura@Maidiving.nl;file '_logfile\logfile_MWI20_20250525.txt' exists;Chrome
+25-05-2025;12:49:12;i;[martin];;Laura@Maidiving.nl;finished reading file;Chrome
+25-05-2025;12:49:12;i;[martin];;Laura@Maidiving.nl;written file;Chrome
+25-05-2025;12:53:41;i;[martin];;Laura@Maidiving.nl;/;Chrome
+25-05-2025;12:53:41;i;[martin];;Laura@Maidiving.nl;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 5, 17),func.DATE(Appointments.Date) <= datetime.datetime(2025, 6,23))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) );Chrome
+25-05-2025;12:53:45;i;[martin];;Laura@Maidiving.nl;/support;Chrome
+25-05-2025;12:53:56;i;[martin];;Laura@Maidiving.nl;/support;Chrome
+25-05-2025;12:54:39;i;[martin];;Laura@Maidiving.nl;/support;Chrome

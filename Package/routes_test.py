@@ -1,11 +1,11 @@
 
-######## ########  ######  ######## 
-   ##    ##       ##    ##    ##    
-   ##    ##       ##          ##    
-   ##    ######    ######     ##    
-   ##    ##             ##    ##    
-   ##    ##       ##    ##    ##    
-   ##    ########  ######     ##    
+# ######## ########  ######  ######## 
+#    ##    ##       ##    ##    ##    
+#    ##    ##       ##          ##    
+#    ##    ######    ######     ##    
+#    ##    ##             ##    ##    
+#    ##    ##       ##    ##    ##    
+#    ##    ########  ######     ##    
 
 
 from Package import db
@@ -88,8 +88,7 @@ def test():
 
         print('')
 
-
-    if True:
+    if False:
 
         users = db.session.execute(db.select(Users).order_by(Users.Firstname).filter_by(Active = True)).scalars()
 

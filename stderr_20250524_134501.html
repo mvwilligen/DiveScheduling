@@ -1,0 +1,140 @@
+<html><style>
+td { text-align:left; vertical-align:top; padding-left:5px;padding-right:5px;padding-bottom:5px;padding-top:5px; font-size: 11pt;font-family: Arial;width:200px;
+font-family:verdana; }
+table { border-collapse: collapse; }
+a, p, h3 {font-family:verdana;}
+table, th, td { border: 1px solid};
+</style>
+<h3>24-05-2025 13:45:01</h3><br>
+<p>filename: stderr.log<br>
+<br>date and time:        2025-05-24 12:23:11.579678
+<br><br>
+| username:  Laura@Maidiving.nl
+<br>
+| type(user):  <class 'Package.models.Users'>
+<br>
+<br>date and time:        2025-05-24 12:52:06.959105
+<br><br>
+| [2025-05-24 12:52:12,628] ERROR in app: Exception on /chk_stderr_log/ [GET]
+<br>
+| Traceback (most recent call last):
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+<br>
+|     response = self.full_dispatch_request()
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+<br>
+|     rv = self.handle_user_exception(e)
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+<br>
+|     rv = self.dispatch_request()
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+<br>
+|     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+<br>
+|   File "/home/ljnpscqd/apps/divescheduler/Package/functions.py", line 434, in chk_stderr_log
+<br>
+|     cOutput = cTop + "filename: " + cFilename + "<br>\n"
+<br>
+| UnboundLocalError: local variable 'cFilename' referenced before assignment
+<br>
+<br>date and time:        2025-05-24 12:54:31.332262
+<br><br>
+| [2025-05-24 12:54:34,280] ERROR in app: Exception on /chk_stderr_log/ [GET]
+<br>
+| Traceback (most recent call last):
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+<br>
+|     response = self.full_dispatch_request()
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+<br>
+|     rv = self.handle_user_exception(e)
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+<br>
+|     rv = self.dispatch_request()
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+<br>
+|     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+<br>
+|   File "/home/ljnpscqd/apps/divescheduler/Package/functions.py", line 434, in chk_stderr_log
+<br>
+|     cOutput = cTop + "filename: " + cFilename + "<br>\n"
+<br>
+| UnboundLocalError: local variable 'cFilename' referenced before assignment
+<br>
+<br>date and time:        2025-05-24 12:56:10.666025
+<br><br>
+| [2025-05-24 13:07:13,945] ERROR in app: Exception on /support [GET]
+<br>
+| Traceback (most recent call last):
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+<br>
+|     response = self.full_dispatch_request()
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+<br>
+|     rv = self.handle_user_exception(e)
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+<br>
+|     rv = self.dispatch_request()
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+<br>
+|     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+<br>
+|   File "/home/ljnpscqd/apps/divescheduler/Package/routes.py", line 347, in support
+<br>
+|     return render_template('support.html', lRBAC=lRBAC)
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/templating.py", line 150, in render_template
+<br>
+|     return _render(app, template, context)
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/templating.py", line 131, in _render
+<br>
+|     rv = template.render(context)
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/jinja2/environment.py", line 1295, in render
+<br>
+|     self.environment.handle_exception()
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/jinja2/environment.py", line 942, in handle_exception
+<br>
+|     raise rewrite_traceback_stack(source=source)
+<br>
+|   File "/home/ljnpscqd/apps/divescheduler/Package/templates/support.html", line 1, in top-level template code
+<br>
+|     {% extends 'base.html' %}
+<br>
+|   File "/home/ljnpscqd/apps/divescheduler/Package/templates/base.html", line 155, in top-level template code
+<br>
+|     {% block content %}
+<br>
+|   File "/home/ljnpscqd/apps/divescheduler/Package/templates/support.html", line 47, in block 'content'
+<br>
+|     <a class="btn btn-outline btn-info" href="{{ url_for('showlogfile') }}" target='_blank'>show logfile</a>
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 1121, in url_for
+<br>
+|     return self.handle_url_build_error(error, endpoint, values)
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/flask/app.py", line 1110, in url_for
+<br>
+|     rv = url_adapter.build(  # type: ignore[union-attr]
+<br>
+|   File "/home/ljnpscqd/virtualenv/apps/divescheduler/3.9/lib/python3.9/site-packages/werkzeug/routing/map.py", line 924, in build
+<br>
+|     raise BuildError(endpoint, values, method, self)
+<br>
+| werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'showlogfile'. Did you mean 'login' instead?
+<br>
+<br>[eof]<br></html>

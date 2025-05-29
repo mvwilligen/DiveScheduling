@@ -1,0 +1,75 @@
+01-03-2025;19:30:19;i;;__init__.py
+01-03-2025;19:30:19;w;31.151.235.150;31.151.235.150;;no_access_text
+01-03-2025;19:30:22;i;31.151.235.150;31.151.235.150;;login
+01-03-2025;19:30:23;i;;__init__.py
+01-03-2025;19:30:24;i;31.151.235.150;31.151.235.150;;login
+01-03-2025;19:30:24;i;31.151.235.150;31.151.235.150;;login - POST
+01-03-2025;19:30:24;i;31.151.235.150;31.151.235.150;;username: laura@maidiving.nl
+01-03-2025;19:30:24;i;31.151.235.150;31.151.235.150;Laura;user logged in
+01-03-2025;19:30:24;i;31.151.235.150;31.151.235.150;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;19:30:27;i;31.151.235.150;31.151.235.150;Laura;users
+01-03-2025;19:30:33;i;31.151.235.150;31.151.235.150;Laura;/products
+01-03-2025;19:30:41;i;31.151.235.150;31.151.235.150;Laura;/productsnew
+01-03-2025;19:31:02;i;31.151.235.150;31.151.235.150;Laura;/productsnew
+01-03-2025;19:31:02;i;31.151.235.150;31.151.235.150;Laura;functions/savenote 7 type:pr length:2 action:replace
+01-03-2025;19:31:02;i;31.151.235.150;31.151.235.150;Laura;/products
+01-03-2025;19:31:09;i;31.151.235.150;31.151.235.150;Laura;/productsedit 7
+01-03-2025;19:31:10;i;31.151.235.150;31.151.235.150;Laura;functions/getnote 7 type:pr
+01-03-2025;19:31:11;i;31.151.235.150;31.151.235.150;Laura;/productsedit 7
+01-03-2025;19:31:12;i;31.151.235.150;31.151.235.150;Laura;functions/getnote 7 type:pr
+01-03-2025;19:31:12;i;31.151.235.150;31.151.235.150;Laura;functions/savenote 7 type:pr length:2 action:replace
+01-03-2025;19:31:12;i;31.151.235.150;31.151.235.150;Laura;/products
+01-03-2025;19:33:06;i;31.151.235.150;31.151.235.150;;/products
+01-03-2025;19:33:06;w;31.151.235.150;31.151.235.150;;no_access_text
+01-03-2025;19:33:20;i;31.151.235.150;31.151.235.150;;/products
+01-03-2025;19:33:20;w;31.151.235.150;31.151.235.150;;no_access_text
+01-03-2025;19:33:22;i;31.151.235.150;31.151.235.150;;login
+01-03-2025;19:33:26;i;31.151.235.150;31.151.235.150;Laura;login
+01-03-2025;19:33:26;i;31.151.235.150;31.151.235.150;Laura;login - POST
+01-03-2025;19:33:26;i;31.151.235.150;31.151.235.150;Laura;username: laura@maidiving.nl
+01-03-2025;19:33:26;i;31.151.235.150;31.151.235.150;Laura;user logged in
+01-03-2025;19:33:26;i;31.151.235.150;31.151.235.150;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;19:33:29;i;31.151.235.150;31.151.235.150;;/appointments
+01-03-2025;19:33:29;w;31.151.235.150;31.151.235.150;;no_access_text
+01-03-2025;19:33:31;i;31.151.235.150;31.151.235.150;;login
+01-03-2025;19:33:35;i;31.151.235.150;31.151.235.150;Laura;login
+01-03-2025;19:33:35;i;31.151.235.150;31.151.235.150;Laura;login - POST
+01-03-2025;19:33:35;i;31.151.235.150;31.151.235.150;Laura;username: laura@maidiving.nl
+01-03-2025;19:33:36;i;31.151.235.150;31.151.235.150;Laura;user logged in
+01-03-2025;19:33:36;i;31.151.235.150;31.151.235.150;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;19:33:40;i;31.151.235.150;31.151.235.150;Laura;/instructors
+01-03-2025;19:33:52;i;31.151.235.150;31.151.235.150;Laura;users
+01-03-2025;19:33:56;i;66.249.81.98;66.249.81.98;;users
+01-03-2025;19:33:56;w;66.249.81.98;66.249.81.98;;no_access_text
+01-03-2025;19:33:57;i;66.249.83.128;66.249.83.128;;users
+01-03-2025;19:33:57;w;66.249.83.128;66.249.83.128;;no_access_text
+01-03-2025;19:33:57;i;66.102.8.101;66.102.8.101;;users
+01-03-2025;19:33:57;w;66.102.8.101;66.102.8.101;;no_access_text
+01-03-2025;19:34:02;i;31.151.235.150;31.151.235.150;Laura;userseditform2 15 from:users
+01-03-2025;19:34:02;i;31.151.235.150;31.151.235.150;Laura;functions/getnote 15 type:st
+01-03-2025;19:34:06;i;66.249.81.100;66.249.81.100;;userseditform2 15 from:users
+01-03-2025;19:34:06;w;66.249.81.100;66.249.81.100;;no_access_text
+01-03-2025;19:34:06;i;66.249.81.99;66.249.81.99;;userseditform2 15 from:users
+01-03-2025;19:34:06;w;66.249.81.99;66.249.81.99;;no_access_text
+01-03-2025;19:34:06;i;66.102.8.103;66.102.8.103;;userseditform2 15 from:users
+01-03-2025;19:34:06;w;66.102.8.103;66.102.8.103;;no_access_text
+01-03-2025;19:34:09;i;31.151.235.150;31.151.235.150;Laura;userseditform2 15 from:users
+01-03-2025;19:34:09;i;31.151.235.150;31.151.235.150;Laura;functions/getnote 15 type:st
+01-03-2025;19:34:09;i;31.151.235.150;31.151.235.150;Laura;functions/savenote 15 type:st length:0 action:replace
+01-03-2025;19:34:09;i;31.151.235.150;31.151.235.150;Laura;users
+01-03-2025;19:34:13;i;31.151.235.150;31.151.235.150;Laura;users
+01-03-2025;19:34:23;i;31.151.235.150;31.151.235.150;;login
+01-03-2025;19:34:40;i;31.151.235.150;31.151.235.150;;login
+01-03-2025;19:34:40;i;31.151.235.150;31.151.235.150;;login - POST
+01-03-2025;19:34:40;i;31.151.235.150;31.151.235.150;;username: annelies@maischeduler.nl
+01-03-2025;19:34:41;i;31.151.235.150;31.151.235.150;annelies@maischeduler.nl;user logged in
+01-03-2025;19:34:41;i;31.151.235.150;31.151.235.150;annelies@maischeduler.nl;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;19:34:45;i;31.151.235.150;31.151.235.150;annelies@maischeduler.nl;users
+01-03-2025;19:34:48;i;31.151.235.150;31.151.235.150;annelies@maischeduler.nl;/instructors
+01-03-2025;19:34:50;i;31.151.235.150;31.151.235.150;annelies@maischeduler.nl;/appointments
+01-03-2025;19:35:57;i;31.151.235.150;31.151.235.150;Laura;/products
+01-03-2025;19:36:02;i;31.151.235.150;31.151.235.150;Laura;users
+01-03-2025;19:36:09;i;31.151.235.150;31.151.235.150;;userseditform2 15 from:users
+01-03-2025;19:36:09;w;31.151.235.150;31.151.235.150;;no_access_text
+01-03-2025;19:36:11;i;31.151.235.150;31.151.235.150;;login
+01-03-2025;19:40:28;i;31.151.235.150;31.151.235.150;;login

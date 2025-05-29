@@ -23,6 +23,9 @@ from dotenv import dotenv_values
 import glob
 from ftplib import FTP
 
+from Package.functions import logtext
+from Package.functions import myquery
+
 
 ##########################################################################################################################
 
@@ -38,6 +41,8 @@ from ftplib import FTP
 
 @app.route('/html/')
 def html():
+
+    logtext('html', 'i')
 
     if current_user.is_anonymous:
         return (no_access_text())
@@ -60,6 +65,8 @@ def html():
 
 @app.route('/htmlexport/')
 def htmlexport():
+
+    logtext('htmlexport', 'i')
 
     aSpecialDates = []
     aSpecialDates.append(['18-08-2024', 'Hello World!'])
@@ -661,7 +668,10 @@ def htmlexport():
 
 @app.route('/ftp/')
 def ftp():
-    
+
+    logtext('ftp start', 'i')
+
+
     lRBAC = get_rbac(request.url_rule.endpoint)    
 
     # inspiration: https://pythonprogramming.net/ftp-transfers-python-ftplib/
@@ -711,6 +721,8 @@ def ftp():
 
     # return url_for('html') 
     # render_template('result.html', cMessage = cMessage, lRBAC = lRBAC)
+
+    logtext('ftp finish', 'i')
 
     return render_template('htmlexport.html', lRBAC = lRBAC, cMessage = cMessage)
 

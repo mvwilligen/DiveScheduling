@@ -1,0 +1,160 @@
+01-03-2025; 18:17:23; i; Laura; db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025; 18:17:27; i; ; login
+01-03-2025; 18:17:30; i; ; login
+01-03-2025; 18:17:30; i; ; login - POST
+01-03-2025; 18:17:30; i; ; username: laura@maidiving.nl
+01-03-2025; 18:17:31; i; Laura; user logged in
+01-03-2025; 18:17:31; i; Laura; db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;18:31:19;i;;__init__.py
+01-03-2025;18:31:30;i;;login
+01-03-2025;18:31:33;i;;login
+01-03-2025;18:31:33;i;;login - POST
+01-03-2025;18:31:33;i;;username: laura@maidiving.nl
+01-03-2025;18:31:34;i;Laura;user logged in
+01-03-2025;18:31:34;i;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;18:38:14;i;;__init__.py
+01-03-2025;18:39:23;i;;__init__.py
+01-03-2025;18:40:11;i;;__init__.py
+01-03-2025;18:40:49;i;;__init__.py
+01-03-2025;18:40:50;i;192.168.1.57;192.168.1.57;;login
+01-03-2025;18:40:54;i;192.168.1.57;192.168.1.57;;login
+01-03-2025;18:40:54;i;192.168.1.57;192.168.1.57;;login - POST
+01-03-2025;18:40:54;i;192.168.1.57;192.168.1.57;;username: laura@maidiving.nl
+01-03-2025;18:40:55;i;192.168.1.57;192.168.1.57;Laura;user logged in
+01-03-2025;18:40:55;i;192.168.1.57;192.168.1.57;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;18:43:36;i;192.168.1.6;192.168.1.6;;login
+01-03-2025;18:43:43;i;192.168.1.6;192.168.1.6;;login
+01-03-2025;18:43:43;i;192.168.1.6;192.168.1.6;;login - POST
+01-03-2025;18:43:43;i;192.168.1.6;192.168.1.6;;username: laura@maidiving.nl
+01-03-2025;18:43:44;i;192.168.1.6;192.168.1.6;Laura;user logged in
+01-03-2025;18:43:44;i;192.168.1.6;192.168.1.6;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;18:49:05;i;;__init__.py
+01-03-2025;18:49:10;i;192.168.1.57;192.168.1.57;Laura;/appointments
+01-03-2025;18:49:12;i;192.168.1.57;192.168.1.57;Laura;/appointmentsedit
+01-03-2025;18:49:15;i;192.168.1.57;192.168.1.57;Laura;/appointmentsedit
+01-03-2025;18:49:15;i;192.168.1.57;192.168.1.57;Laura;/appointments
+01-03-2025;18:51:17;i;;__init__.py
+01-03-2025;18:51:45;i;192.168.1.6;192.168.1.6;Laura;/products
+01-03-2025;18:52:11;i;192.168.1.6;192.168.1.6;Laura;/productsedit
+01-03-2025;18:52:19;i;192.168.1.6;192.168.1.6;Laura;/productsedit
+01-03-2025;18:52:19;i;192.168.1.6;192.168.1.6;Laura;/products
+01-03-2025;18:52:55;i;;__init__.py
+01-03-2025;18:52:59;i;192.168.1.57;192.168.1.57;Laura;/products
+01-03-2025;18:53:01;i;192.168.1.57;192.168.1.57;Laura;/productsedit 1
+01-03-2025;18:53:05;i;192.168.1.57;192.168.1.57;Laura;/productsedit 1
+01-03-2025;18:53:05;i;192.168.1.57;192.168.1.57;Laura;/products
+01-03-2025;18:56:09;i;;__init__.py
+01-03-2025;18:56:11;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;18:57:15;i;;__init__.py
+01-03-2025;18:57:18;i;192.168.1.57;192.168.1.57;Laura;userseditform2 6 users
+01-03-2025;18:57:38;i;;__init__.py
+01-03-2025;18:58:22;i;;__init__.py
+01-03-2025;18:58:36;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;18:58:41;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;18:58:51;i;192.168.1.57;192.168.1.57;Laura;usersinfo 3
+01-03-2025;18:59:46;i;;__init__.py
+01-03-2025;19:00:40;i;;__init__.py
+01-03-2025;19:01:52;i;;__init__.py
+01-03-2025;19:04:34;i;;__init__.py
+01-03-2025;19:04:47;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;19:04:54;i;192.168.1.57;192.168.1.57;Laura;userseditform2 6 from:users
+01-03-2025;19:04:54;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 6 type:st
+01-03-2025;19:04:58;i;192.168.1.57;192.168.1.57;Laura;userseditform2 6 from:users
+01-03-2025;19:04:58;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 6 type:st
+01-03-2025;19:05:25;i;;__init__.py
+01-03-2025;19:05:30;i;192.168.1.57;192.168.1.57;Laura;userseditform2 6 from:users
+01-03-2025;19:05:30;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 6 type:st
+01-03-2025;19:05:43;i;;__init__.py
+01-03-2025;19:05:43;i;192.168.1.57;192.168.1.57;Laura;userseditform2 6 from:users
+01-03-2025;19:05:43;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 6 type:st
+01-03-2025;19:05:43;i;192.168.1.57;192.168.1.57;Laura;functions/savenote 6 type:st length:0 action:replace
+01-03-2025;19:05:43;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;19:05:45;i;192.168.1.57;192.168.1.57;Laura;usersnotes 6
+01-03-2025;19:05:45;i;192.168.1.57;192.168.1.57;Laura;usersinfo b b
+01-03-2025;19:05:45;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 3 type:ap
+01-03-2025;19:05:51;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;19:05:52;i;192.168.1.57;192.168.1.57;Laura;userseditform2 6 from:users
+01-03-2025;19:05:52;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 6 type:st
+01-03-2025;19:05:56;i;192.168.1.57;192.168.1.57;Laura;userseditform2 6 from:users
+01-03-2025;19:05:56;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 6 type:st
+01-03-2025;19:05:56;i;192.168.1.57;192.168.1.57;Laura;functions/savenote 6 type:st length:1 action:replace
+01-03-2025;19:05:56;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;19:06:01;i;192.168.1.57;192.168.1.57;Laura;userseditform2 6 from:users
+01-03-2025;19:06:01;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 6 type:st
+01-03-2025;19:06:05;i;192.168.1.57;192.168.1.57;Laura;userseditform2 6 from:users
+01-03-2025;19:06:05;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 6 type:st
+01-03-2025;19:06:05;i;192.168.1.57;192.168.1.57;Laura;functions/savenote 6 type:st length:2 action:replace
+01-03-2025;19:06:05;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;19:06:07;i;192.168.1.57;192.168.1.57;Laura;userseditform2 6 from:users
+01-03-2025;19:06:07;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 6 type:st
+01-03-2025;19:06:09;i;192.168.1.57;192.168.1.57;Laura;userseditform2 6 from:users
+01-03-2025;19:06:09;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 6 type:st
+01-03-2025;19:06:09;i;192.168.1.57;192.168.1.57;Laura;functions/savenote 6 type:st length:3 action:replace
+01-03-2025;19:06:09;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;19:07:46;i;;__init__.py
+01-03-2025;19:11:25;i;;__init__.py
+01-03-2025;19:12:54;i;;__init__.py
+01-03-2025;19:15:19;i;;__init__.py
+01-03-2025;19:17:01;i;;__init__.py
+01-03-2025;19:17:52;i;192.168.1.57;192.168.1.57;Laura;usersdelete 6
+01-03-2025;19:19:40;i;192.168.1.6;192.168.1.6;;login
+01-03-2025;19:19:44;i;192.168.1.6;192.168.1.6;;login
+01-03-2025;19:19:44;i;192.168.1.6;192.168.1.6;;login - POST
+01-03-2025;19:19:44;i;192.168.1.6;192.168.1.6;;username: admin@mwisoftware.nl
+01-03-2025;19:19:44;i;192.168.1.6;192.168.1.6;Admin;user logged in
+01-03-2025;19:19:44;i;192.168.1.6;192.168.1.6;Admin;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;19:19:51;i;192.168.1.6;192.168.1.6;Admin;/products
+01-03-2025;19:20:14;i;192.168.1.57;192.168.1.57;Laura;usersdelete 6
+01-03-2025;19:20:16;i;192.168.1.57;192.168.1.57;Laura;usersdelete 6
+01-03-2025;19:20:19;i;192.168.1.57;192.168.1.57;Laura;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;19:20:21;i;192.168.1.57;192.168.1.57;Laura;/products
+01-03-2025;19:20:23;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;19:20:26;i;192.168.1.57;192.168.1.57;Laura;/products
+01-03-2025;19:20:27;i;192.168.1.57;192.168.1.57;Laura;/appointments
+01-03-2025;19:20:32;i;192.168.1.6;192.168.1.6;Admin;/products
+01-03-2025;19:20:33;i;192.168.1.6;192.168.1.6;Admin;users
+01-03-2025;19:20:37;i;192.168.1.6;192.168.1.6;Admin;/instructors
+01-03-2025;19:23:46;w;192.168.1.57;192.168.1.57;;no_access_text
+01-03-2025;19:23:50;i;192.168.1.57;192.168.1.57;;login
+01-03-2025;19:24:05;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;19:24:18;i;192.168.1.57;192.168.1.57;;login
+01-03-2025;19:24:18;i;192.168.1.57;192.168.1.57;;login - POST
+01-03-2025;19:24:18;i;192.168.1.57;192.168.1.57;;username: admin@mwisoftware.nl
+01-03-2025;19:24:18;i;192.168.1.57;192.168.1.57;Admin;user logged in
+01-03-2025;19:24:18;i;192.168.1.57;192.168.1.57;Admin;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;19:24:26;i;192.168.1.57;192.168.1.57;Admin;/instructors
+01-03-2025;19:24:28;i;192.168.1.57;192.168.1.57;Admin;/appointments
+01-03-2025;19:24:29;i;192.168.1.57;192.168.1.57;Admin;users
+01-03-2025;19:24:36;i;192.168.1.57;192.168.1.57;;login
+01-03-2025;19:24:46;i;192.168.1.57;192.168.1.57;;login
+01-03-2025;19:24:46;i;192.168.1.57;192.168.1.57;;login - POST
+01-03-2025;19:24:46;i;192.168.1.57;192.168.1.57;;username: vincent@maidiving.nl
+01-03-2025;19:24:46;i;192.168.1.57;192.168.1.57;;unknown username vincent@maidiving.nl|passw0rd
+01-03-2025;19:25:00;i;192.168.1.57;192.168.1.57;Laura;userseditform2 4 from:users
+01-03-2025;19:25:00;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 4 type:st
+01-03-2025;19:25:08;i;192.168.1.57;192.168.1.57;Laura;userseditform2 4 from:users
+01-03-2025;19:25:08;i;192.168.1.57;192.168.1.57;Laura;functions/getnote 4 type:st
+01-03-2025;19:25:09;i;192.168.1.57;192.168.1.57;Laura;functions/savenote 4 type:st length:0 action:replace
+01-03-2025;19:25:09;i;192.168.1.57;192.168.1.57;Laura;users
+01-03-2025;19:25:13;i;192.168.1.57;192.168.1.57;;login
+01-03-2025;19:25:13;i;192.168.1.57;192.168.1.57;;login - POST
+01-03-2025;19:25:13;i;192.168.1.57;192.168.1.57;;username: vincent@maidiving.nl
+01-03-2025;19:25:13;i;192.168.1.57;192.168.1.57;Vincent;user logged in
+01-03-2025;19:25:13;i;192.168.1.57;192.168.1.57;Vincent;db.session.execute(db.select(Appointments.Id, Appointments.User, Users.Firstname, Users.Lastname, Products.Productname, Appointments.Part, Appointments.Date, Instructors.Name, Appointments.Staff, Appointments.Product, Appointments.Assistants).order_by(Appointments.Date).where(and_(func.DATE(Appointments.Date) >= datetime.datetime(2025, 2, 21),func.DATE(Appointments.Date) <= datetime.datetime(2025, 3,30))).select_from(Appointments).join(Users, Appointments.User        == Users.Id).join(Instructors, Appointments.Staff == Instructors.Id).join(Products, Appointments.Product  == Products.Id) )
+01-03-2025;19:25:17;i;192.168.1.57;192.168.1.57;Vincent;users
+01-03-2025;19:25:20;i;192.168.1.57;192.168.1.57;Vincent;userseditform2 5 from:users
+01-03-2025;19:25:20;i;192.168.1.57;192.168.1.57;Vincent;functions/getnote 5 type:st
+01-03-2025;19:25:25;i;192.168.1.57;192.168.1.57;Vincent;userseditform2 5 from:users
+01-03-2025;19:25:25;i;192.168.1.57;192.168.1.57;Vincent;functions/getnote 5 type:st
+01-03-2025;19:25:25;i;192.168.1.57;192.168.1.57;Vincent;functions/savenote 5 type:st length:0 action:replace
+01-03-2025;19:25:25;i;192.168.1.57;192.168.1.57;Vincent;users
+01-03-2025;19:26:08;i;192.168.1.6;192.168.1.6;Admin;users
+01-03-2025;19:26:16;i;192.168.1.6;192.168.1.6;Admin;userseditform2 6 from:users
+01-03-2025;19:26:16;i;192.168.1.6;192.168.1.6;Admin;functions/getnote 6 type:st
+01-03-2025;19:26:23;i;192.168.1.6;192.168.1.6;Admin;userseditform2 6 from:users
+01-03-2025;19:26:23;i;192.168.1.6;192.168.1.6;Admin;functions/getnote 6 type:st
+01-03-2025;19:26:23;i;192.168.1.6;192.168.1.6;Admin;functions/savenote 6 type:st length:3 action:replace
+01-03-2025;19:26:23;i;192.168.1.6;192.168.1.6;Admin;users
+01-03-2025;19:26:33;i;192.168.1.57;192.168.1.57;Vincent;users
+01-03-2025;19:35:21;i;192.168.1.57;192.168.1.57;Vincent;/products
+01-03-2025;19:35:23;i;192.168.1.57;192.168.1.57;Vincent;users
